@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ZMTdbModelStoreContainer" CdmEntityContainer="ZMTdbEntities">
+    <EntitySetMapping Name="Contractor">
+      <EntityTypeMapping TypeName="ZMTdbModel.Contractor">
+        <MappingFragment StoreEntitySet="Contractor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nip" ColumnName="nip" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="account_number" ColumnName="account_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Device">
+      <EntityTypeMapping TypeName="ZMTdbModel.Device">
+        <MappingFragment StoreEntitySet="Device">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_peripheral_device" ColumnName="id_peripheral_device" />
+          <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+          <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+          <ScalarProperty Name="mac_address" ColumnName="mac_address" />
+          <ScalarProperty Name="producer" ColumnName="producer" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="id_fixed_asset" ColumnName="id_fixed_asset" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FixedAsset">
+      <EntityTypeMapping TypeName="ZMTdbModel.FixedAsset">
+        <MappingFragment StoreEntitySet="FixedAsset">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="inventory_number" ColumnName="inventory_number" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="id_person" ColumnName="id_person" />
+          <ScalarProperty Name="date_of_activation" ColumnName="date_of_activation" />
+          <ScalarProperty Name="date_of_desactivation" ColumnName="date_of_desactivation" />
+          <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+          <ScalarProperty Name="MPK" ColumnName="MPK" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="localization" ColumnName="localization" />
+          <ScalarProperty Name="id_kind" ColumnName="id_kind" />
+          <ScalarProperty Name="id_subgroup" ColumnName="id_subgroup" />
+          <ScalarProperty Name="last_modified_date" ColumnName="last_modified_date" />
+          <ScalarProperty Name="last_modifed_login" ColumnName="last_modifed_login" />
+          <ScalarProperty Name="cassation" ColumnName="cassation" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="id_contractor" ColumnName="id_contractor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kind">
+      <EntityTypeMapping TypeName="ZMTdbModel.Kind">
+        <MappingFragment StoreEntitySet="Kind">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Licence">
+      <EntityTypeMapping TypeName="ZMTdbModel.Licence">
+        <MappingFragment StoreEntitySet="Licence">
+          <ScalarProperty Name="id_number" ColumnName="id_number" />
+          <ScalarProperty Name="inventory_number" ColumnName="inventory_number" />
+          <ScalarProperty Name="assign_fixed_asset" ColumnName="assign_fixed_asset" />
+          <ScalarProperty Name="licence_number" ColumnName="licence_number" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="id_kind" ColumnName="id_kind" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="last_modified_date" ColumnName="last_modified_date" />
+          <ScalarProperty Name="last_modified_login" ColumnName="last_modified_login" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MembershipRole">
+      <EntityTypeMapping TypeName="ZMTdbModel.MembershipRole">
+        <MappingFragment StoreEntitySet="MembershipRole">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MembershipUser">
+      <EntityTypeMapping TypeName="ZMTdbModel.MembershipUser">
+        <MappingFragment StoreEntitySet="MembershipUser">
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="last_login_date" ColumnName="last_login_date" />
+          <ScalarProperty Name="is_online" ColumnName="is_online" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="PLKLogin" ColumnName="PLKLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeripheralDevice">
+      <EntityTypeMapping TypeName="ZMTdbModel.PeripheralDevice">
+        <MappingFragment StoreEntitySet="PeripheralDevice">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subgroup">
+      <EntityTypeMapping TypeName="ZMTdbModel.Subgroup">
+        <MappingFragment StoreEntitySet="Subgroup">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="short_name" ColumnName="short_name" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Membership_User_Role" TypeName="ZMTdbModel.Membership_User_Role" StoreEntitySet="Membership_User_Role">
+      <EndProperty Name="MembershipRole">
+        <ScalarProperty Name="id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="MembershipUser">
+        <ScalarProperty Name="login" ColumnName="Login" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="ZMTdbModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="id_section" ColumnName="id_section" />
+          <ScalarProperty Name="phone_number2" ColumnName="phone_number2" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="area_code" ColumnName="area_code" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Section">
+      <EntityTypeMapping TypeName="ZMTdbModel.Section">
+        <MappingFragment StoreEntitySet="Section">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="locality" ColumnName="locality" />
+          <ScalarProperty Name="post" ColumnName="post" />
+          <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="short_name" ColumnName="short_name" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,71 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PersonListModel
+
+<p></p>
+<table id="sort-table" class="link-sort-table" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Sekcja</th>
+                    <th>Email</th>
+                    <th>Telefon</th>
+                    <th>Telefon2</th>
+                    <th>Edytowanie</th>
+                </tr>
+            </thead>
+            <tbody>
+
+@foreach (var x in Model.List)
+{
+     <tr>
+            <td>@x.id</td>
+            <td>@x.name</td>
+            <td>@x.surname</td>
+            <td>@x.section_name</td>
+            <td>@x.email</td>
+            <td>@x.phone_number</td>
+            <td>@x.phone_number2</td>
+            <td>@Html.ActionLink("Edytuj", "Edit", new { id = @x.id })</td>
+     </tr>
+}
+    </tbody>
+</table>
+@{
+    Dictionary<string, object> routeValues = new Dictionary<string, object>();
+    routeValues.Add("Section", Model.Section);
+    routeValues.Add("ShowAll", Model.ShowAll);
+    routeValues.Add("OrderBy", Model.OrderBy);
+    routeValues.Add("ItemsPerPage", Model.ItemsPerPage);
+    routeValues.Add("ASC", Model.ASC);
+    routeValues.Add("Query", Model.Query);
+}
+@{ if (!Model.ShowAll)
+   {
+    <div id="pager">
+        @Ajax.Pager((int)Model.Page, (int)Model.TotalRecords, "list", routeValues, "Person", "List", (int)Model.ItemsPerPage)
+    </div>   
+    }
+}
+
+
+@using (Ajax.BeginForm("List", "Person", @Model, new AjaxOptions { UpdateTargetId = "list", HttpMethod = "POST" }))
+{    
+     @Html.HiddenFor(x => x.Page);
+     @Html.HiddenFor(x => x.Section);                                   
+     @Html.HiddenFor(x => x.TotalRecords);
+     @Html.HiddenFor(x => x.Query);
+     
+
+     @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList);
+     @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList);
+     @Html.CheckBoxFor(x => x.ASC);
+     @Html.CheckBoxFor(x => x.ShowAll);
+     
+     
+                                  
+    <input type="submit" value="OK"  />   
+}
+
+
+

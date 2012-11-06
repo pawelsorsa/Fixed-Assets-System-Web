@@ -1,0 +1,15 @@
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\obj\Debug\ResolveAssemblyReference.cache
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\ZMTFixedAssetsWebApp.UnitTests.dll
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\ZMTFixedAssetsWebApp.UnitTests.pdb
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\Moq.dll
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\Ninject.dll
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\ZMTFixedAssetsWebApp.Domain.dll
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\ZMTFixedAssetsWebApp.WebUI.dll
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\ZMTFixedAssetsWebApp.Domain.pdb
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\ZMTFixedAssetsWebApp.WebUI.pdb
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\Moq.pdb
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\Moq.xml
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\Ninject.pdb
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\bin\Debug\Ninject.xml
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\obj\Debug\ZMTFixedAssetsWebApp.UnitTests.dll
+c:\users\admin\documents\visual studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\obj\Debug\ZMTFixedAssetsWebApp.UnitTests.pdb

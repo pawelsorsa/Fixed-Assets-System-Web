@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZMTdbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ZMTdbModelStoreContainer">
+    <EntitySet Name="Contractor" EntityType="ZMTdbModel.Store.Contractor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Device" EntityType="ZMTdbModel.Store.Device" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FixedAsset" EntityType="ZMTdbModel.Store.FixedAsset" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Kind" EntityType="ZMTdbModel.Store.Kind" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Licence" EntityType="ZMTdbModel.Store.Licence" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Membership_User_Role" EntityType="ZMTdbModel.Store.Membership_User_Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MembershipRole" EntityType="ZMTdbModel.Store.MembershipRole" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MembershipUser" EntityType="ZMTdbModel.Store.MembershipUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PeripheralDevice" EntityType="ZMTdbModel.Store.PeripheralDevice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Person" EntityType="ZMTdbModel.Store.Person" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Section" EntityType="ZMTdbModel.Store.Section" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subgroup" EntityType="ZMTdbModel.Store.Subgroup" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Device__id_perip__1BFD2C07" Association="ZMTdbModel.Store.FK__Device__id_perip__1BFD2C07">
+      <End Role="PeripheralDevice" EntitySet="PeripheralDevice" />
+      <End Role="Device" EntitySet="Device" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Device__id_perip__1CF15040" Association="ZMTdbModel.Store.FK__Device__id_perip__1CF15040">
+      <End Role="PeripheralDevice" EntitySet="PeripheralDevice" />
+      <End Role="Device" EntitySet="Device" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Licence__id_kind__3E52440B" Association="ZMTdbModel.Store.FK__Licence__id_kind__3E52440B">
+      <End Role="Kind" EntitySet="Kind" />
+      <End Role="Licence" EntitySet="Licence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Device_FixedAsset" Association="ZMTdbModel.Store.FK_Device_FixedAsset">
+      <End Role="FixedAsset" EntitySet="FixedAsset" />
+      <End Role="Device" EntitySet="Device" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FixedAsset_Contractor" Association="ZMTdbModel.Store.FK_FixedAsset_Contractor">
+      <End Role="Contractor" EntitySet="Contractor" />
+      <End Role="FixedAsset" EntitySet="FixedAsset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FixedAsset_Person" Association="ZMTdbModel.Store.FK_FixedAsset_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="FixedAsset" EntitySet="FixedAsset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FixedAsset_Subgroup" Association="ZMTdbModel.Store.FK_FixedAsset_Subgroup">
+      <End Role="Subgroup" EntitySet="Subgroup" />
+      <End Role="FixedAsset" EntitySet="FixedAsset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Licence_FixedAsset" Association="ZMTdbModel.Store.FK_Licence_FixedAsset">
+      <End Role="FixedAsset" EntitySet="FixedAsset" />
+      <End Role="Licence" EntitySet="Licence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Licence_MembershipUser" Association="ZMTdbModel.Store.FK_Licence_MembershipUser">
+      <End Role="MembershipUser" EntitySet="MembershipUser" />
+      <End Role="Licence" EntitySet="Licence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Membership_User_Role_MembershipRole" Association="ZMTdbModel.Store.FK_Membership_User_Role_MembershipRole">
+      <End Role="MembershipRole" EntitySet="MembershipRole" />
+      <End Role="Membership_User_Role" EntitySet="Membership_User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Membership_User_Role_MembershipUser" Association="ZMTdbModel.Store.FK_Membership_User_Role_MembershipUser">
+      <End Role="MembershipUser" EntitySet="MembershipUser" />
+      <End Role="Membership_User_Role" EntitySet="Membership_User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_Section" Association="ZMTdbModel.Store.FK_Person_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Contractor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="nip" Type="int" Nullable="false" />
+    <Property Name="street" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="postal_code" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="city" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="country" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="account_number" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Device">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="id_peripheral_device" Type="int" Nullable="false" />
+    <Property Name="serial_number" Type="varchar" MaxLength="50" />
+    <Property Name="ip_address" Type="varchar" MaxLength="15" />
+    <Property Name="mac_address" Type="varchar" MaxLength="17" />
+    <Property Name="producer" Type="varchar" MaxLength="50" />
+    <Property Name="model" Type="varchar" MaxLength="100" />
+    <Property Name="comment" Type="text" />
+    <Property Name="id_fixed_asset" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FixedAsset">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="inventory_number" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="comment" Type="varchar" MaxLength="250" />
+    <Property Name="id_person" Type="int" />
+    <Property Name="date_of_activation" Type="date" Nullable="false" />
+    <Property Name="date_of_desactivation" Type="date" />
+    <Property Name="serial_number" Type="varchar" MaxLength="50" />
+    <Property Name="MPK" Type="varchar" MaxLength="20" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="localization" Type="varchar" MaxLength="255" />
+    <Property Name="id_kind" Type="int" />
+    <Property Name="id_subgroup" Type="int" />
+    <Property Name="last_modified_date" Type="date" />
+    <Property Name="last_modifed_login" Type="varchar" MaxLength="20" />
+    <Property Name="cassation" Type="bit" Nullable="false" />
+    <Property Name="created_by" Type="varchar" MaxLength="20" />
+    <Property Name="id_contractor" Type="int" />
+  </EntityType>
+  <EntityType Name="Kind">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Licence">
+    <Key>
+      <PropertyRef Name="id_number" />
+    </Key>
+    <Property Name="id_number" Type="int" Nullable="false" />
+    <Property Name="inventory_number" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="assign_fixed_asset" Type="int" Nullable="false" />
+    <Property Name="licence_number" Type="varchar" MaxLength="100" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="comment" Type="varchar" MaxLength="255" />
+    <Property Name="id_kind" Type="int" Nullable="false" />
+    <Property Name="created_by" Type="varchar" MaxLength="20" />
+    <Property Name="last_modified_date" Type="date" Nullable="false" />
+    <Property Name="last_modified_login" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Membership_User_Role">
+    <Key>
+      <PropertyRef Name="Login" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="Login" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MembershipRole">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="MembershipUser">
+    <Key>
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="login" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="surname" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="creation_date" Type="date" Nullable="false" />
+    <Property Name="last_login_date" Type="date" Nullable="false" />
+    <Property Name="is_online" Type="bit" Nullable="false" />
+    <Property Name="is_active" Type="bit" Nullable="false" />
+    <Property Name="PLKLogin" Type="int" />
+  </EntityType>
+  <EntityType Name="PeripheralDevice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="surname" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="area_code" Type="int" />
+    <Property Name="phone_number" Type="int" />
+    <Property Name="phone_number2" Type="int" />
+    <Property Name="id_section" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Section">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="short_name" Type="varchar" MaxLength="10" />
+    <Property Name="street" Type="varchar" MaxLength="50" />
+    <Property Name="postal_code" Type="varchar" MaxLength="10" />
+    <Property Name="post" Type="varchar" MaxLength="50" />
+    <Property Name="locality" Type="varchar" MaxLength="50" />
+    <Property Name="phone_number" Type="nchar" MaxLength="9" />
+    <Property Name="email" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Subgroup">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="short_name" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Device__id_perip__1BFD2C07">
+    <End Role="PeripheralDevice" Type="ZMTdbModel.Store.PeripheralDevice" Multiplicity="1" />
+    <End Role="Device" Type="ZMTdbModel.Store.Device" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PeripheralDevice">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Device">
+        <PropertyRef Name="id_peripheral_device" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Device__id_perip__1CF15040">
+    <End Role="PeripheralDevice" Type="ZMTdbModel.Store.PeripheralDevice" Multiplicity="1" />
+    <End Role="Device" Type="ZMTdbModel.Store.Device" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PeripheralDevice">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Device">
+        <PropertyRef Name="id_peripheral_device" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Licence__id_kind__3E52440B">
+    <End Role="Kind" Type="ZMTdbModel.Store.Kind" Multiplicity="1" />
+    <End Role="Licence" Type="ZMTdbModel.Store.Licence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kind">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Licence">
+        <PropertyRef Name="id_kind" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Device_FixedAsset">
+    <End Role="FixedAsset" Type="ZMTdbModel.Store.FixedAsset" Multiplicity="1" />
+    <End Role="Device" Type="ZMTdbModel.Store.Device" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FixedAsset">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Device">
+        <PropertyRef Name="id_fixed_asset" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FixedAsset_Contractor">
+    <End Role="Contractor" Type="ZMTdbModel.Store.Contractor" Multiplicity="0..1" />
+    <End Role="FixedAsset" Type="ZMTdbModel.Store.FixedAsset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FixedAsset">
+        <PropertyRef Name="id_contractor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FixedAsset_Person">
+    <End Role="Person" Type="ZMTdbModel.Store.Person" Multiplicity="0..1" />
+    <End Role="FixedAsset" Type="ZMTdbModel.Store.FixedAsset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FixedAsset">
+        <PropertyRef Name="id_person" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FixedAsset_Subgroup">
+    <End Role="Subgroup" Type="ZMTdbModel.Store.Subgroup" Multiplicity="0..1" />
+    <End Role="FixedAsset" Type="ZMTdbModel.Store.FixedAsset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subgroup">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FixedAsset">
+        <PropertyRef Name="id_subgroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Licence_FixedAsset">
+    <End Role="FixedAsset" Type="ZMTdbModel.Store.FixedAsset" Multiplicity="1" />
+    <End Role="Licence" Type="ZMTdbModel.Store.Licence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FixedAsset">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Licence">
+        <PropertyRef Name="assign_fixed_asset" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Licence_MembershipUser">
+    <End Role="MembershipUser" Type="ZMTdbModel.Store.MembershipUser" Multiplicity="0..1" />
+    <End Role="Licence" Type="ZMTdbModel.Store.Licence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MembershipUser">
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="Licence">
+        <PropertyRef Name="created_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Membership_User_Role_MembershipRole">
+    <End Role="MembershipRole" Type="ZMTdbModel.Store.MembershipRole" Multiplicity="1" />
+    <End Role="Membership_User_Role" Type="ZMTdbModel.Store.Membership_User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MembershipRole">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Membership_User_Role">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Membership_User_Role_MembershipUser">
+    <End Role="MembershipUser" Type="ZMTdbModel.Store.MembershipUser" Multiplicity="1" />
+    <End Role="Membership_User_Role" Type="ZMTdbModel.Store.Membership_User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MembershipUser">
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="Membership_User_Role">
+        <PropertyRef Name="Login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_Section">
+    <End Role="Section" Type="ZMTdbModel.Store.Section" Multiplicity="1" />
+    <End Role="Person" Type="ZMTdbModel.Store.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="id_section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

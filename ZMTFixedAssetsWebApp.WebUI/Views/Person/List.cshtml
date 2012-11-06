@@ -1,0 +1,38 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PersonListModel
+@{
+    ViewBag.Title = "Lista pracowników";
+}
+
+
+<div id="search_div">
+<p>>> WYSZUKIWANIE</p>
+</div>
+<div id="sortby">
+<table id="mytable">
+</table>
+<table id="validation"></table>
+<div id="sortlist">
+</div>
+<input type="button" id="btn_search" value="wyszukaj"/>
+</div>
+
+<div id="list">
+    @Html.Partial("_PersonList") 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
