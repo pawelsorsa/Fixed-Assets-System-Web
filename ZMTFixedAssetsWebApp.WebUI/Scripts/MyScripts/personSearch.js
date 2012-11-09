@@ -1,5 +1,28 @@
 ﻿$(document).ready(function () {
-    alert("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+    $("#sort_row_name").live("keydown", function () {
+        /*
+        var result = $(this).parent().find("td").eq(0).html();
+        var txt = $(this).children().val();
+       
+        var tab_validtion = $("#validation tr");
+        //alert(result);
+        tab_validtion.each(function (i, l) {
+            var tab = $(this).find("td").eq(0).text();
+            var tab_split = tab.split(':');
+            if (result.trim() == tab_split[1].trim()) {
+                if (txt.length > 0) {
+                    $(this).remove();
+                }
+                else {
+                    
+                }
+
+            }
+
+        });
+        */
+
+    });
 });
 
         function getsortlist()
@@ -8,12 +31,12 @@
                 $.getJSON("/Person/Lists/SortByList", function (data) {
                     var select = "<select id='fff'>";
                     var items = "";
-                    var divek = $("#mytable tr");
+                    var table = $("#mytable tr");
                     var wynik = false;
 
                     $.each(data, function (i, item) {
                         wynik = false;
-                        divek.each(function () {
+                        table.each(function () {
                             var result = $(this).find("td").eq(0).html();
                             if (result.toString() == item.Text) { wynik = true; }
                         });
@@ -32,17 +55,18 @@
 
         $(document).ready(function (e) {
             $("#btn_delete").live("click", function () {
-                var index = $(this).parent().parent().index();
+                var text = $(this).parent().parent().text();
                 var tab_validtion = $("#validation tr");
-                
-                tab_validtion.each(function (i,l) {
-                    if (i == index) 
-                    {
-                        $(this).remove();    
+               // alert(text);
+                tab_validtion.each(function (i, l) {
+                    var result = $(this).find("td").eq(0).text();
+                    var tab_split = result.split(':');
+                    if (text.trim() == tab_split[1].trim()) {
+                        $(this).remove();   
                     }
+
                 });
                 $(this).parent().parent().remove();
-
                 getsortlist();
             });
         });
@@ -60,7 +84,7 @@
                 });
 
                 if (!wynik && x != "") {
-                    var items = "<td width='30%'>" + x + "</td><td width='50%'><input type='text'/></td><td width='20%'><input type='button' id='btn_delete' value='usun'></input></td>";
+                    var items = "<td width='30%'>" + x + "</td><td width='50%' id='sort_row_name'><input type='text'/></td><td width='20%'><input type='button' id='btn_delete' value='usun'></input></td>";
                     var result = "<tr>" + items.toString() + "</tr>"
                     $('#mytable').append(result);
                 }
@@ -139,7 +163,7 @@
                 }
                 else {
                     $('#validation').empty();
-                    $('#validation').css("color", "red");
+                    $('#validation').css("color", "RED");
                     $('#validation').append(validation.toString());
                 }
             });

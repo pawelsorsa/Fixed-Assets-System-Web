@@ -1,90 +1,298 @@
-body
+/*
+Template Design by TheWebhub.com
+http://www.thewebhub.com
+Released for free under a Creative Commons Attribution-Share Alike 3.0 Philippines
+*/
+
+/** Common Styles */
+
+body {
+	margin: 30px 0 20px 0; /*30 - od góry */
+	padding: 0;
+	background: #D7D7BD url(images/img01.png) repeat;
+	text-align: justify;
+	line-height: 20px;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #4C4C4C;
+}
+
+h1, h2, h3 {
+	padding: 0;
+	margin: 0;
+	color: #000000;
+}
+
+strong { /*tekst wyt³uszczony*/
+	color: #000000;
+}
+
+p, ul, ol {
+	margin-bottom: 1.5em; /* odstêpy miêdzy akapitami */
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #308AC0;
+	border-bottom: 1px #97C8E5 dotted;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #005880;
+}
+
+
+/** Style for header starts here */
+
+#header { /* obrazek logo */
+	width: 800px;
+	height: 150px;
+	margin: 0px auto;
+	background: #FFAC16 url(images/img03.jpg) no-repeat left top;
+}
+
+#header h1, #header h2 {
+	margin: 0px;
+	padding: 0;
+	text-transform: uppercase; /*DU¯E LITERY*/
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #FFFFFF; /* kolor napisu w logo */
+}
+
+#header h1 { /* napis w logo */
+	float: left;
+	padding: 70px 10px 10px 20px; /* 70 -wysokoœæ, 20 - od lewej*/
+	font-size: 3em;
+}
+
+#header h2 { /*napis w logo 2*/
+	padding: 73px 10px 0px 0px; /* 73 - wysokoœæ */
+	font-size: 1.4em;
+}
+
+a.link
 {
-    font-size: .85em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-    color: #232323;
-    background-color: #fff;
+	border-bottom: 2px #E5E5CC dashed;
+	margin:0 auto;
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
+	margin: 0px 3px 0px 0;
+
 }
 
-header,
-footer,
-nav,
-section {
-    display: block;
-}
 
-/* Styles for basic forms
------------------------------------------------------------*/
+/** Style for menu starts here */
 
-fieldset 
+#logowanie
 {
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
+	float: right;
+	padding: 0 20px 0 0; /*20 - od prawego marginesu odleg³oœæ */
+	color: White;
 }
 
-legend 
+#zalogowany
 {
-    font-size:1.2em;
-    font-weight: bold;
+	float: right;
+	padding: 14px 40px 0px 0px;
+	color: red;
+	margin:0;
 }
 
-textarea 
+#zalogowany a {
+	display: block;
+	float: right;
+	border-bottom: 1px #E5E5CC dashed;
+	margin:0 auto;
+	text-decoration: none;
+	color: red;
+}
+
+#zalogowany .messages
 {
-    min-height: 75px;
+	padding: 0px 15px 0 0px;	
 }
 
-.editor-label 
+
+
+#menu {
+	width: 800px;
+	height: 50px;
+	margin: 0px auto;
+	background: #000000;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0 0 0 20px;
+	list-style: none;
+}
+
+#menu li {
+	display: inline; /* element menu w lini */
+	/*letter-spacing: 13px; - odstêp miêdzy literami*/
+}
+
+#menu a {
+	display: block;
+	float: left;
+	border: none;
+	background: url(images/img05.jpg) no-repeat left 55%;
+	padding: 14px 30px 10px 12px;
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+#menu a:hover {
+	color: #D7D7BD;
+}
+
+/** Style for wrapper starts here */
+
+#wrapper {
+	width: 840px;
+	margin: 0px auto;
+	padding: 20px 0;
+	background-color: White;
+	/*background: #FFFFFF url(images/img02.jpg) repeat-y left top;*/
+}
+
+/** Style for content starts here */
+
+#content {
+	width: 800px;
+	margin: 0px auto;
+}
+
+#content h2 {
+	text-transform: uppercase;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	border-bottom: 1px #CCCCCC dashed;
+}
+
+#content p {
+}
+
+#content a {
+	text-decoration: none;
+}
+
+#right 
 {
-    margin: 1em 0 0 0;
+    margin-left: auto ;
+    margin-right: auto ;
+	width: 95%;
+	padding: 20px 20px; /*odstep od góry*/
 }
 
-.editor-field 
+#right ul {
+	margin: 0 3em; /* 3 - odstep od lewej (akapit)*/
+	padding: 0;
+	list-style: none;
+}
+
+#right li {
+	margin-bottom: 8px;
+	padding-left: 10px;
+	background: url(images/img06.jpg) no-repeat 0 7px;
+	line-height: 17px;
+}
+
+#right .post 
 {
-    margin:0.5em 0 0 0;
+   
 }
 
 
-/* Styles for validation helpers
------------------------------------------------------------*/
-.field-validation-error
+/** Style for footer starts here */
+
+#footer {
+	clear: both;
+	width: 800px;
+	height: 38px;
+	margin: 0px auto;
+	padding-top: 18px;
+	border-top: 1px solid #444444;
+	background: #000000;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #E5E5CC;
+}
+
+#footer .copyright {
+	float: left;
+	margin: 0px;
+	padding-left: 20px;
+	text-align: center;
+}
+
+#footer .links {
+	float: right;
+	margin: 0px;
+	padding-right: 20px;
+	text-align: center;
+}
+
+#footer .css {
+	padding-left: 20px;
+	background: url(images/image01.png) no-repeat left 50%;
+}
+
+#footer .xhtml {
+	padding-left: 20px;
+	background: url(images/image02.png) no-repeat left 50%;
+}
+
+#footer a {
+	border-bottom: 1px #E5E5CC dashed;
+	text-decoration: none;
+	color: #E5E5CC;
+}
+
+
+#mytable tr td /* tabela szukaj */
 {
-    color: #ff0000;
+    border: 1px solid black;
 }
 
-.field-validation-valid
+
+#person-list-table tr td
 {
-    display: none;
+    border: 1px solid black;
 }
 
-.input-validation-error
+
+.table_head_list
 {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
+    color: White;
+    background-color: Black;   
 }
 
-.validation-summary-errors
+#search_div
 {
-    font-weight: bold;
-    color: #ff0000;
+    
+    color: Black;
+    padding-bottom:5px;
+    padding-left: 5px;
+    margin:0px;
+    height:30px;
+    background-image: url("images/aaaa.gif");
+    background-repeat:repeat-x;
+    border-bottom:1;
+    border-bottom-style:groove;
 }
 
-.validation-summary-valid
+.search_class
 {
-    display: none;
+    padding-top:0px;
+    padding-left: 30px;
+    font-family: Arial;
 }
-
-.tabelka
-{
-    color: Green;
-    background-color: red;
-}
-
-
-th.sortable {  
-    color: #666;  
-    cursor: pointer;  
-    text-decoration: underline;  
-}  
-th.sortable:hover { color: black; }  
-th.sorted-asc, th.sorted-desc  { color: black; }  

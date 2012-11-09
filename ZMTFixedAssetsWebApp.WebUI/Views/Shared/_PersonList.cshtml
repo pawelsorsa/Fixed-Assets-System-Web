@@ -1,17 +1,17 @@
 ﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PersonListModel
 
 <p></p>
-<table id="sort-table" class="link-sort-table" width="100%">
+<table id="person-list-table" width="100%">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Sekcja</th>
-                    <th>Email</th>
-                    <th>Telefon</th>
-                    <th>Telefon2</th>
-                    <th>Edytowanie</th>
+                <tr class='table_head_list'>
+                    <th width="4%">ID</th>
+                    <th width="20%">Name</th>
+                    <th width="20%">Surname</th>
+                    <th width="10%">Sekcja</th>
+                    <th width="22%">Email</th>
+                    <th width="10%">Telefon</th>
+                    <th width="10%">Telefon2</th>
+                    <th width="4%">Edytowanie</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,15 +57,15 @@
      @Html.HiddenFor(x => x.Query);
      
 
-     @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList);
-     @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList);
-     @Html.CheckBoxFor(x => x.ASC);
-     @Html.CheckBoxFor(x => x.ShowAll);
-     
-     
-                                  
-    <input type="submit" value="OK"  />   
+     <p>Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
+     Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
+     Pokarz wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
+    <input type="submit" value="OK"  /></p>  
+
 }
+
+@Html.ActionLink("Powrót", "List")
 
 
 

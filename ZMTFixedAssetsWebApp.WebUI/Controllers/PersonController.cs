@@ -159,7 +159,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 QueryList.TryGetValue("Mobile", out mobile);
 
                 int _id, _phone, _mobile;
-                id_section = GetSectionIdIfSectionExist(section);
+                id_section = GetSectionIdIfSectionExist(section != null ? section.ToUpper() : section);
                 int.TryParse(id, out _id);
                 int.TryParse(phone, out _phone);
                 int.TryParse(mobile, out _mobile);
