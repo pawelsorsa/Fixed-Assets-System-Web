@@ -29,14 +29,14 @@
         {
             $(document).ready(function (e) {
                 $.getJSON("/Person/Lists/SortByList", function (data) {
-                    var select = "<select id='fff'>";
+                    var select = "<select id='select_search' >";
                     var items = "";
                     var table = $("#mytable tr");
                     var wynik = false;
 
                     $.each(data, function (i, item) {
                         wynik = false;
-                        table.each(function () {
+                        table.each(function () { 
                             var result = $(this).find("td").eq(0).html();
                             if (result.toString() == item.Text) { wynik = true; }
                         });
@@ -77,6 +77,7 @@
 
                 var x = $("#sortlist option:selected").text();
                 var table = $("#mytable tr");
+
                 var wynik = false;
                 table.each(function () {
                     var result = $(this).find("td").eq(0).html();
@@ -84,7 +85,7 @@
                 });
 
                 if (!wynik && x != "") {
-                    var items = "<td width='30%'>" + x + "</td><td width='50%' id='sort_row_name'><input type='text'/></td><td width='20%'><input type='button' id='btn_delete' value='usun'></input></td>";
+                    var items = "<td width='30%'>" + x + "</td><td width='50%' id='sort_row_name'><input type='text' width:400px/></td><td width='20%'><input type='button' id='btn_delete' value='usun'></input></td>";
                     var result = "<tr>" + items.toString() + "</tr>"
                     $('#mytable').append(result);
                 }
@@ -148,6 +149,7 @@
                 });
 
                 if (validation == "") {
+                    $('#validation').empty();
                     $.ajax(
                     {
                         type: "GET",
@@ -160,6 +162,7 @@
                             $("#list").html(domElement); // append to end of list   
                         }
                     });
+
                 }
                 else {
                     $('#validation').empty();

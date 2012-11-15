@@ -3,19 +3,18 @@
     ViewBag.Title = "Lista pracowników";
 }
 
-
 <div id="search_div">
     <img src="../Content/images/search.png" />
-    <div class="search_class">PANEL WYSZUKIWANIA</div>
+    <div id="sortby_menu">OTWÓRZ MENU WYSZUKIWANIA</div>
+</div>
 
-</div>
 <div id="sortby">
-<table id="mytable"  style:"overflow:auto">
-</table>
-<table id="validation"></table>
-<div id="sortlist">
-</div>
-<input type="button" id="btn_search" value="wyszukaj"/>
+
+    <table id="mytable" class="table_centre"></table>
+    <table id="validation" class="table_center_validation"></table>
+    <div id="sortlist"></div>
+    <hr width="90%"/>
+    <div id="search_button_centre"><input type="button" id="btn_search" value="WYSZUKAJ"/></div>
 </div>
 
 <div id="list">

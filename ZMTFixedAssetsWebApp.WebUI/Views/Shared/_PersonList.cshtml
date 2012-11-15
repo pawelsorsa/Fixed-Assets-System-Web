@@ -1,6 +1,5 @@
 ﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PersonListModel
 
-<p></p>
 <table id="person-list-table" width="100%">
             <thead>
                 <tr class='table_head_list'>
@@ -56,12 +55,14 @@
      @Html.HiddenFor(x => x.TotalRecords);
      @Html.HiddenFor(x => x.Query);
      
-
-     <p>Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+    
+     <p><div id="add_employee_btn">DODAJ PRACOWNIKA</div>Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
      Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
      Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
      Pokarz wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
-    <input type="submit" value="OK"  /></p>  
+    <input type="submit" value="OK" />
+    
+    </p>  
 
 }
 
