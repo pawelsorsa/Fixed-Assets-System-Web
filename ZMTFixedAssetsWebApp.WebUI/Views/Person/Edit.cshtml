@@ -1,5 +1,21 @@
-﻿@{
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.PersonSectionAddEditModel
+@{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "Person", new { id = Model.id } ))
+{
+   // @Html.Label("Sekcja: ") @Html.TextBoxFor(x => x.section_name)<br />
+    
+    @Html.Label("Imię: ") @Html.EditorFor(x => x.name)<br />
+    
+    @Html.DropDownListFor(x => x.section_name, @Model.SectionList);
+
+    @Html.ValidationSummary(true);
+    
+    <input type=submit value="OK" />
+}
+

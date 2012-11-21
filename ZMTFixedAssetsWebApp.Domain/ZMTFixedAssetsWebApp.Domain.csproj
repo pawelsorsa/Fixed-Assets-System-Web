@@ -72,7 +72,6 @@
     <Compile Include="Model\Person.cs">
       <DependentUpon>ZMTdbEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\PersonSectionModel.cs" />
     <Compile Include="Model\Section.cs">
       <DependentUpon>ZMTdbEntities.tt</DependentUpon>
     </Compile>

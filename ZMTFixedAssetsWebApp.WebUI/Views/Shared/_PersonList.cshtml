@@ -1,16 +1,19 @@
 ﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PersonListModel
 
+
+
 <table id="person-list-table" width="100%">
             <thead>
                 <tr class='table_head_list'>
                     <th width="4%">ID</th>
-                    <th width="20%">Name</th>
-                    <th width="20%">Surname</th>
-                    <th width="10%">Sekcja</th>
-                    <th width="22%">Email</th>
+                    <th width="20%">Imię</th>
+                    <th width="20%">Nazwisko</th>
+                    <th width="8%">Sekcja</th>
+                    <th width="21%">Email</th>
                     <th width="10%">Telefon</th>
-                    <th width="10%">Telefon2</th>
-                    <th width="4%">Edytowanie</th>
+                    <th width="10%">Mobile</th>
+                    <th width="3%">Edytuj</th>
+                    <th width="4%">Usuń</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +29,7 @@
             <td>@x.phone_number</td>
             <td>@x.phone_number2</td>
             <td>@Html.ActionLink("Edytuj", "Edit", new { id = @x.id })</td>
+            <td>@Html.ActionLink("Usuń", "Delete", new { id = @x.id })</td>
      </tr>
 }
     </tbody>
@@ -47,7 +51,7 @@
     }
 }
 
-
+<hr />
 @using (Ajax.BeginForm("List", "Person", @Model, new AjaxOptions { UpdateTargetId = "list", HttpMethod = "POST" }))
 {    
      @Html.HiddenFor(x => x.Page);
@@ -61,8 +65,8 @@
      Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
      Pokarz wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
     <input type="submit" value="OK" />
-    
     </p>  
+
 
 }
 

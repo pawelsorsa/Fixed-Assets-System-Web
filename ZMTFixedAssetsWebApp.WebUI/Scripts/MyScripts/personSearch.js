@@ -1,31 +1,4 @@
-﻿$(document).ready(function () {
-    $("#sort_row_name").live("keydown", function () {
-        /*
-        var result = $(this).parent().find("td").eq(0).html();
-        var txt = $(this).children().val();
-       
-        var tab_validtion = $("#validation tr");
-        //alert(result);
-        tab_validtion.each(function (i, l) {
-            var tab = $(this).find("td").eq(0).text();
-            var tab_split = tab.split(':');
-            if (result.trim() == tab_split[1].trim()) {
-                if (txt.length > 0) {
-                    $(this).remove();
-                }
-                else {
-                    
-                }
-
-            }
-
-        });
-        */
-
-    });
-});
-
-        function getsortlist()
+﻿        function getsortlist()
         {
             $(document).ready(function (e) {
                 $.getJSON("/Person/Lists/SortByList", function (data) {
@@ -49,8 +22,6 @@
                 });
             });
         }
-
-
 
 
         $(document).ready(function (e) {
@@ -103,12 +74,8 @@
             });
         });
 
-
-
-
-        $(document).ready(function (e) {
-            $("#btn_search").live("click", function () {
-
+         $("#btn_search").live("click", function() {
+            
                 var table = $("#mytable tr");
                 var wynik = false;
                 var query = "";
@@ -169,5 +136,5 @@
                     $('#validation').css("color", "RED");
                     $('#validation').append(validation.toString());
                 }
-            });
         });
+

@@ -15,5 +15,22 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
         {
             get { return context.Persons; }
         }
+
+
+        public void AddPerson(Person person)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+        public void SavePerson(Person person)
+        {
+            if (person.id == 0)
+            {
+                context.Persons.Add(person);
+            }
+            context.SaveChanges();
+        }
     }
 }

@@ -9,5 +9,8 @@ namespace ZMTFixedAssetsWebApp.Domain.Abstract
     public interface IPersonRepository
     {
         IQueryable<Person> People { get; }
+        void AddPerson(Person person);
+        void SavePerson(Person person);
+
     }
 }
