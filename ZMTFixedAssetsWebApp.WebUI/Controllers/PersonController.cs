@@ -44,19 +44,20 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             Person person = personRepository.People.FirstOrDefault(x => x.id == id);
             PersonSectionAddEditModel model = CreatePersonSetionAddEditFromPerson(person, SectionsDictionary());
-    
+            model.SectionList.Select(x => x.Selected == (x.Value == person.id.ToString()));
             return View("Edit", model);
         }
        
 
 
         [HttpPost]
-        [HandleError]
+
         public ActionResult Edit(PersonSectionAddEditModel model)
         {
             if (ModelState.IsValid)
             {
                 Person person = personRepository.People.FirstOrDefault(x => x.id == model.id);
+                
                 UpdatePerson(ref person, model, SectionsDictionary());
                 if (person != null)
                 {
@@ -71,7 +72,8 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             }
             else
             {
-                return View();
+                model.SectionList = SectionsShortNamesList();
+                return View(model);
             }
         }
 
@@ -247,6 +249,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 
         private void UpdatePerson(ref Person person, PersonSectionAddEditModel personSection, Dictionary<int, string> sectionList)
         {
+            if (personSection.id != null) person.id = personSection.id;
             if (personSection.area_code != null) person.area_code = personSection.area_code;
             if (personSection.email != null) person.email = personSection.email;
             if (personSection.name != null) person.name = personSection.name;
@@ -290,6 +293,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             temp.phone_number2 = person.phone_number2;
             temp.surname = person.surname;
             temp.section_name = sectionList.Where(x => x.Key == person.id_section).Select(x=>x.Value).First();
+            
             return temp;
         }
 
@@ -306,7 +310,8 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             temp.phone_number2 = person.phone_number2;
             temp.surname = person.surname;
             temp.SectionList = SectionsShortNamesList();
-            temp.section_name = sectionList.Where(x => x.Key == person.id_section).Select(x => x.Value).First();
+            var p = temp.SectionList.FirstOrDefault(x => x.Value == person.id_section.ToString());
+            p.Selected = true;
             return temp;
         }
 

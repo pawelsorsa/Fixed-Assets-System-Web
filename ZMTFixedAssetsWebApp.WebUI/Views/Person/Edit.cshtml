@@ -3,19 +3,46 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<p class='header'>Edytowanie pracownika <b>@Model.id </b</p>
 
-
-@using (Html.BeginForm("Edit", "Person", new { id = Model.id } ))
+@using (Html.BeginForm("Edit", "Person", new { id = Model.id }))
 {
-   // @Html.Label("Sekcja: ") @Html.TextBoxFor(x => x.section_name)<br />
-    
-    @Html.Label("Imię: ") @Html.EditorFor(x => x.name)<br />
-    
-    @Html.DropDownListFor(x => x.section_name, @Model.SectionList);
-
     @Html.ValidationSummary(true);
-    
-    <input type=submit value="OK" />
+    <table width="100%">
+
+                <tr>
+                    <td width='30%'>@Html.Label("Imię: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.name)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.name)</td>
+                </tr>      
+                <tr>
+                    <td width='30%'>@Html.Label("Nazwisko: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.surname)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.surname)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Nr kierunkowy: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.area_code)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.area_code)</td>  
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Nr telefonu: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.phone_number)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.phone_number)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Nr telefonu komórkowego: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.phone_number2)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.phone_number2)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Sekcja: ")</td>
+                    <td width='30%'>@Html.DropDownListFor(x => x.section_name, @Model.SectionList)</td>
+                    <td width='40%'></td>    
+                </tr>      
+    </table>   
+    <hr />
+    <input type=submit class='submitButton' value="Zapisz zmiany" />
+    <input type=submit class='submitButton' value="Anuluj" />
 }
 
