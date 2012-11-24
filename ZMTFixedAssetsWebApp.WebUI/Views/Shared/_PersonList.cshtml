@@ -59,11 +59,11 @@
      @Html.HiddenFor(x => x.TotalRecords);
      @Html.HiddenFor(x => x.Query);
      
-    
-     <p><div id="add_employee_btn">DODAJ PRACOWNIKA</div>Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     
+     <p>@Html.ActionLink("Dodaj pracownika", "Add", "Person", null, new { @class = "add_employee_btn" })Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
      Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
      Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
-     Pokarz wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
+     Pokaż wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
     <input type="submit" value="OK" />
     </p>  
 

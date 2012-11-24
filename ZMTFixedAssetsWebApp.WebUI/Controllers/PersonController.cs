@@ -51,7 +51,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 
 
         [HttpPost]
-
         public ActionResult Edit(PersonSectionAddEditModel model)
         {
             if (ModelState.IsValid)
@@ -74,6 +73,28 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             {
                 model.SectionList = SectionsShortNamesList();
                 return View(model);
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            PersonSectionAddEditModel model = new PersonSectionAddEditModel();
+            model.SectionList = SectionsShortNamesList();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Add(FormCollection collection)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return View();
             }
         }
 
@@ -252,10 +273,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             if (personSection.id != null) person.id = personSection.id;
             if (personSection.area_code != null) person.area_code = personSection.area_code;
             if (personSection.email != null) person.email = personSection.email;
-            if (personSection.name != null) person.name = personSection.name;
+            if (personSection.name != null) person.name = personSection.name.ToUpper();
             if (personSection.phone_number != null) person.phone_number = personSection.phone_number;
             if (personSection.phone_number2 != null) person.phone_number2 = personSection.phone_number2;
-            if (personSection.surname != null) person.surname = personSection.surname;
+            if (personSection.surname != null) person.surname = personSection.surname.ToUpper();
             int id = 0;
             int.TryParse(personSection.section_name, out id);
             

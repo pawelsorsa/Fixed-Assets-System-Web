@@ -305,7 +305,7 @@ a.link
     font-family: Arial;
 }
 
-#add_employee_btn
+.add_employee_btn
 {
     float:right;
     color:White;
@@ -316,6 +316,7 @@ a.link
     width: 130px;
     height:20px;
     border: 3px groove BLACK;
+    text-align: center;
 }
 
 

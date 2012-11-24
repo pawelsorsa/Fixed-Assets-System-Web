@@ -1,15 +1,19 @@
 ﻿@model ZMTFixedAssetsWebApp.Domain.Model.PersonSectionAddEditModel
 @{
-    ViewBag.Title = "Edytowanie pracownika";
+    ViewBag.Title = "Tworzenie pracownika";
 }
 
-<p class='header'>Edytowanie pracownika <b>@Model.id </b</p>
+<p class='header'>Tworzenie pracownika</p>
 
-@using (Html.BeginForm("Edit", "Person", new { id = Model.id }))
+@using (Html.BeginForm("Add", "Person"))
 {
     @Html.ValidationSummary(true);
     <table width="100%">
-
+                <tr>
+                    <td width='30%'>@Html.Label("ID: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.id)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.id)</td>
+                </tr>   
                 <tr>
                     <td width='30%'>@Html.Label("Imię: ")</td>
                     <td width='30%'>@Html.EditorFor(x => x.name)</td>
@@ -47,7 +51,6 @@
                 </tr>      
     </table>   
     <hr />
-    <input type=submit class='submitButton' value="Zapisz zmiany" />
+    <input type=submit class='submitButton' value="Dodaj pracownika" />
     <input type=submit class='submitButton' value="Anuluj" />
 }
-

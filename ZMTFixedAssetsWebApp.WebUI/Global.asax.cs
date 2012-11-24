@@ -85,6 +85,7 @@ namespace ZMTFixedAssetsWebApp.WebUI
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
