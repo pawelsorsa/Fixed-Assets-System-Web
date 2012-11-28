@@ -7,7 +7,9 @@ using System.ComponentModel.DataAnnotations;
 namespace ZMTFixedAssetsWebApp.Domain.Model
 {
     public class PersonSectionModel
-    {       
+    {
+        [Required(ErrorMessage = "Pole ID jest wymanage")]
+        [Range(1, 999999999, ErrorMessage = "ID powinno być liczbą")]
         public int id { get; set; }
 
         [Required(ErrorMessage="Pole imię jest wymanage")]
@@ -17,6 +19,8 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         [Required(ErrorMessage = "Pole nazwisko jest wymanage")]
         [StringLength(20, ErrorMessage = "Nazwisko powinno zawierać maksymalnie 20 znaków")]
         public string surname { get; set; }
+        
+        
         public string section_name { get; set; }
 
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Proszę wpisać prawidłowy adres email")]

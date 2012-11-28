@@ -10,7 +10,9 @@ namespace ZMTFixedAssetsWebApp.Domain.Abstract
     {
         IQueryable<Person> People { get; }
         void AddPerson(Person person);
-        void SavePerson(Person person);
+        void EditPerson(Person person);
+        void DeletePerson(Person person);
+        void SaveChanges();
 
     }
 }

@@ -11,7 +11,7 @@
     <table width="100%">
                 <tr>
                     <td width='30%'>@Html.Label("ID: ")</td>
-                    <td width='30%'>@Html.EditorFor(x => x.id)</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.id, new { Value = "" })</td>
                     <td width='40%'>@Html.ValidationMessageFor(x => x.id)</td>
                 </tr>   
                 <tr>

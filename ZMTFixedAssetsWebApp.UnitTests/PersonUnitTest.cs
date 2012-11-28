@@ -63,29 +63,32 @@ namespace ZMTFixedAssetsWebApp.UnitTests
 
             PersonController controller = new PersonController(mock_person.Object, mock_section.Object);
 
-            PersonSectionAddEditModel personSection = new PersonSectionAddEditModel() { id = 5 };
+            PersonSectionAddEditModel personSection = new PersonSectionAddEditModel();
 
-
-            personSection.name = "Wojciech";
+            personSection.id = 5;
+            personSection.name = "Zbigniew";
             personSection.surname = "Strzelec";
             personSection.area_code = 44;
             personSection.email = "w.strzelec@plk-sa.pl";
             personSection.section_name = "IMZ3";
             personSection.phone_number = 12345;
             personSection.phone_number2 = 666666;
+
+
             controller.Edit(personSection);
             
+
             Person temp = mock_person.Object.People.FirstOrDefault(x =>x.id == 5);
-            Assert.AreEqual(temp.name, "Wojciech");
-            Assert.AreEqual(temp.surname, "Strzelec");
+            Assert.AreEqual(temp.name, "ZBIGNIEW");
+            Assert.AreEqual(temp.surname, "STRZELEC");
             Assert.AreEqual(temp.area_code, 44);
             Assert.AreEqual(temp.email, "w.strzelec@plk-sa.pl");
             Assert.AreEqual(temp.id_section, 3);
             Assert.AreEqual(temp.phone_number, 12345);
             Assert.AreEqual(temp.phone_number2, 666666);
 
-            mock_person.Verify(m => m.SavePerson(It.IsAny<Person>()));
-            
+            //mock_person.Verify(m => m.SaveChanges(), Times.Once());
+            //m.Expect(a => a.moo()).Throws(new Exception("Shouldn't be called."));
         }
 
     }

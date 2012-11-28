@@ -12,19 +12,23 @@ using ZMTFixedAssetsWebApp.WebUI.HtmlHelpers;
 using ZMTFixedAssetsWebApp.WebUI.Models;
 using ZMTFixedAssetsWebApp.WebUI.LinqHelpers;
 using System.Reflection;
+using System.Data;
 
 
 namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 {
+    [HandleError]
     public class PersonController : Controller
     {
         private IPersonRepository personRepository;
         private ISectionRepository sectionRepository;
+        private SectionController section_ctrl;
 
         public PersonController(IPersonRepository personRepository, ISectionRepository sectionRepository)
         {
             this.personRepository = personRepository;
             this.sectionRepository = sectionRepository;
+            section_ctrl = new SectionController(sectionRepository);
         }
         
         [HttpGet]
@@ -43,31 +47,27 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         public ActionResult Edit(int id)
         {
             Person person = personRepository.People.FirstOrDefault(x => x.id == id);
-            PersonSectionAddEditModel model = CreatePersonSetionAddEditFromPerson(person, SectionsDictionary());
-            model.SectionList.Select(x => x.Selected == (x.Value == person.id.ToString()));
+            PersonSectionAddEditModel model = CreatePersonSetionAddEditFromPerson(person);
             return View("Edit", model);
         }
-       
-
+        
 
         [HttpPost]
         public ActionResult Edit(PersonSectionAddEditModel model)
         {
             if (ModelState.IsValid)
             {
-                Person person = personRepository.People.FirstOrDefault(x => x.id == model.id);
-                
-                UpdatePerson(ref person, model, SectionsDictionary());
-                if (person != null)
+                try
                 {
-                    personRepository.SavePerson(person);
-                    
+                    Person person = personRepository.People.FirstOrDefault(x => x.id == model.id);
+                    UpdatePerson(ref person, model);
+                    personRepository.EditPerson(person);
                     return RedirectToAction("List");
                 }
-                else
+                catch (Exception ex)
                 {
-                    return View("Error2");
-                }
+                    throw new Exception("Nie udało się edytować pracowanika. Proszę skontaktować się z administratorem");
+                }               
             }
             else
             {
@@ -86,15 +86,26 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(FormCollection collection)
+        public ActionResult Add(PersonSectionAddEditModel model)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("List");
+                Person person = CreatePersonFromPersonSectionAddEditModel(model);
+                if (person != null)
+                {
+                    personRepository.AddPerson(person);
+
+                    return RedirectToAction("List");
+                }
+                else
+                {
+                    return View("Error2");
+                }
             }
             else
             {
-                return View();
+                model.SectionList = SectionsShortNamesList();
+                return View(model);
             }
         }
 
@@ -117,12 +128,12 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             return View("Index");
         }
 
+    
 
         [HttpGet]
         public ActionResult List(string Section = "", int Page = 1, bool ShowAll = false, string OrderBy = "name", int ItemsPerPage = 10, bool ASC = false, bool Search = false, string Query="")
         {
             PersonListModel model = CreatePersonListView(Section, Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query);
-           
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_PersonList", model);
@@ -143,7 +154,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             List<SelectListItem> _ItemsPerPageList = ItemsPerPageList();
             List<SelectListItem> _OrderByList = OrderByList();
-            Dictionary<int, string> sectionDictionary = SectionsDictionary();
             PersonCountRecordsAndCreateListModel personCountListModel = PersonList_Count(personRepository, section, sortby, ASC, query, search);
             if (!CheckIfItemsPerPageExist(items_per_page, _ItemsPerPageList)) { items_per_page = 10; }
             List<Person> personList = CreatePersonList(personCountListModel.List.ToList(), page, personCountListModel.Count,
@@ -151,7 +161,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 
             PersonListModel model = new PersonListModel()
             {
-                List = CreatePersonSetionModelListFromPersonList(personList, sectionDictionary),
+                List = CreatePersonSetionModelListFromPersonList(personList),
                 DropDownList = _OrderByList,
                 ItemsPerPageList = _ItemsPerPageList,
                 ASC = ASC,
@@ -239,15 +249,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             return new PersonCountRecordsAndCreateListModel() { List = personList.AsQueryable(), Count = count };
         }
 
-
-        private Dictionary<int, string> SectionsDictionary()
-        {
-            SectionController section_ctrl = new SectionController(sectionRepository);
-            Dictionary<int, string> dict = new Dictionary<int, string>();
-            dict = section_ctrl.GetAllShortNameSections();
-            return dict;
-        }
-
         IEnumerable<string> SectionNameList()
         {
             IEnumerable<string> list = sectionRepository.Sections.Select(x => x.short_name).AsEnumerable();
@@ -258,7 +259,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         private int GetSectionIdIfSectionExist(string section)
         {
             int id_section = 0;
-            SectionController section_ctrl = new SectionController(sectionRepository);
             Dictionary<int, string> dict = new Dictionary<int, string>();
             dict = section_ctrl.GetAllShortNameSections();
             if (dict.ContainsValue(section))
@@ -268,7 +268,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             return id_section;
         }
 
-        private void UpdatePerson(ref Person person, PersonSectionAddEditModel personSection, Dictionary<int, string> sectionList)
+        private void UpdatePerson(ref Person person, PersonSectionAddEditModel personSection)
         {
             if (personSection.id != null) person.id = personSection.id;
             if (personSection.area_code != null) person.area_code = personSection.area_code;
@@ -277,20 +277,21 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             if (personSection.phone_number != null) person.phone_number = personSection.phone_number;
             if (personSection.phone_number2 != null) person.phone_number2 = personSection.phone_number2;
             if (personSection.surname != null) person.surname = personSection.surname.ToUpper();
+            //person.id_section = section_ctrl.GetAllShortNameSections().Where(x => x.Value == personSection.section_name).Select(x => x.Key).First();
+            
+
             int id = 0;
             int.TryParse(personSection.section_name, out id);
-            
-            
             person.id_section = id;
         }
 
-        private Person CreatePersonFromPersonSectionModel(PersonSectionModel ps, Dictionary<int, string> sectionList)
+        private Person CreatePersonFromPersonSectionModel(PersonSectionModel ps)
         {
             Person temp = new Person();
             temp.id = ps.id;
             temp.area_code = ps.area_code;
             temp.email = ps.email;
-            temp.id_section = sectionList.Where(x => x.Value == ps.section_name).Select(x => x.Key).First();
+            temp.id_section = section_ctrl.GetAllShortNameSections().Where(x => x.Value == ps.section_name).Select(x => x.Key).First();
             temp.name = ps.name;
             temp.phone_number = ps.phone_number;
             temp.phone_number2 = ps.phone_number2;
@@ -303,7 +304,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 
 
 
-        private PersonSectionModel CreatePersonSetionModelFromPerson(Person person, Dictionary<int, string> sectionList)
+        private PersonSectionModel CreatePersonSetionModelFromPerson(Person person)
         {
             PersonSectionModel temp = new PersonSectionModel();
             temp.area_code = person.area_code;
@@ -313,14 +314,30 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             temp.phone_number = person.phone_number;
             temp.phone_number2 = person.phone_number2;
             temp.surname = person.surname;
-            temp.section_name = sectionList.Where(x => x.Key == person.id_section).Select(x=>x.Value).First();
+            temp.section_name = section_ctrl.GetAllShortNameSections().Where(x => x.Key == person.id_section).Select(x => x.Value).First();
             
             return temp;
         }
 
+        private Person CreatePersonFromPersonSectionAddEditModel(PersonSectionAddEditModel model)
+        {
+            Person person = new Person();
+            person.area_code = model.area_code;
+            person.email = model.email;
+            person.id = model.id;
+            int id_section;
+            int.TryParse(model.section_name, out id_section);
+            person.id_section = id_section;
+            person.name = model.name;
+            person.phone_number = model.phone_number;
+            person.phone_number2 = model.phone_number2;
+            person.surname = model.surname;
+
+            return person;
+        }
 
 
-        private PersonSectionAddEditModel CreatePersonSetionAddEditFromPerson(Person person, Dictionary<int, string> sectionList)
+        private PersonSectionAddEditModel CreatePersonSetionAddEditFromPerson(Person person)
         {
             PersonSectionAddEditModel temp = new PersonSectionAddEditModel();
             temp.area_code = person.area_code;
@@ -330,6 +347,8 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             temp.phone_number = person.phone_number;
             temp.phone_number2 = person.phone_number2;
             temp.surname = person.surname;
+            // delete because @Html.DropDownListFor(x => x.section_name, @Model.SectionList) doesn't work properly
+            //temp.section_name = section_ctrl.GetAllShortNameSections().Where(x => x.Key == person.id_section).Select(x => x.Value).First();
             temp.SectionList = SectionsShortNamesList();
             var p = temp.SectionList.FirstOrDefault(x => x.Value == person.id_section.ToString());
             p.Selected = true;
@@ -337,12 +356,12 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         }
 
        
-        private List<PersonSectionModel> CreatePersonSetionModelListFromPersonList(List<Person> list, Dictionary<int, string> sectionList)
+        private List<PersonSectionModel> CreatePersonSetionModelListFromPersonList(List<Person> list)
         {
             List<PersonSectionModel> ps = new List<PersonSectionModel>();
             foreach (var person in list)
             {
-                ps.Add((PersonSectionModel)CreatePersonSetionModelFromPerson(person, sectionList));
+                ps.Add((PersonSectionModel)CreatePersonSetionModelFromPerson(person));
             }
             return ps;
         }
@@ -350,7 +369,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         private List<SelectListItem> SectionsShortNamesList()
         {
             List<SelectListItem> items = new List<SelectListItem>();
-            foreach (var x in SectionsDictionary())
+            foreach (var x in section_ctrl.GetAllShortNameSections())
             {
                 items.Add(new SelectListItem { Text = x.Value, Value = x.Key.ToString() });
             }

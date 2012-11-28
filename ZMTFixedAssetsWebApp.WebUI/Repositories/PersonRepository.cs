@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ZMTFixedAssetsWebApp.Domain.Abstract;
 using ZMTFixedAssetsWebApp.Domain.Model;
+using System.Data.Entity.Infrastructure;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 {
@@ -19,18 +20,32 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 
         public void AddPerson(Person person)
         {
-            throw new NotImplementedException();
-        }
-
-
-
-        public void SavePerson(Person person)
-        {
-            if (person.id == 0)
-            {
-                context.Persons.Add(person);
-            }
+            context.Persons.Add(person);
             context.SaveChanges();
         }
+
+
+        public void EditPerson(Person person)
+        {
+           // context.Entry(person).State = System.Data.EntityState.Detached;
+           // context.Persons.Attach(person);
+           // context.Entry(person).State = System.Data.EntityState.Modified;
+            context.SaveChanges();
+           
+        }
+
+
+        public void DeletePerson(Person person)
+        {
+         //   context.Persons.(person);
+            context.SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
+            context.SaveChanges();
+        }
+
+
     }
 }

@@ -26,8 +26,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Mesage = "XXXXXXXXXXXXXXXXX";
-            ViewBag.ilosc = GetAllShortNameSections().Count.ToString();
             return View();
         }
 
