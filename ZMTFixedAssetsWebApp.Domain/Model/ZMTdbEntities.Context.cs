@@ -13,26 +13,26 @@ using System.Data.EntityClient;
 
 namespace ZMTFixedAssetsWebApp.Domain.Model
 {
-    public partial class ZMTdbEntities : ObjectContext
+    public partial class Entities : ObjectContext
     {
-        public const string ConnectionString = "name=ZMTdbEntities";
-        public const string ContainerName = "ZMTdbEntities";
+        public const string ConnectionString = "name=Entities";
+        public const string ContainerName = "Entities";
     
         #region Constructors
     
-        public ZMTdbEntities()
+        public Entities()
             : base(ConnectionString, ContainerName)
         {
             this.ContextOptions.LazyLoadingEnabled = true;
         }
     
-        public ZMTdbEntities(string connectionString)
+        public Entities(string connectionString)
             : base(connectionString, ContainerName)
         {
             this.ContextOptions.LazyLoadingEnabled = true;
         }
     
-        public ZMTdbEntities(EntityConnection connection)
+        public Entities(EntityConnection connection)
             : base(connection, ContainerName)
         {
             this.ContextOptions.LazyLoadingEnabled = true;
@@ -42,71 +42,71 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         #region ObjectSet Properties
     
-        public ObjectSet<Contractor> Contractor
+        public ObjectSet<Contractor> Contractors
         {
-            get { return _contractor  ?? (_contractor = CreateObjectSet<Contractor>("Contractor")); }
+            get { return _contractors  ?? (_contractors = CreateObjectSet<Contractor>("Contractors")); }
         }
-        private ObjectSet<Contractor> _contractor;
+        private ObjectSet<Contractor> _contractors;
     
-        public ObjectSet<Device> Device
+        public ObjectSet<Device> Devices
         {
-            get { return _device  ?? (_device = CreateObjectSet<Device>("Device")); }
+            get { return _devices  ?? (_devices = CreateObjectSet<Device>("Devices")); }
         }
-        private ObjectSet<Device> _device;
+        private ObjectSet<Device> _devices;
     
-        public ObjectSet<FixedAsset> FixedAsset
+        public ObjectSet<FixedAsset> FixedAssets
         {
-            get { return _fixedAsset  ?? (_fixedAsset = CreateObjectSet<FixedAsset>("FixedAsset")); }
+            get { return _fixedAssets  ?? (_fixedAssets = CreateObjectSet<FixedAsset>("FixedAssets")); }
         }
-        private ObjectSet<FixedAsset> _fixedAsset;
+        private ObjectSet<FixedAsset> _fixedAssets;
     
-        public ObjectSet<Kind> Kind
+        public ObjectSet<Kind> Kinds
         {
-            get { return _kind  ?? (_kind = CreateObjectSet<Kind>("Kind")); }
+            get { return _kinds  ?? (_kinds = CreateObjectSet<Kind>("Kinds")); }
         }
-        private ObjectSet<Kind> _kind;
+        private ObjectSet<Kind> _kinds;
     
-        public ObjectSet<Licence> Licence
+        public ObjectSet<Licence> Licences
         {
-            get { return _licence  ?? (_licence = CreateObjectSet<Licence>("Licence")); }
+            get { return _licences  ?? (_licences = CreateObjectSet<Licence>("Licences")); }
         }
-        private ObjectSet<Licence> _licence;
+        private ObjectSet<Licence> _licences;
     
-        public ObjectSet<MembershipRole> MembershipRole
+        public ObjectSet<MembershipRole> MembershipRoles
         {
-            get { return _membershipRole  ?? (_membershipRole = CreateObjectSet<MembershipRole>("MembershipRole")); }
+            get { return _membershipRoles  ?? (_membershipRoles = CreateObjectSet<MembershipRole>("MembershipRoles")); }
         }
-        private ObjectSet<MembershipRole> _membershipRole;
+        private ObjectSet<MembershipRole> _membershipRoles;
     
-        public ObjectSet<MembershipUser> MembershipUser
+        public ObjectSet<MembershipUser> MembershipUsers
         {
-            get { return _membershipUser  ?? (_membershipUser = CreateObjectSet<MembershipUser>("MembershipUser")); }
+            get { return _membershipUsers  ?? (_membershipUsers = CreateObjectSet<MembershipUser>("MembershipUsers")); }
         }
-        private ObjectSet<MembershipUser> _membershipUser;
+        private ObjectSet<MembershipUser> _membershipUsers;
     
-        public ObjectSet<PeripheralDevice> PeripheralDevice
+        public ObjectSet<PeripheralDevice> PeripheralDevices
         {
-            get { return _peripheralDevice  ?? (_peripheralDevice = CreateObjectSet<PeripheralDevice>("PeripheralDevice")); }
+            get { return _peripheralDevices  ?? (_peripheralDevices = CreateObjectSet<PeripheralDevice>("PeripheralDevices")); }
         }
-        private ObjectSet<PeripheralDevice> _peripheralDevice;
+        private ObjectSet<PeripheralDevice> _peripheralDevices;
     
-        public ObjectSet<Subgroup> Subgroup
+        public ObjectSet<Person> People
         {
-            get { return _subgroup  ?? (_subgroup = CreateObjectSet<Subgroup>("Subgroup")); }
+            get { return _people  ?? (_people = CreateObjectSet<Person>("People")); }
         }
-        private ObjectSet<Subgroup> _subgroup;
+        private ObjectSet<Person> _people;
     
-        public ObjectSet<Person> Person
+        public ObjectSet<Section> Sections
         {
-            get { return _person  ?? (_person = CreateObjectSet<Person>("Person")); }
+            get { return _sections  ?? (_sections = CreateObjectSet<Section>("Sections")); }
         }
-        private ObjectSet<Person> _person;
+        private ObjectSet<Section> _sections;
     
-        public ObjectSet<Section> Section
+        public ObjectSet<Subgroup> Subgroups
         {
-            get { return _section  ?? (_section = CreateObjectSet<Section>("Section")); }
+            get { return _subgroups  ?? (_subgroups = CreateObjectSet<Subgroup>("Subgroups")); }
         }
-        private ObjectSet<Section> _section;
+        private ObjectSet<Subgroup> _subgroups;
 
         #endregion
     }

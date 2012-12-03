@@ -126,7 +126,7 @@
                         dataType: "text",
                         success: function (result) {
                             var domElement = $(result); // create element from html
-                            $("#list").html(domElement); // append to end of list   
+                            $("#ajax_content").html(domElement); // append to end of list   
                         }
                     });
 

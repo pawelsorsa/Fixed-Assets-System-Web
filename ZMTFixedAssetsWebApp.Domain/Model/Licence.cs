@@ -191,16 +191,16 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         private void FixupFixedAsset(FixedAsset previousValue)
         {
-            if (previousValue != null && previousValue.Licence.Contains(this))
+            if (previousValue != null && previousValue.Licences.Contains(this))
             {
-                previousValue.Licence.Remove(this);
+                previousValue.Licences.Remove(this);
             }
     
             if (FixedAsset != null)
             {
-                if (!FixedAsset.Licence.Contains(this))
+                if (!FixedAsset.Licences.Contains(this))
                 {
-                    FixedAsset.Licence.Add(this);
+                    FixedAsset.Licences.Add(this);
                 }
                 if (assign_fixed_asset != FixedAsset.id)
                 {
@@ -211,16 +211,16 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         private void FixupKind(Kind previousValue)
         {
-            if (previousValue != null && previousValue.Licence.Contains(this))
+            if (previousValue != null && previousValue.Licences.Contains(this))
             {
-                previousValue.Licence.Remove(this);
+                previousValue.Licences.Remove(this);
             }
     
             if (Kind != null)
             {
-                if (!Kind.Licence.Contains(this))
+                if (!Kind.Licences.Contains(this))
                 {
-                    Kind.Licence.Add(this);
+                    Kind.Licences.Add(this);
                 }
                 if (id_kind != Kind.id)
                 {
@@ -231,16 +231,16 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         private void FixupMembershipUser(MembershipUser previousValue)
         {
-            if (previousValue != null && previousValue.Licence.Contains(this))
+            if (previousValue != null && previousValue.Licences.Contains(this))
             {
-                previousValue.Licence.Remove(this);
+                previousValue.Licences.Remove(this);
             }
     
             if (MembershipUser != null)
             {
-                if (!MembershipUser.Licence.Contains(this))
+                if (!MembershipUser.Licences.Contains(this))
                 {
-                    MembershipUser.Licence.Add(this);
+                    MembershipUser.Licences.Add(this);
                 }
                 if (created_by != MembershipUser.login)
                 {

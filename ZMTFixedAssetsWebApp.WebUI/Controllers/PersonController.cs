@@ -24,17 +24,39 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         private ISectionRepository sectionRepository;
         private SectionController section_ctrl;
 
+        private string Section;
+        private int Page;
+        private bool ShowAll;
+        private string OrderBy;
+        private int ItemsPerPage;
+        private bool ASC;
+        private bool Search;
+        private string Query;
+
         public PersonController(IPersonRepository personRepository, ISectionRepository sectionRepository)
         {
             this.personRepository = personRepository;
             this.sectionRepository = sectionRepository;
             section_ctrl = new SectionController(sectionRepository);
+            Section = "";
+            Page = 1;
+            ShowAll = false;
+            OrderBy = "name";
+            ItemsPerPage = 10;
+            ASC = false;
+            Search = false;
+            Query = "";
         }
         
         [HttpGet]
         public ActionResult Index()
-        {            
-            return View();
+        {
+            PersonListModel model = CreatePersonListView(Section, Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query);  
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_PersonIndex", model);
+            }
+            return View(model);
         }
 
         [HttpPost]
@@ -48,6 +70,12 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             Person person = personRepository.People.FirstOrDefault(x => x.id == id);
             PersonSectionAddEditModel model = CreatePersonSetionAddEditFromPerson(person);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_PersonEdit", model);
+            }
+            
             return View("Edit", model);
         }
         
@@ -62,7 +90,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                     Person person = personRepository.People.FirstOrDefault(x => x.id == model.id);
                     UpdatePerson(ref person, model);
                     personRepository.EditPerson(person);
-                    return RedirectToAction("List");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
@@ -72,9 +100,71 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             else
             {
                 model.SectionList = SectionsShortNamesList();
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("_PersonEdit", model);
+                }
                 return View(model);
             }
         }
+
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            Person person = personRepository.People.FirstOrDefault(x => x.id == id);
+            if (person != null)
+            {
+
+                DeleteObject model = new DeleteObject();
+                model.Description = "Czy napewno chcesz usunąć pracownika: " + person.id + " " + person.name + " " + person.surname + "?";
+                model.Id = id;
+
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("_PersonDelete", model);
+                }
+                return View("Delete", model);
+            }
+            else
+            {
+                string absUrl = Url.Action("List", "Person", null, Request.Url.Scheme);
+                InfoModel model = new InfoModel() 
+                { 
+                    Description = "Podany pracownik nie istnieje",
+                    ReturnUrl = absUrl
+                };
+                return View("Info", model);
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult Delete(DeleteObject model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (model.Delete)
+                    {
+                        Person person = personRepository.People.FirstOrDefault(x => x.id == model.Id);
+                        personRepository.DeletePerson(person);
+                    }
+                        
+                    return RedirectToAction("List");
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Nie udało się edytować pracowanika. Proszę skontaktować się z administratorem");
+                }
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
 
 
         [HttpGet]
@@ -82,6 +172,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             PersonSectionAddEditModel model = new PersonSectionAddEditModel();
             model.SectionList = SectionsShortNamesList();
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_PersonAdd", model);
+            }
             return View(model);
         }
 
@@ -90,24 +184,22 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+               
                 Person person = CreatePersonFromPersonSectionAddEditModel(model);
-                if (person != null)
-                {
-                    personRepository.AddPerson(person);
-
-                    return RedirectToAction("List");
-                }
-                else
-                {
-                    return View("Error2");
-                }
+                personRepository.AddPerson(person);
+                return RedirectToAction("List");
             }
             else
             {
                 model.SectionList = SectionsShortNamesList();
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("_PersonAdd", model);
+                }
                 return View(model);
             }
         }
+        
 
 
 
@@ -121,23 +213,20 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                             "Text"), JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public ActionResult Search()
-        {
-            
-            return View("Index");
-        }
 
     
 
         [HttpGet]
         public ActionResult List(string Section = "", int Page = 1, bool ShowAll = false, string OrderBy = "name", int ItemsPerPage = 10, bool ASC = false, bool Search = false, string Query="")
         {
+          
             PersonListModel model = CreatePersonListView(Section, Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query);
+            
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_PersonList", model);
             }
+            
             return View(model);
         }
 
@@ -277,9 +366,8 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             if (personSection.phone_number != null) person.phone_number = personSection.phone_number;
             if (personSection.phone_number2 != null) person.phone_number2 = personSection.phone_number2;
             if (personSection.surname != null) person.surname = personSection.surname.ToUpper();
-            //person.id_section = section_ctrl.GetAllShortNameSections().Where(x => x.Value == personSection.section_name).Select(x => x.Key).First();
+           // person.id_section = section_ctrl.GetAllShortNameSections().Where(x => x.Value == personSection.section_name).Select(x => x.Key).First();
             
-
             int id = 0;
             int.TryParse(personSection.section_name, out id);
             person.id_section = id;

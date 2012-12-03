@@ -1,0 +1,7 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PersonListModel
+@{
+    ViewBag.Title = "_PersonIndex";
+}
+    <script src="@Url.Content("~/Scripts/MyScripts/personSearch.js")" type="text/javascript"></script>  
+@Html.Partial("_PersonListAll", @Model)
+            

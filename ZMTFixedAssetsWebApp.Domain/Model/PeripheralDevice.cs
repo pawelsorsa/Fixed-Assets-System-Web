@@ -34,74 +34,74 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<Device> Device
+        public virtual ICollection<Device> Devices
         {
             get
             {
-                if (_device == null)
+                if (_devices == null)
                 {
                     var newCollection = new FixupCollection<Device>();
-                    newCollection.CollectionChanged += FixupDevice;
-                    _device = newCollection;
+                    newCollection.CollectionChanged += FixupDevices;
+                    _devices = newCollection;
                 }
-                return _device;
+                return _devices;
             }
             set
             {
-                if (!ReferenceEquals(_device, value))
+                if (!ReferenceEquals(_devices, value))
                 {
-                    var previousValue = _device as FixupCollection<Device>;
+                    var previousValue = _devices as FixupCollection<Device>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupDevice;
+                        previousValue.CollectionChanged -= FixupDevices;
                     }
-                    _device = value;
+                    _devices = value;
                     var newValue = value as FixupCollection<Device>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupDevice;
+                        newValue.CollectionChanged += FixupDevices;
                     }
                 }
             }
         }
-        private ICollection<Device> _device;
+        private ICollection<Device> _devices;
     
-        public virtual ICollection<Device> Device1
+        public virtual ICollection<Device> Devices1
         {
             get
             {
-                if (_device1 == null)
+                if (_devices1 == null)
                 {
                     var newCollection = new FixupCollection<Device>();
-                    newCollection.CollectionChanged += FixupDevice1;
-                    _device1 = newCollection;
+                    newCollection.CollectionChanged += FixupDevices1;
+                    _devices1 = newCollection;
                 }
-                return _device1;
+                return _devices1;
             }
             set
             {
-                if (!ReferenceEquals(_device1, value))
+                if (!ReferenceEquals(_devices1, value))
                 {
-                    var previousValue = _device1 as FixupCollection<Device>;
+                    var previousValue = _devices1 as FixupCollection<Device>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupDevice1;
+                        previousValue.CollectionChanged -= FixupDevices1;
                     }
-                    _device1 = value;
+                    _devices1 = value;
                     var newValue = value as FixupCollection<Device>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupDevice1;
+                        newValue.CollectionChanged += FixupDevices1;
                     }
                 }
             }
         }
-        private ICollection<Device> _device1;
+        private ICollection<Device> _devices1;
 
         #endregion
         #region Association Fixup
     
-        private void FixupDevice(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupDevices(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
@@ -123,7 +123,7 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
     
-        private void FixupDevice1(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupDevices1(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {

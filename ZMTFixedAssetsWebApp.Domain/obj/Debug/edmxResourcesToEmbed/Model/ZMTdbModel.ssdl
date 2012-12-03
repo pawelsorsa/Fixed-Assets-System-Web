@@ -338,7 +338,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Person_Section">
-    <End Role="Section" Type="ZMTdbModel.Store.Section" Multiplicity="1" />
+    <End Role="Section" Type="ZMTdbModel.Store.Section" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Person" Type="ZMTdbModel.Store.Person" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Section">

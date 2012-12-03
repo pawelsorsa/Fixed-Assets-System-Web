@@ -40,42 +40,42 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<FixedAsset> FixedAsset
+        public virtual ICollection<FixedAsset> FixedAssets
         {
             get
             {
-                if (_fixedAsset == null)
+                if (_fixedAssets == null)
                 {
                     var newCollection = new FixupCollection<FixedAsset>();
-                    newCollection.CollectionChanged += FixupFixedAsset;
-                    _fixedAsset = newCollection;
+                    newCollection.CollectionChanged += FixupFixedAssets;
+                    _fixedAssets = newCollection;
                 }
-                return _fixedAsset;
+                return _fixedAssets;
             }
             set
             {
-                if (!ReferenceEquals(_fixedAsset, value))
+                if (!ReferenceEquals(_fixedAssets, value))
                 {
-                    var previousValue = _fixedAsset as FixupCollection<FixedAsset>;
+                    var previousValue = _fixedAssets as FixupCollection<FixedAsset>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupFixedAsset;
+                        previousValue.CollectionChanged -= FixupFixedAssets;
                     }
-                    _fixedAsset = value;
+                    _fixedAssets = value;
                     var newValue = value as FixupCollection<FixedAsset>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupFixedAsset;
+                        newValue.CollectionChanged += FixupFixedAssets;
                     }
                 }
             }
         }
-        private ICollection<FixedAsset> _fixedAsset;
+        private ICollection<FixedAsset> _fixedAssets;
 
         #endregion
         #region Association Fixup
     
-        private void FixupFixedAsset(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupFixedAssets(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {

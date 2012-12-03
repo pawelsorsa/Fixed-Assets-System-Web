@@ -20,7 +20,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         [StringLength(20, ErrorMessage = "Nazwisko powinno zawierać maksymalnie 20 znaków")]
         public string surname { get; set; }
         
-        
         public string section_name { get; set; }
 
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Proszę wpisać prawidłowy adres email")]

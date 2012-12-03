@@ -16,6 +16,12 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             repository = repo;
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+
         public Dictionary<int, string> GetAllShortNameSections()
         {
             Dictionary<int, string> list = new Dictionary<int, string>();
@@ -23,11 +29,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             return list;
         }
 
-
-        public ActionResult Index()
-        {
-            return View();
-        }
 
     }
 }

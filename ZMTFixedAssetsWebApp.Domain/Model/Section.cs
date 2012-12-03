@@ -74,5 +74,65 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
 
         #endregion
+        #region Navigation Properties
+    
+        public virtual ICollection<Person> People
+        {
+            get
+            {
+                if (_people == null)
+                {
+                    var newCollection = new FixupCollection<Person>();
+                    newCollection.CollectionChanged += FixupPeople;
+                    _people = newCollection;
+                }
+                return _people;
+            }
+            set
+            {
+                if (!ReferenceEquals(_people, value))
+                {
+                    var previousValue = _people as FixupCollection<Person>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupPeople;
+                    }
+                    _people = value;
+                    var newValue = value as FixupCollection<Person>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupPeople;
+                    }
+                }
+            }
+        }
+        private ICollection<Person> _people;
+
+        #endregion
+        #region Association Fixup
+    
+        private void FixupPeople(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Person item in e.NewItems)
+                {
+                    item.Section = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Person item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Section, this))
+                    {
+                        item.Section = null;
+                    }
+                }
+            }
+        }
+
+        #endregion
     }
 }

@@ -152,16 +152,16 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         private void FixupPeripheralDevice(PeripheralDevice previousValue)
         {
-            if (previousValue != null && previousValue.Device.Contains(this))
+            if (previousValue != null && previousValue.Devices.Contains(this))
             {
-                previousValue.Device.Remove(this);
+                previousValue.Devices.Remove(this);
             }
     
             if (PeripheralDevice != null)
             {
-                if (!PeripheralDevice.Device.Contains(this))
+                if (!PeripheralDevice.Devices.Contains(this))
                 {
-                    PeripheralDevice.Device.Add(this);
+                    PeripheralDevice.Devices.Add(this);
                 }
                 if (id_peripheral_device != PeripheralDevice.id)
                 {
@@ -172,16 +172,16 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         private void FixupPeripheralDevice1(PeripheralDevice previousValue)
         {
-            if (previousValue != null && previousValue.Device1.Contains(this))
+            if (previousValue != null && previousValue.Devices1.Contains(this))
             {
-                previousValue.Device1.Remove(this);
+                previousValue.Devices1.Remove(this);
             }
     
             if (PeripheralDevice1 != null)
             {
-                if (!PeripheralDevice1.Device1.Contains(this))
+                if (!PeripheralDevice1.Devices1.Contains(this))
                 {
-                    PeripheralDevice1.Device1.Add(this);
+                    PeripheralDevice1.Devices1.Add(this);
                 }
                 if (id_peripheral_device != PeripheralDevice1.id)
                 {
@@ -192,16 +192,16 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         private void FixupFixedAsset(FixedAsset previousValue)
         {
-            if (previousValue != null && previousValue.Device.Contains(this))
+            if (previousValue != null && previousValue.Devices.Contains(this))
             {
-                previousValue.Device.Remove(this);
+                previousValue.Devices.Remove(this);
             }
     
             if (FixedAsset != null)
             {
-                if (!FixedAsset.Device.Contains(this))
+                if (!FixedAsset.Devices.Contains(this))
                 {
-                    FixedAsset.Device.Add(this);
+                    FixedAsset.Devices.Add(this);
                 }
                 if (id_fixed_asset != FixedAsset.id)
                 {

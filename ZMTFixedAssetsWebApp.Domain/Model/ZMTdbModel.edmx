@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ZMTdbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="ZMTdbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ZMTdbModelStoreContainer">
           <EntitySet Name="Contractor" EntityType="ZMTdbModel.Store.Contractor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Device" EntityType="ZMTdbModel.Store.Device" store:Type="Tables" Schema="dbo" />
@@ -343,7 +343,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Person_Section">
-          <End Role="Section" Type="ZMTdbModel.Store.Section" Multiplicity="1" />
+          <End Role="Section" Type="ZMTdbModel.Store.Section" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Person" Type="ZMTdbModel.Store.Person" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Section">
@@ -354,67 +356,68 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ZMTdbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="ZMTdbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Contractor" EntityType="ZMTdbModel.Contractor" />
-          <EntitySet Name="Device" EntityType="ZMTdbModel.Device" />
-          <EntitySet Name="FixedAsset" EntityType="ZMTdbModel.FixedAsset" />
-          <EntitySet Name="Kind" EntityType="ZMTdbModel.Kind" />
-          <EntitySet Name="Licence" EntityType="ZMTdbModel.Licence" />
-          <EntitySet Name="MembershipRole" EntityType="ZMTdbModel.MembershipRole" />
-          <EntitySet Name="MembershipUser" EntityType="ZMTdbModel.MembershipUser" />
-          <EntitySet Name="PeripheralDevice" EntityType="ZMTdbModel.PeripheralDevice" />
-          <EntitySet Name="Subgroup" EntityType="ZMTdbModel.Subgroup" />
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contractors" EntityType="ZMTdbModel.Contractor" />
+          <EntitySet Name="Devices" EntityType="ZMTdbModel.Device" />
+          <EntitySet Name="FixedAssets" EntityType="ZMTdbModel.FixedAsset" />
+          <EntitySet Name="Kinds" EntityType="ZMTdbModel.Kind" />
+          <EntitySet Name="Licences" EntityType="ZMTdbModel.Licence" />
+          <EntitySet Name="MembershipRoles" EntityType="ZMTdbModel.MembershipRole" />
+          <EntitySet Name="MembershipUsers" EntityType="ZMTdbModel.MembershipUser" />
+          <EntitySet Name="PeripheralDevices" EntityType="ZMTdbModel.PeripheralDevice" />
+          <EntitySet Name="People" EntityType="ZMTdbModel.Person" />
+          <EntitySet Name="Sections" EntityType="ZMTdbModel.Section" />
+          <EntitySet Name="Subgroups" EntityType="ZMTdbModel.Subgroup" />
           <AssociationSet Name="FK_FixedAsset_Contractor" Association="ZMTdbModel.FK_FixedAsset_Contractor">
-            <End Role="Contractor" EntitySet="Contractor" />
-            <End Role="FixedAsset" EntitySet="FixedAsset" />
+            <End Role="Contractor" EntitySet="Contractors" />
+            <End Role="FixedAsset" EntitySet="FixedAssets" />
           </AssociationSet>
           <AssociationSet Name="FK__Device__id_perip__1BFD2C07" Association="ZMTdbModel.FK__Device__id_perip__1BFD2C07">
-            <End Role="PeripheralDevice" EntitySet="PeripheralDevice" />
-            <End Role="Device" EntitySet="Device" />
+            <End Role="PeripheralDevice" EntitySet="PeripheralDevices" />
+            <End Role="Device" EntitySet="Devices" />
           </AssociationSet>
           <AssociationSet Name="FK__Device__id_perip__1CF15040" Association="ZMTdbModel.FK__Device__id_perip__1CF15040">
-            <End Role="PeripheralDevice" EntitySet="PeripheralDevice" />
-            <End Role="Device" EntitySet="Device" />
+            <End Role="PeripheralDevice" EntitySet="PeripheralDevices" />
+            <End Role="Device" EntitySet="Devices" />
           </AssociationSet>
           <AssociationSet Name="FK_Device_FixedAsset" Association="ZMTdbModel.FK_Device_FixedAsset">
-            <End Role="FixedAsset" EntitySet="FixedAsset" />
-            <End Role="Device" EntitySet="Device" />
+            <End Role="FixedAsset" EntitySet="FixedAssets" />
+            <End Role="Device" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FixedAsset_Person" Association="ZMTdbModel.FK_FixedAsset_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="FixedAsset" EntitySet="FixedAssets" />
           </AssociationSet>
           <AssociationSet Name="FK_FixedAsset_Subgroup" Association="ZMTdbModel.FK_FixedAsset_Subgroup">
-            <End Role="Subgroup" EntitySet="Subgroup" />
-            <End Role="FixedAsset" EntitySet="FixedAsset" />
+            <End Role="Subgroup" EntitySet="Subgroups" />
+            <End Role="FixedAsset" EntitySet="FixedAssets" />
           </AssociationSet>
           <AssociationSet Name="FK_Licence_FixedAsset" Association="ZMTdbModel.FK_Licence_FixedAsset">
-            <End Role="FixedAsset" EntitySet="FixedAsset" />
-            <End Role="Licence" EntitySet="Licence" />
+            <End Role="FixedAsset" EntitySet="FixedAssets" />
+            <End Role="Licence" EntitySet="Licences" />
           </AssociationSet>
           <AssociationSet Name="FK__Licence__id_kind__3E52440B" Association="ZMTdbModel.FK__Licence__id_kind__3E52440B">
-            <End Role="Kind" EntitySet="Kind" />
-            <End Role="Licence" EntitySet="Licence" />
+            <End Role="Kind" EntitySet="Kinds" />
+            <End Role="Licence" EntitySet="Licences" />
           </AssociationSet>
           <AssociationSet Name="FK_Licence_MembershipUser" Association="ZMTdbModel.FK_Licence_MembershipUser">
-            <End Role="MembershipUser" EntitySet="MembershipUser" />
-            <End Role="Licence" EntitySet="Licence" />
-          </AssociationSet>
-          <AssociationSet Name="Membership_User_Role" Association="ZMTdbModel.Membership_User_Role">
-            <End Role="MembershipRole" EntitySet="MembershipRole" />
-            <End Role="MembershipUser" EntitySet="MembershipUser" />
-          </AssociationSet>
-          <EntitySet Name="Person" EntityType="ZMTdbModel.Person" />
-          <EntitySet Name="Section" EntityType="ZMTdbModel.Section" />
-          <AssociationSet Name="FK_FixedAsset_Person" Association="ZMTdbModel.FK_FixedAsset_Person">
-            <End Role="Person" EntitySet="Person" />
-            <End Role="FixedAsset" EntitySet="FixedAsset" />
+            <End Role="MembershipUser" EntitySet="MembershipUsers" />
+            <End Role="Licence" EntitySet="Licences" />
           </AssociationSet>
           <AssociationSet Name="FK_Person_Section" Association="ZMTdbModel.FK_Person_Section">
-            <End Role="Section" EntitySet="Section" />
-            <End Role="Person" EntitySet="Person" />
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Person" EntitySet="People" />
           </AssociationSet>
-          </EntityContainer>
+          <AssociationSet Name="Membership_User_Role" Association="ZMTdbModel.Membership_User_Role">
+            <End Role="MembershipRole" EntitySet="MembershipRoles" />
+            <End Role="MembershipUser" EntitySet="MembershipUsers" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Contractor">
           <Key>
             <PropertyRef Name="id" />
@@ -427,7 +430,7 @@
           <Property Name="country" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="account_number" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="FixedAsset" Relationship="ZMTdbModel.FK_FixedAsset_Contractor" FromRole="Contractor" ToRole="FixedAsset" />
+          <NavigationProperty Name="FixedAssets" Relationship="ZMTdbModel.FK_FixedAsset_Contractor" FromRole="Contractor" ToRole="FixedAsset" />
         </EntityType>
         <EntityType Name="Device">
           <Key>
@@ -468,10 +471,10 @@
           <Property Name="created_by" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="id_contractor" Type="Int32" />
           <NavigationProperty Name="Contractor" Relationship="ZMTdbModel.FK_FixedAsset_Contractor" FromRole="FixedAsset" ToRole="Contractor" />
-          <NavigationProperty Name="Device" Relationship="ZMTdbModel.FK_Device_FixedAsset" FromRole="FixedAsset" ToRole="Device" />
-          <NavigationProperty Name="Subgroup" Relationship="ZMTdbModel.FK_FixedAsset_Subgroup" FromRole="FixedAsset" ToRole="Subgroup" />
-          <NavigationProperty Name="Licence" Relationship="ZMTdbModel.FK_Licence_FixedAsset" FromRole="FixedAsset" ToRole="Licence" />
+          <NavigationProperty Name="Devices" Relationship="ZMTdbModel.FK_Device_FixedAsset" FromRole="FixedAsset" ToRole="Device" />
           <NavigationProperty Name="Person" Relationship="ZMTdbModel.FK_FixedAsset_Person" FromRole="FixedAsset" ToRole="Person" />
+          <NavigationProperty Name="Subgroup" Relationship="ZMTdbModel.FK_FixedAsset_Subgroup" FromRole="FixedAsset" ToRole="Subgroup" />
+          <NavigationProperty Name="Licences" Relationship="ZMTdbModel.FK_Licence_FixedAsset" FromRole="FixedAsset" ToRole="Licence" />
         </EntityType>
         <EntityType Name="Kind">
           <Key>
@@ -479,7 +482,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Licence" Relationship="ZMTdbModel.FK__Licence__id_kind__3E52440B" FromRole="Kind" ToRole="Licence" />
+          <NavigationProperty Name="Licences" Relationship="ZMTdbModel.FK__Licence__id_kind__3E52440B" FromRole="Kind" ToRole="Licence" />
         </EntityType>
         <EntityType Name="Licence">
           <Key>
@@ -505,7 +508,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="MembershipUser" Relationship="ZMTdbModel.Membership_User_Role" FromRole="MembershipRole" ToRole="MembershipUser" />
+          <NavigationProperty Name="MembershipUsers" Relationship="ZMTdbModel.Membership_User_Role" FromRole="MembershipRole" ToRole="MembershipUser" />
         </EntityType>
         <EntityType Name="MembershipUser">
           <Key>
@@ -521,8 +524,8 @@
           <Property Name="is_online" Type="Boolean" Nullable="false" />
           <Property Name="is_active" Type="Boolean" Nullable="false" />
           <Property Name="PLKLogin" Type="Int32" />
-          <NavigationProperty Name="Licence" Relationship="ZMTdbModel.FK_Licence_MembershipUser" FromRole="MembershipUser" ToRole="Licence" />
-          <NavigationProperty Name="MembershipRole" Relationship="ZMTdbModel.Membership_User_Role" FromRole="MembershipUser" ToRole="MembershipRole" />
+          <NavigationProperty Name="Licences" Relationship="ZMTdbModel.FK_Licence_MembershipUser" FromRole="MembershipUser" ToRole="Licence" />
+          <NavigationProperty Name="MembershipRoles" Relationship="ZMTdbModel.Membership_User_Role" FromRole="MembershipUser" ToRole="MembershipRole" />
         </EntityType>
         <EntityType Name="PeripheralDevice">
           <Key>
@@ -530,8 +533,38 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Device" Relationship="ZMTdbModel.FK__Device__id_perip__1BFD2C07" FromRole="PeripheralDevice" ToRole="Device" />
-          <NavigationProperty Name="Device1" Relationship="ZMTdbModel.FK__Device__id_perip__1CF15040" FromRole="PeripheralDevice" ToRole="Device" />
+          <NavigationProperty Name="Devices" Relationship="ZMTdbModel.FK__Device__id_perip__1BFD2C07" FromRole="PeripheralDevice" ToRole="Device" />
+          <NavigationProperty Name="Devices1" Relationship="ZMTdbModel.FK__Device__id_perip__1CF15040" FromRole="PeripheralDevice" ToRole="Device" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="area_code" Type="Int32" />
+          <Property Name="phone_number" Type="Int32" />
+          <Property Name="phone_number2" Type="Int32" />
+          <Property Name="id_section" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FixedAssets" Relationship="ZMTdbModel.FK_FixedAsset_Person" FromRole="Person" ToRole="FixedAsset" />
+          <NavigationProperty Name="Section" Relationship="ZMTdbModel.FK_Person_Section" FromRole="Person" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="short_name" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="street" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="postal_code" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="post" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="locality" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="phone_number" Type="String" MaxLength="9" Unicode="true" FixedLength="true" />
+          <Property Name="email" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="People" Relationship="ZMTdbModel.FK_Person_Section" FromRole="Section" ToRole="Person" />
         </EntityType>
         <EntityType Name="Subgroup">
           <Key>
@@ -540,7 +573,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="short_name" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="FixedAsset" Relationship="ZMTdbModel.FK_FixedAsset_Subgroup" FromRole="Subgroup" ToRole="FixedAsset" />
+          <NavigationProperty Name="FixedAssets" Relationship="ZMTdbModel.FK_FixedAsset_Subgroup" FromRole="Subgroup" ToRole="FixedAsset" />
         </EntityType>
         <Association Name="FK_FixedAsset_Contractor">
           <End Role="Contractor" Type="ZMTdbModel.Contractor" Multiplicity="0..1" />
@@ -587,6 +620,18 @@
             </Principal>
             <Dependent Role="Device">
               <PropertyRef Name="id_fixed_asset" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FixedAsset_Person">
+          <End Role="Person" Type="ZMTdbModel.Person" Multiplicity="0..1" />
+          <End Role="FixedAsset" Type="ZMTdbModel.FixedAsset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FixedAsset">
+              <PropertyRef Name="id_person" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -638,52 +683,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Membership_User_Role">
-          <End Role="MembershipRole" Type="ZMTdbModel.MembershipRole" Multiplicity="*" />
-          <End Role="MembershipUser" Type="ZMTdbModel.MembershipUser" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="surname" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="email" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="area_code" />
-          <Property Type="Int32" Name="phone_number" />
-          <Property Type="Int32" Name="phone_number2" />
-          <Property Type="Int32" Name="id_section" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Section">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="short_name" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="street" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="postal_code" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="post" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="locality" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="phone_number" MaxLength="9" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="email" MaxLength="30" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <Association Name="FK_FixedAsset_Person">
-          <End Type="ZMTdbModel.Person" Role="Person" Multiplicity="0..1" />
-          <End Type="ZMTdbModel.FixedAsset" Role="FixedAsset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="FixedAsset">
-              <PropertyRef Name="id_person" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Person_Section">
-          <End Type="ZMTdbModel.Section" Role="Section" Multiplicity="1" />
-          <End Type="ZMTdbModel.Person" Role="Person" Multiplicity="*" />
+          <End Role="Section" Type="ZMTdbModel.Section" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Person" Type="ZMTdbModel.Person" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="Section">
               <PropertyRef Name="id" />
@@ -693,13 +698,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <Association Name="Membership_User_Role">
+          <End Role="MembershipRole" Type="ZMTdbModel.MembershipRole" Multiplicity="*" />
+          <End Role="MembershipUser" Type="ZMTdbModel.MembershipUser" Multiplicity="*" />
+        </Association>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ZMTdbModelStoreContainer" CdmEntityContainer="ZMTdbEntities">
-          <EntitySetMapping Name="Contractor"><EntityTypeMapping TypeName="ZMTdbModel.Contractor"><MappingFragment StoreEntitySet="Contractor">
+        <EntityContainerMapping StorageEntityContainer="ZMTdbModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Contractors"><EntityTypeMapping TypeName="ZMTdbModel.Contractor"><MappingFragment StoreEntitySet="Contractor">
             <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="nip" ColumnName="nip" />
             <ScalarProperty Name="street" ColumnName="street" />
@@ -709,7 +718,7 @@
             <ScalarProperty Name="name" ColumnName="name" />
             <ScalarProperty Name="account_number" ColumnName="account_number" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Device"><EntityTypeMapping TypeName="ZMTdbModel.Device"><MappingFragment StoreEntitySet="Device">
+          <EntitySetMapping Name="Devices"><EntityTypeMapping TypeName="ZMTdbModel.Device"><MappingFragment StoreEntitySet="Device">
             <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="id_peripheral_device" ColumnName="id_peripheral_device" />
             <ScalarProperty Name="serial_number" ColumnName="serial_number" />
@@ -720,7 +729,7 @@
             <ScalarProperty Name="comment" ColumnName="comment" />
             <ScalarProperty Name="id_fixed_asset" ColumnName="id_fixed_asset" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="FixedAsset"><EntityTypeMapping TypeName="ZMTdbModel.FixedAsset"><MappingFragment StoreEntitySet="FixedAsset">
+          <EntitySetMapping Name="FixedAssets"><EntityTypeMapping TypeName="ZMTdbModel.FixedAsset"><MappingFragment StoreEntitySet="FixedAsset">
             <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="inventory_number" ColumnName="inventory_number" />
             <ScalarProperty Name="comment" ColumnName="comment" />
@@ -739,11 +748,11 @@
             <ScalarProperty Name="created_by" ColumnName="created_by" />
             <ScalarProperty Name="id_contractor" ColumnName="id_contractor" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Kind"><EntityTypeMapping TypeName="ZMTdbModel.Kind"><MappingFragment StoreEntitySet="Kind">
+          <EntitySetMapping Name="Kinds"><EntityTypeMapping TypeName="ZMTdbModel.Kind"><MappingFragment StoreEntitySet="Kind">
             <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="name" ColumnName="name" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Licence"><EntityTypeMapping TypeName="ZMTdbModel.Licence"><MappingFragment StoreEntitySet="Licence">
+          <EntitySetMapping Name="Licences"><EntityTypeMapping TypeName="ZMTdbModel.Licence"><MappingFragment StoreEntitySet="Licence">
             <ScalarProperty Name="id_number" ColumnName="id_number" />
             <ScalarProperty Name="inventory_number" ColumnName="inventory_number" />
             <ScalarProperty Name="assign_fixed_asset" ColumnName="assign_fixed_asset" />
@@ -755,11 +764,11 @@
             <ScalarProperty Name="last_modified_date" ColumnName="last_modified_date" />
             <ScalarProperty Name="last_modified_login" ColumnName="last_modified_login" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MembershipRole"><EntityTypeMapping TypeName="ZMTdbModel.MembershipRole"><MappingFragment StoreEntitySet="MembershipRole">
+          <EntitySetMapping Name="MembershipRoles"><EntityTypeMapping TypeName="ZMTdbModel.MembershipRole"><MappingFragment StoreEntitySet="MembershipRole">
             <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="name" ColumnName="name" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MembershipUser"><EntityTypeMapping TypeName="ZMTdbModel.MembershipUser"><MappingFragment StoreEntitySet="MembershipUser">
+          <EntitySetMapping Name="MembershipUsers"><EntityTypeMapping TypeName="ZMTdbModel.MembershipUser"><MappingFragment StoreEntitySet="MembershipUser">
             <ScalarProperty Name="login" ColumnName="login" />
             <ScalarProperty Name="password" ColumnName="password" />
             <ScalarProperty Name="email" ColumnName="email" />
@@ -771,11 +780,32 @@
             <ScalarProperty Name="is_active" ColumnName="is_active" />
             <ScalarProperty Name="PLKLogin" ColumnName="PLKLogin" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PeripheralDevice"><EntityTypeMapping TypeName="ZMTdbModel.PeripheralDevice"><MappingFragment StoreEntitySet="PeripheralDevice">
+          <EntitySetMapping Name="PeripheralDevices"><EntityTypeMapping TypeName="ZMTdbModel.PeripheralDevice"><MappingFragment StoreEntitySet="PeripheralDevice">
             <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="name" ColumnName="name" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Subgroup"><EntityTypeMapping TypeName="ZMTdbModel.Subgroup"><MappingFragment StoreEntitySet="Subgroup">
+          <EntitySetMapping Name="People"><EntityTypeMapping TypeName="ZMTdbModel.Person"><MappingFragment StoreEntitySet="Person">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="name" ColumnName="name" />
+            <ScalarProperty Name="surname" ColumnName="surname" />
+            <ScalarProperty Name="email" ColumnName="email" />
+            <ScalarProperty Name="area_code" ColumnName="area_code" />
+            <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+            <ScalarProperty Name="phone_number2" ColumnName="phone_number2" />
+            <ScalarProperty Name="id_section" ColumnName="id_section" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Sections"><EntityTypeMapping TypeName="ZMTdbModel.Section"><MappingFragment StoreEntitySet="Section">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="name" ColumnName="name" />
+            <ScalarProperty Name="short_name" ColumnName="short_name" />
+            <ScalarProperty Name="street" ColumnName="street" />
+            <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+            <ScalarProperty Name="post" ColumnName="post" />
+            <ScalarProperty Name="locality" ColumnName="locality" />
+            <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+            <ScalarProperty Name="email" ColumnName="email" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Subgroups"><EntityTypeMapping TypeName="ZMTdbModel.Subgroup"><MappingFragment StoreEntitySet="Subgroup">
             <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="short_name" ColumnName="short_name" />
             <ScalarProperty Name="name" ColumnName="name" />
@@ -788,36 +818,7 @@
               <ScalarProperty Name="login" ColumnName="Login" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Person">
-            <EntityTypeMapping TypeName="ZMTdbModel.Person">
-              <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="id_section" ColumnName="id_section" />
-                <ScalarProperty Name="phone_number2" ColumnName="phone_number2" />
-                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-                <ScalarProperty Name="area_code" ColumnName="area_code" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Section">
-            <EntityTypeMapping TypeName="ZMTdbModel.Section">
-              <MappingFragment StoreEntitySet="Section">
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-                <ScalarProperty Name="locality" ColumnName="locality" />
-                <ScalarProperty Name="post" ColumnName="post" />
-                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
-                <ScalarProperty Name="street" ColumnName="street" />
-                <ScalarProperty Name="short_name" ColumnName="short_name" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -838,15 +839,17 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ZMTdbModel">
+      <Diagram Name="ZMTdbModel" ZoomLevel="74">
         <EntityTypeShape EntityType="ZMTdbModel.Contractor" Width="1.5" PointX="3" PointY="1" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZMTdbModel.Device" Width="1.5" PointX="7.5" PointY="5" Height="3.3263964843749996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZMTdbModel.FixedAsset" Width="1.5" PointX="5.25" PointY="4" Height="4.2879036458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZMTdbModel.FixedAsset" Width="1.5" PointX="5.25" PointY="4" Height="5.2494108072916665" IsExpanded="true" />
         <EntityTypeShape EntityType="ZMTdbModel.Kind" Width="1.5" PointX="8.25" PointY="1.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZMTdbModel.Licence" Width="1.5" PointX="10.5" PointY="4.875" Height="3.5186979166666665" IsExpanded="true" />
         <EntityTypeShape EntityType="ZMTdbModel.MembershipRole" Width="1.5" PointX="6" PointY="11" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZMTdbModel.MembershipUser" Width="1.5" PointX="8.25" PointY="10.125" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZMTdbModel.PeripheralDevice" Width="1.5" PointX="5.25" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZMTdbModel.Person" Width="1.5" PointX="3" PointY="5.125" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZMTdbModel.Section" Width="1.5" PointX="0.75" PointY="5.125" Height="2.9417936197916674" IsExpanded="true" />
         <EntityTypeShape EntityType="ZMTdbModel.Subgroup" Width="1.5" PointX="3" PointY="9.5" Height="1.787985026041671" IsExpanded="true" />
         <AssociationConnector Association="ZMTdbModel.FK_FixedAsset_Contractor" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="3.7494921874999996" />
@@ -865,24 +868,25 @@
           <ConnectorPoint PointX="7.6406225" PointY="5" />
         </AssociationConnector>
         <AssociationConnector Association="ZMTdbModel.FK_Device_FixedAsset" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="6.6439518229166667" />
-          <ConnectorPoint PointX="7.5" PointY="6.6439518229166667" />
+          <ConnectorPoint PointX="6.75" PointY="6.6631982421875" />
+          <ConnectorPoint PointX="7.5" PointY="6.6631982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="ZMTdbModel.FK_FixedAsset_Person" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.5958968098958337" />
+          <ConnectorPoint PointX="5.25" PointY="6.5958968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="ZMTdbModel.FK_FixedAsset_Subgroup" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="10.21875" />
           <ConnectorPoint PointX="5.59375" PointY="10.21875" />
-          <ConnectorPoint PointX="5.59375" PointY="8.2879036458333335" />
+          <ConnectorPoint PointX="5.59375" PointY="9.2494108072916674" />
         </AssociationConnector>
         <AssociationConnector Association="ZMTdbModel.FK_Licence_FixedAsset" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="4.4374994999999995" />
-          <ConnectorPoint PointX="7.5572891666666671" PointY="4.4374994999999986" />
-          <ConnectorPoint PointX="7.7239558333333331" PointY="4.4374994999999995" />
-          <ConnectorPoint PointX="7.760416666666667" PointY="4.4374994999999986" />
-          <ConnectorPoint PointX="7.927083333333333" PointY="4.4374994999999995" />
-          <ConnectorPoint PointX="9.3229166666666661" PointY="4.4374994999999986" />
-          <ConnectorPoint PointX="9.4895833333333339" PointY="4.4374994999999995" />
-          <ConnectorPoint PointX="11.25" PointY="4.4374994999999995" />
-          <ConnectorPoint PointX="11.25" PointY="4.875" />
+          <ConnectorPoint PointX="6.75" PointY="4.90625" />
+          <ConnectorPoint PointX="7.5572891666666671" PointY="4.9062499999999991" />
+          <ConnectorPoint PointX="7.7239558333333331" PointY="4.90625" />
+          <ConnectorPoint PointX="7.760416666666667" PointY="4.9062499999999991" />
+          <ConnectorPoint PointX="7.927083333333333" PointY="4.90625" />
+          <ConnectorPoint PointX="10.5" PointY="4.90625" />
         </AssociationConnector>
         <AssociationConnector Association="ZMTdbModel.FK__Licence__id_kind__3E52440B" ManuallyRouted="false">
           <ConnectorPoint PointX="9.40625" PointY="3.3456835937499996" />
@@ -894,19 +898,13 @@
           <ConnectorPoint PointX="9.578125" PointY="4.921875" />
           <ConnectorPoint PointX="10.5" PointY="4.921875" />
         </AssociationConnector>
+        <AssociationConnector Association="ZMTdbModel.FK_Person_Section" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.5958968098958337" />
+          <ConnectorPoint PointX="3" PointY="6.5958968098958337" />
+        </AssociationConnector>
         <AssociationConnector Association="ZMTdbModel.Membership_User_Role" ManuallyRouted="false">
           <ConnectorPoint PointX="7.5" PointY="11.797841796875" />
           <ConnectorPoint PointX="8.25" PointY="11.797841796875" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="ZMTdbModel.Person" Width="1.5" PointX="3" PointY="4.625" Height="2.5571907552083326" />
-        <EntityTypeShape EntityType="ZMTdbModel.Section" Width="1.5" PointX="0.75" PointY="4.625" Height="2.7494921874999996" />
-        <AssociationConnector Association="ZMTdbModel.FK_FixedAsset_Person" >
-          <ConnectorPoint PointX="4.5" PointY="5.9035953776041659" />
-          <ConnectorPoint PointX="5.25" PointY="5.9035953776041659" />
-        </AssociationConnector>
-        <AssociationConnector Association="ZMTdbModel.FK_Person_Section" >
-          <ConnectorPoint PointX="2.25" PointY="5.9035953776041659" />
-          <ConnectorPoint PointX="3" PointY="5.9035953776041659" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

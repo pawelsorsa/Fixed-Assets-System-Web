@@ -14,9 +14,13 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
         public DbSet<Section> Sections { get; set; }
 
 
+       
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+           //Database.SetInitializer<DbContext>(new CreateDatabaseIfNotExists<DbContext>());
+ 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<Section>().HasKey(x => x.id);
             modelBuilder.Entity<Licence>().HasKey(x => x.id_number);
@@ -24,7 +28,15 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             modelBuilder.Entity<Person>().HasKey(x => x.id);
 
 
+            // Identity: None
+            modelBuilder.Entity<Person>().Property(e => e.id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.None);
 
+
+            // one to many  One Section Many Persons
+            modelBuilder.Entity<Person>()
+            .HasRequired(p => p.Section)
+            .WithMany(u => u.People)
+            .HasForeignKey(x => x.id_section).WillCascadeOnDelete();
 
         }
     }

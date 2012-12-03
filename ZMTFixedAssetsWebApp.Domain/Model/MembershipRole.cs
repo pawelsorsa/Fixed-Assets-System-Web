@@ -34,50 +34,50 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<MembershipUser> MembershipUser
+        public virtual ICollection<MembershipUser> MembershipUsers
         {
             get
             {
-                if (_membershipUser == null)
+                if (_membershipUsers == null)
                 {
                     var newCollection = new FixupCollection<MembershipUser>();
-                    newCollection.CollectionChanged += FixupMembershipUser;
-                    _membershipUser = newCollection;
+                    newCollection.CollectionChanged += FixupMembershipUsers;
+                    _membershipUsers = newCollection;
                 }
-                return _membershipUser;
+                return _membershipUsers;
             }
             set
             {
-                if (!ReferenceEquals(_membershipUser, value))
+                if (!ReferenceEquals(_membershipUsers, value))
                 {
-                    var previousValue = _membershipUser as FixupCollection<MembershipUser>;
+                    var previousValue = _membershipUsers as FixupCollection<MembershipUser>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupMembershipUser;
+                        previousValue.CollectionChanged -= FixupMembershipUsers;
                     }
-                    _membershipUser = value;
+                    _membershipUsers = value;
                     var newValue = value as FixupCollection<MembershipUser>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupMembershipUser;
+                        newValue.CollectionChanged += FixupMembershipUsers;
                     }
                 }
             }
         }
-        private ICollection<MembershipUser> _membershipUser;
+        private ICollection<MembershipUser> _membershipUsers;
 
         #endregion
         #region Association Fixup
     
-        private void FixupMembershipUser(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupMembershipUsers(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
                 foreach (MembershipUser item in e.NewItems)
                 {
-                    if (!item.MembershipRole.Contains(this))
+                    if (!item.MembershipRoles.Contains(this))
                     {
-                        item.MembershipRole.Add(this);
+                        item.MembershipRoles.Add(this);
                     }
                 }
             }
@@ -86,9 +86,9 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             {
                 foreach (MembershipUser item in e.OldItems)
                 {
-                    if (item.MembershipRole.Contains(this))
+                    if (item.MembershipRoles.Contains(this))
                     {
-                        item.MembershipRole.Remove(this);
+                        item.MembershipRoles.Remove(this);
                     }
                 }
             }

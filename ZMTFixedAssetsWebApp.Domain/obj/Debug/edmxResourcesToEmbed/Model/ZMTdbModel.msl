@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ZMTdbModelStoreContainer" CdmEntityContainer="ZMTdbEntities">
-    <EntitySetMapping Name="Contractor">
+  <EntityContainerMapping StorageEntityContainer="ZMTdbModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Contractors">
       <EntityTypeMapping TypeName="ZMTdbModel.Contractor">
         <MappingFragment StoreEntitySet="Contractor">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -15,7 +15,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Device">
+    <EntitySetMapping Name="Devices">
       <EntityTypeMapping TypeName="ZMTdbModel.Device">
         <MappingFragment StoreEntitySet="Device">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -30,7 +30,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="FixedAsset">
+    <EntitySetMapping Name="FixedAssets">
       <EntityTypeMapping TypeName="ZMTdbModel.FixedAsset">
         <MappingFragment StoreEntitySet="FixedAsset">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -53,7 +53,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Kind">
+    <EntitySetMapping Name="Kinds">
       <EntityTypeMapping TypeName="ZMTdbModel.Kind">
         <MappingFragment StoreEntitySet="Kind">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -61,7 +61,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Licence">
+    <EntitySetMapping Name="Licences">
       <EntityTypeMapping TypeName="ZMTdbModel.Licence">
         <MappingFragment StoreEntitySet="Licence">
           <ScalarProperty Name="id_number" ColumnName="id_number" />
@@ -77,7 +77,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MembershipRole">
+    <EntitySetMapping Name="MembershipRoles">
       <EntityTypeMapping TypeName="ZMTdbModel.MembershipRole">
         <MappingFragment StoreEntitySet="MembershipRole">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -85,7 +85,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MembershipUser">
+    <EntitySetMapping Name="MembershipUsers">
       <EntityTypeMapping TypeName="ZMTdbModel.MembershipUser">
         <MappingFragment StoreEntitySet="MembershipUser">
           <ScalarProperty Name="login" ColumnName="login" />
@@ -101,7 +101,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PeripheralDevice">
+    <EntitySetMapping Name="PeripheralDevices">
       <EntityTypeMapping TypeName="ZMTdbModel.PeripheralDevice">
         <MappingFragment StoreEntitySet="PeripheralDevice">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -109,7 +109,36 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Subgroup">
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="ZMTdbModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="area_code" ColumnName="area_code" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="phone_number2" ColumnName="phone_number2" />
+          <ScalarProperty Name="id_section" ColumnName="id_section" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sections">
+      <EntityTypeMapping TypeName="ZMTdbModel.Section">
+        <MappingFragment StoreEntitySet="Section">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="short_name" ColumnName="short_name" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+          <ScalarProperty Name="post" ColumnName="post" />
+          <ScalarProperty Name="locality" ColumnName="locality" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subgroups">
       <EntityTypeMapping TypeName="ZMTdbModel.Subgroup">
         <MappingFragment StoreEntitySet="Subgroup">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -126,34 +155,5 @@
         <ScalarProperty Name="login" ColumnName="Login" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Person">
-      <EntityTypeMapping TypeName="ZMTdbModel.Person">
-        <MappingFragment StoreEntitySet="Person">
-          <ScalarProperty Name="id_section" ColumnName="id_section" />
-          <ScalarProperty Name="phone_number2" ColumnName="phone_number2" />
-          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-          <ScalarProperty Name="area_code" ColumnName="area_code" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="surname" ColumnName="surname" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Section">
-      <EntityTypeMapping TypeName="ZMTdbModel.Section">
-        <MappingFragment StoreEntitySet="Section">
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-          <ScalarProperty Name="locality" ColumnName="locality" />
-          <ScalarProperty Name="post" ColumnName="post" />
-          <ScalarProperty Name="postal_code" ColumnName="postal_code" />
-          <ScalarProperty Name="street" ColumnName="street" />
-          <ScalarProperty Name="short_name" ColumnName="short_name" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

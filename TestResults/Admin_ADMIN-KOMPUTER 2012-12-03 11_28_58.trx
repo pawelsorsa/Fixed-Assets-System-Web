@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="bbcd23c7-df8d-4992-8949-8534ad80d39f" name="Admin@ADMIN-KOMPUTER 2012-12-03 11:28:58" runUser="Admin-Komputer\Admin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f6c044c9-0e3f-4f1b-8ba3-a15348056ed4">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Admin_ADMIN-KOMPUTER 2012-12-03 11_28_58">
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\bin\ZMTFixedAssetsWebApp.WebUI.dll" />
+      <DeploymentItem filename="D:\c#\Ninject.dll" />
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.Domain\bin\Debug\ZMTFixedAssetsWebApp.Domain.dll" />
+      <DeploymentItem filename="D:\c#\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-12-03T11:28:58.2156632+01:00" queuing="2012-12-03T11:28:58.4026739+01:00" start="2012-12-03T11:28:58.6026854+01:00" finish="2012-12-03T11:29:01.6988624+01:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CanDeletePerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="d0895da2-a254-3293-a751-fc6aae545dc9">
+      <Execution id="2a8e1882-00f8-4203-8064-fa0a21d45f26" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanDeletePerson" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="d0895da2-a254-3293-a751-fc6aae545dc9" executionId="2a8e1882-00f8-4203-8064-fa0a21d45f26" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="2a8e1882-00f8-4203-8064-fa0a21d45f26" testId="d0895da2-a254-3293-a751-fc6aae545dc9" testName="CanDeletePerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.5372706" startTime="2012-12-03T11:28:58.6366873+01:00" endTime="2012-12-03T11:28:59.7337501+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2a8e1882-00f8-4203-8064-fa0a21d45f26">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;6&gt;. Actual:&lt;5&gt;. </Message>
+          <StackTrace>   at ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest.CanDeletePerson() in C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\PersonUnitTest.cs:line 86
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

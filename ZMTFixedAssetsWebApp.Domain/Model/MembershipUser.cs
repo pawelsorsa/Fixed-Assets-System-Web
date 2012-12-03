@@ -82,74 +82,74 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<Licence> Licence
+        public virtual ICollection<Licence> Licences
         {
             get
             {
-                if (_licence == null)
+                if (_licences == null)
                 {
                     var newCollection = new FixupCollection<Licence>();
-                    newCollection.CollectionChanged += FixupLicence;
-                    _licence = newCollection;
+                    newCollection.CollectionChanged += FixupLicences;
+                    _licences = newCollection;
                 }
-                return _licence;
+                return _licences;
             }
             set
             {
-                if (!ReferenceEquals(_licence, value))
+                if (!ReferenceEquals(_licences, value))
                 {
-                    var previousValue = _licence as FixupCollection<Licence>;
+                    var previousValue = _licences as FixupCollection<Licence>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupLicence;
+                        previousValue.CollectionChanged -= FixupLicences;
                     }
-                    _licence = value;
+                    _licences = value;
                     var newValue = value as FixupCollection<Licence>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupLicence;
+                        newValue.CollectionChanged += FixupLicences;
                     }
                 }
             }
         }
-        private ICollection<Licence> _licence;
+        private ICollection<Licence> _licences;
     
-        public virtual ICollection<MembershipRole> MembershipRole
+        public virtual ICollection<MembershipRole> MembershipRoles
         {
             get
             {
-                if (_membershipRole == null)
+                if (_membershipRoles == null)
                 {
                     var newCollection = new FixupCollection<MembershipRole>();
-                    newCollection.CollectionChanged += FixupMembershipRole;
-                    _membershipRole = newCollection;
+                    newCollection.CollectionChanged += FixupMembershipRoles;
+                    _membershipRoles = newCollection;
                 }
-                return _membershipRole;
+                return _membershipRoles;
             }
             set
             {
-                if (!ReferenceEquals(_membershipRole, value))
+                if (!ReferenceEquals(_membershipRoles, value))
                 {
-                    var previousValue = _membershipRole as FixupCollection<MembershipRole>;
+                    var previousValue = _membershipRoles as FixupCollection<MembershipRole>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupMembershipRole;
+                        previousValue.CollectionChanged -= FixupMembershipRoles;
                     }
-                    _membershipRole = value;
+                    _membershipRoles = value;
                     var newValue = value as FixupCollection<MembershipRole>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupMembershipRole;
+                        newValue.CollectionChanged += FixupMembershipRoles;
                     }
                 }
             }
         }
-        private ICollection<MembershipRole> _membershipRole;
+        private ICollection<MembershipRole> _membershipRoles;
 
         #endregion
         #region Association Fixup
     
-        private void FixupLicence(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupLicences(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
@@ -171,15 +171,15 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
     
-        private void FixupMembershipRole(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupMembershipRoles(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
                 foreach (MembershipRole item in e.NewItems)
                 {
-                    if (!item.MembershipUser.Contains(this))
+                    if (!item.MembershipUsers.Contains(this))
                     {
-                        item.MembershipUser.Add(this);
+                        item.MembershipUsers.Add(this);
                     }
                 }
             }
@@ -188,9 +188,9 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             {
                 foreach (MembershipRole item in e.OldItems)
                 {
-                    if (item.MembershipUser.Contains(this))
+                    if (item.MembershipUsers.Contains(this))
                     {
-                        item.MembershipUser.Remove(this);
+                        item.MembershipUsers.Remove(this);
                     }
                 }
             }

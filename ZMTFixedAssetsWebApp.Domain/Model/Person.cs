@@ -63,8 +63,114 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         public virtual int id_section
         {
-            get;
-            set;
+            get { return _id_section; }
+            set
+            {
+                if (_id_section != value)
+                {
+                    if (Section != null && Section.id != value)
+                    {
+                        Section = null;
+                    }
+                    _id_section = value;
+                }
+            }
+        }
+        private int _id_section;
+
+        #endregion
+        #region Navigation Properties
+    
+        public virtual ICollection<FixedAsset> FixedAssets
+        {
+            get
+            {
+                if (_fixedAssets == null)
+                {
+                    var newCollection = new FixupCollection<FixedAsset>();
+                    newCollection.CollectionChanged += FixupFixedAssets;
+                    _fixedAssets = newCollection;
+                }
+                return _fixedAssets;
+            }
+            set
+            {
+                if (!ReferenceEquals(_fixedAssets, value))
+                {
+                    var previousValue = _fixedAssets as FixupCollection<FixedAsset>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupFixedAssets;
+                    }
+                    _fixedAssets = value;
+                    var newValue = value as FixupCollection<FixedAsset>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupFixedAssets;
+                    }
+                }
+            }
+        }
+        private ICollection<FixedAsset> _fixedAssets;
+    
+        public virtual Section Section
+        {
+            get { return _section; }
+            set
+            {
+                if (!ReferenceEquals(_section, value))
+                {
+                    var previousValue = _section;
+                    _section = value;
+                    FixupSection(previousValue);
+                }
+            }
+        }
+        private Section _section;
+
+        #endregion
+        #region Association Fixup
+    
+        private void FixupSection(Section previousValue)
+        {
+            if (previousValue != null && previousValue.People.Contains(this))
+            {
+                previousValue.People.Remove(this);
+            }
+    
+            if (Section != null)
+            {
+                if (!Section.People.Contains(this))
+                {
+                    Section.People.Add(this);
+                }
+                if (id_section != Section.id)
+                {
+                    id_section = Section.id;
+                }
+            }
+        }
+    
+        private void FixupFixedAssets(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (FixedAsset item in e.NewItems)
+                {
+                    item.Person = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (FixedAsset item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Person, this))
+                    {
+                        item.Person = null;
+                    }
+                }
+            }
         }
 
         #endregion

@@ -196,37 +196,52 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private Contractor _contractor;
     
-        public virtual ICollection<Device> Device
+        public virtual ICollection<Device> Devices
         {
             get
             {
-                if (_device == null)
+                if (_devices == null)
                 {
                     var newCollection = new FixupCollection<Device>();
-                    newCollection.CollectionChanged += FixupDevice;
-                    _device = newCollection;
+                    newCollection.CollectionChanged += FixupDevices;
+                    _devices = newCollection;
                 }
-                return _device;
+                return _devices;
             }
             set
             {
-                if (!ReferenceEquals(_device, value))
+                if (!ReferenceEquals(_devices, value))
                 {
-                    var previousValue = _device as FixupCollection<Device>;
+                    var previousValue = _devices as FixupCollection<Device>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupDevice;
+                        previousValue.CollectionChanged -= FixupDevices;
                     }
-                    _device = value;
+                    _devices = value;
                     var newValue = value as FixupCollection<Device>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupDevice;
+                        newValue.CollectionChanged += FixupDevices;
                     }
                 }
             }
         }
-        private ICollection<Device> _device;
+        private ICollection<Device> _devices;
+    
+        public virtual Person Person
+        {
+            get { return _person; }
+            set
+            {
+                if (!ReferenceEquals(_person, value))
+                {
+                    var previousValue = _person;
+                    _person = value;
+                    FixupPerson(previousValue);
+                }
+            }
+        }
+        private Person _person;
     
         public virtual Subgroup Subgroup
         {
@@ -243,52 +258,37 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private Subgroup _subgroup;
     
-        public virtual ICollection<Licence> Licence
+        public virtual ICollection<Licence> Licences
         {
             get
             {
-                if (_licence == null)
+                if (_licences == null)
                 {
                     var newCollection = new FixupCollection<Licence>();
-                    newCollection.CollectionChanged += FixupLicence;
-                    _licence = newCollection;
+                    newCollection.CollectionChanged += FixupLicences;
+                    _licences = newCollection;
                 }
-                return _licence;
+                return _licences;
             }
             set
             {
-                if (!ReferenceEquals(_licence, value))
+                if (!ReferenceEquals(_licences, value))
                 {
-                    var previousValue = _licence as FixupCollection<Licence>;
+                    var previousValue = _licences as FixupCollection<Licence>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupLicence;
+                        previousValue.CollectionChanged -= FixupLicences;
                     }
-                    _licence = value;
+                    _licences = value;
                     var newValue = value as FixupCollection<Licence>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupLicence;
+                        newValue.CollectionChanged += FixupLicences;
                     }
                 }
             }
         }
-        private ICollection<Licence> _licence;
-    
-        public virtual Person Person
-        {
-            get { return _person; }
-            set
-            {
-                if (!ReferenceEquals(_person, value))
-                {
-                    var previousValue = _person;
-                    _person = value;
-                    FixupPerson(previousValue);
-                }
-            }
-        }
-        private Person _person;
+        private ICollection<Licence> _licences;
 
         #endregion
         #region Association Fixup
@@ -297,16 +297,16 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         private void FixupContractor(Contractor previousValue)
         {
-            if (previousValue != null && previousValue.FixedAsset.Contains(this))
+            if (previousValue != null && previousValue.FixedAssets.Contains(this))
             {
-                previousValue.FixedAsset.Remove(this);
+                previousValue.FixedAssets.Remove(this);
             }
     
             if (Contractor != null)
             {
-                if (!Contractor.FixedAsset.Contains(this))
+                if (!Contractor.FixedAssets.Contains(this))
                 {
-                    Contractor.FixedAsset.Add(this);
+                    Contractor.FixedAssets.Add(this);
                 }
                 if (id_contractor != Contractor.id)
                 {
@@ -319,18 +319,42 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
     
+        private void FixupPerson(Person previousValue)
+        {
+            if (previousValue != null && previousValue.FixedAssets.Contains(this))
+            {
+                previousValue.FixedAssets.Remove(this);
+            }
+    
+            if (Person != null)
+            {
+                if (!Person.FixedAssets.Contains(this))
+                {
+                    Person.FixedAssets.Add(this);
+                }
+                if (id_person != Person.id)
+                {
+                    id_person = Person.id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                id_person = null;
+            }
+        }
+    
         private void FixupSubgroup(Subgroup previousValue)
         {
-            if (previousValue != null && previousValue.FixedAsset.Contains(this))
+            if (previousValue != null && previousValue.FixedAssets.Contains(this))
             {
-                previousValue.FixedAsset.Remove(this);
+                previousValue.FixedAssets.Remove(this);
             }
     
             if (Subgroup != null)
             {
-                if (!Subgroup.FixedAsset.Contains(this))
+                if (!Subgroup.FixedAssets.Contains(this))
                 {
-                    Subgroup.FixedAsset.Add(this);
+                    Subgroup.FixedAssets.Add(this);
                 }
                 if (id_subgroup != Subgroup.id)
                 {
@@ -343,22 +367,7 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
     
-        private void FixupPerson(Person previousValue)
-        {
-            if (Person != null)
-            {
-                if (id_person != Person.id)
-                {
-                    id_person = Person.id;
-                }
-            }
-            else if (!_settingFK)
-            {
-                id_person = null;
-            }
-        }
-    
-        private void FixupDevice(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupDevices(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
@@ -380,7 +389,7 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
     
-        private void FixupLicence(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupLicences(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {

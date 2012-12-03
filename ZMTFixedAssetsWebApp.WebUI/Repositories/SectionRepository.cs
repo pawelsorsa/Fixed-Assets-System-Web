@@ -13,7 +13,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 
         public IQueryable<Section> Sections
         {
-            get { return context.Sections; }
+            get { return context.Sections.AsQueryable(); }
         }
     }
 }

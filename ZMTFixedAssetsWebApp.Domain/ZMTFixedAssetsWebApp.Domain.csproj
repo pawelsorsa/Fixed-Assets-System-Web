@@ -96,15 +96,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Model\ZMTdbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ZMTdbModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Model\ZMTdbEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ZMTdbEntities.Context.cs</LastGenOutput>

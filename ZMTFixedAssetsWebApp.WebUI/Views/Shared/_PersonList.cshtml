@@ -28,8 +28,8 @@
             <td>@x.email</td>
             <td>@x.phone_number</td>
             <td>@x.phone_number2</td>
-            <td>@Html.ActionLink("Edytuj", "Edit", new { id = @x.id })</td>
-            <td>@Html.ActionLink("Usuń", "Delete", new { id = @x.id })</td>
+            <td>@Ajax.ActionLink("Edytuj", "Edit", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET" })</td>
+            <td>@Ajax.ActionLink("Usuń", "Delete", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET" })</td>
      </tr>
 }
     </tbody>
@@ -46,13 +46,14 @@
 @{ if (!Model.ShowAll)
    {
     <div id="pager">
-        @Ajax.Pager((int)Model.Page, (int)Model.TotalRecords, "list", routeValues, "Person", "List", (int)Model.ItemsPerPage)
+        @Ajax.Pager((int)Model.Page, (int)Model.TotalRecords, "ajax_content", routeValues, "Person", "List", (int)Model.ItemsPerPage)
     </div>   
     }
 }
 
 <hr />
-@using (Ajax.BeginForm("List", "Person", @Model, new AjaxOptions { UpdateTargetId = "list", HttpMethod = "POST" }))
+
+@using (Ajax.BeginForm("List", "Person", @Model, new AjaxOptions { UpdateTargetId = "ajax_content", HttpMethod = "POST" }))
 {    
      @Html.HiddenFor(x => x.Page);
      @Html.HiddenFor(x => x.Section);                                   
@@ -60,17 +61,15 @@
      @Html.HiddenFor(x => x.Query);
      
      
-     <p>@Html.ActionLink("Dodaj pracownika", "Add", "Person", null, new { @class = "add_employee_btn" })Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     <p>@Ajax.ActionLink("Dodaj pracownika", "Add", "Person", new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET" }, new { @class = "add_employee_btn" })Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
      Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
      Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
      Pokaż wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
     <input type="submit" value="OK" />
     </p>  
-
-
 }
 
-@Html.ActionLink("Powrót", "List")
+@Ajax.ActionLink("Powrót", "Index", new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET" })
 
 
 

@@ -34,42 +34,42 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<Licence> Licence
+        public virtual ICollection<Licence> Licences
         {
             get
             {
-                if (_licence == null)
+                if (_licences == null)
                 {
                     var newCollection = new FixupCollection<Licence>();
-                    newCollection.CollectionChanged += FixupLicence;
-                    _licence = newCollection;
+                    newCollection.CollectionChanged += FixupLicences;
+                    _licences = newCollection;
                 }
-                return _licence;
+                return _licences;
             }
             set
             {
-                if (!ReferenceEquals(_licence, value))
+                if (!ReferenceEquals(_licences, value))
                 {
-                    var previousValue = _licence as FixupCollection<Licence>;
+                    var previousValue = _licences as FixupCollection<Licence>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupLicence;
+                        previousValue.CollectionChanged -= FixupLicences;
                     }
-                    _licence = value;
+                    _licences = value;
                     var newValue = value as FixupCollection<Licence>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupLicence;
+                        newValue.CollectionChanged += FixupLicences;
                     }
                 }
             }
         }
-        private ICollection<Licence> _licence;
+        private ICollection<Licence> _licences;
 
         #endregion
         #region Association Fixup
     
-        private void FixupLicence(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupLicences(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {

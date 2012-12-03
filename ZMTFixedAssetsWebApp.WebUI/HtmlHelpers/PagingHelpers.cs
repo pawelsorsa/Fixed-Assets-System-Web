@@ -11,6 +11,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.HtmlHelpers
 {
     public static class PagingHelpers
     {
+
         public static MvcHtmlString Pager(this AjaxHelper helper,int CurrentPage, int TotalRecords, string TargetDiv, Dictionary<string, object> dict, string ControllerName, string ActionName, int PageSize)
         {
              if (TotalRecords > 0)
