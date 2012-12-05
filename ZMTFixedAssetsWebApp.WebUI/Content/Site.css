@@ -382,3 +382,9 @@ a.link
     font-family:Tahoma, Arial, Helvetica, sans-serif;
     text-align: center;
 }
+
+#OnSuccessEdit
+{
+    background: red;
+    text-align: center;
+}

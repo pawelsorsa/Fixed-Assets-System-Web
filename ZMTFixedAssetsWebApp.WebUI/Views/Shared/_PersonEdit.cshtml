@@ -2,11 +2,9 @@
 @{
     ViewBag.Title = "Edytowanie pracownika";
 }
-
 <p class='header'>Edytowanie pracownika <b>@Model.id </b</p>
 
-
-@using (Ajax.BeginForm("Edit", "Person", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST" }))
+@using (Ajax.BeginForm("Edit", "Person", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnSuccess = "OnSuccessEdit" }))
 { 
     @Html.ValidationSummary(true);
     <table width="100%">
@@ -49,6 +47,6 @@
     </table>   
     <hr />
     <input type=submit class='submitButton' value="Zapisz zmiany" />
-    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST" }, new { @class = "submitButton" })
+    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton" })
 }
 

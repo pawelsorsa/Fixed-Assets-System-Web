@@ -38,6 +38,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             .WithMany(u => u.People)
             .HasForeignKey(x => x.id_section).WillCascadeOnDelete();
 
+
         }
     }
 }

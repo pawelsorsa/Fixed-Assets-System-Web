@@ -51,6 +51,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+           
             PersonListModel model = CreatePersonListView(Section, Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query);  
             if (Request.IsAjaxRequest())
             {
@@ -70,19 +71,20 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             Person person = personRepository.People.FirstOrDefault(x => x.id == id);
             PersonSectionAddEditModel model = CreatePersonSetionAddEditFromPerson(person);
-
+                        
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_PersonEdit", model);
             }
-            
             return View("Edit", model);
         }
         
 
         [HttpPost]
+        //public ActionResult Edit([Bind(Include = "name, surname, section_name, email,area_code,phone_number,phone_number2")]PersonSectionAddEditModel model)
         public ActionResult Edit(PersonSectionAddEditModel model)
         {
+            ModelState.Remove("Id"); 
             if (ModelState.IsValid)
             {
                 try
@@ -146,13 +148,9 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             {
                 try
                 {
-                    if (model.Delete)
-                    {
-                        Person person = personRepository.People.FirstOrDefault(x => x.id == model.Id);
-                        personRepository.DeletePerson(person);
-                    }
-                        
-                    return RedirectToAction("List");
+                    Person person = personRepository.People.FirstOrDefault(x => x.id == model.Id);
+                    personRepository.DeletePerson(person);
+                    return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
@@ -161,8 +159,13 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             }
             else
             {
-                return View(model);
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("_PersonDelete", model);
+                }
+                return View("Delete", model);
             }
+             
         }
 
 
@@ -182,12 +185,21 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         [HttpPost]
         public ActionResult Add(PersonSectionAddEditModel model)
         {
+         
             if (ModelState.IsValid)
             {
-               
-                Person person = CreatePersonFromPersonSectionAddEditModel(model);
-                personRepository.AddPerson(person);
-                return RedirectToAction("List");
+                try
+                {
+                    Person person = CreatePersonFromPersonSectionAddEditModel(model);
+                    personRepository.AddPerson(person);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    //HandleErrorInfo error = new System.Web.Mvc.HandleErrorInfo(ex, "Person", "Add");                   // return RedirectToAction("Error", );
+                    //return RedirectToAction("Index",
+                    throw new Exception(ex.Message);
+                }
             }
             else
             {
@@ -199,7 +211,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 return View(model);
             }
         }
-        
 
 
 

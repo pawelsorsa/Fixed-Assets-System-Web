@@ -87,6 +87,7 @@
     <Compile Include="Repositories\SectionRepository.cs" />
     <Compile Include="Repositories\DbContext.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Validation\PersonIdValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -206,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_PersonAdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Error.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

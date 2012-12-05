@@ -1,7 +1,5 @@
 ﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PersonListModel
-
-
-
+<div id="OnSuccessEdit"></div>
 <table id="person-list-table" width="100%">
             <thead>
                 <tr class='table_head_list'>
@@ -28,8 +26,8 @@
             <td>@x.email</td>
             <td>@x.phone_number</td>
             <td>@x.phone_number2</td>
-            <td>@Ajax.ActionLink("Edytuj", "Edit", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET" })</td>
-            <td>@Ajax.ActionLink("Usuń", "Delete", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET" })</td>
+            <td>@Ajax.ActionLink("Edytuj", "Edit", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" })</td>
+            <td>@Ajax.ActionLink("Usuń", "Delete", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" })</td>
      </tr>
 }
     </tbody>
@@ -53,7 +51,7 @@
 
 <hr />
 
-@using (Ajax.BeginForm("List", "Person", @Model, new AjaxOptions { UpdateTargetId = "ajax_content", HttpMethod = "POST" }))
+@using (Ajax.BeginForm("List", "Person", @Model, new AjaxOptions { UpdateTargetId = "ajax_content", HttpMethod = "POST", OnFailure = "OnFailure" }))
 {    
      @Html.HiddenFor(x => x.Page);
      @Html.HiddenFor(x => x.Section);                                   
@@ -61,7 +59,7 @@
      @Html.HiddenFor(x => x.Query);
      
      
-     <p>@Ajax.ActionLink("Dodaj pracownika", "Add", "Person", new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET" }, new { @class = "add_employee_btn" })Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     <p>@Ajax.ActionLink("Dodaj pracownika", "Add", "Person", new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET",  OnFailure = "OnFailure"  }, new { @class = "add_employee_btn" })Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
      Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
      Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
      Pokaż wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
@@ -69,7 +67,7 @@
     </p>  
 }
 
-@Ajax.ActionLink("Powrót", "Index", new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET" })
+@Ajax.ActionLink("Powrót", "Index", new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" })
 
 
 

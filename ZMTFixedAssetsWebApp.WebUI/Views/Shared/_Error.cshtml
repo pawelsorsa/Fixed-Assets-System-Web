@@ -1,0 +1,14 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@if (@Model != null && @Model.Exception != null)
+        {
+            <p>
+              Controller: @Model.ControllerName, Action: @Model.ActionName 
+            </p>
+            <p>
+              Message: @Model.Exception.Message
+            </p>
+            <p>
+              Stack Trace: @Model.Exception.StackTrace
+            </p>
+        }

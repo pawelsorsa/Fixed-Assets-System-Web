@@ -89,5 +89,8 @@ namespace ZMTFixedAssetsWebApp.WebUI
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
+
+
+       
     }
 }

@@ -24,12 +24,16 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             try
             {
                 context.Persons.Add(person);     
-                //context.Entry(person).State = System.Data.EntityState.Added;
                 context.SaveChanges();
             }
-            catch (DbUpdateException ex)
+            catch (UpdateException ex)
             {
-                throw new DbUpdateException(ex.InnerException.Message);
+                
+                throw new UpdateException(ex.InnerException.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
             }
         }
 
@@ -43,19 +47,16 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 
         public void DeletePerson(Person person)
         {
-           // context.Entry(person).State = System.Data.EntityState.Deleted;
-           // ((IObjectContextAdapter)context).ObjectContext.Detach(person);
             using (EFDbContext context = new EFDbContext())
             {
                 try
                 {
-                    //context.Persons.Attach(person);
+                    Person ppp = new Person() { id = person.id }; 
                    // context.Entry(person).State = System.Data.EntityState.Deleted;
-                    //((IObjectContextAdapter)context).ObjectContext.DeleteObject(person);
-                    context.Persons.Attach(person);
-                    context.Persons.Remove(person);
+                    ((IObjectContextAdapter)context).ObjectContext.AttachTo("Persons", ppp);
+                    ((IObjectContextAdapter)context).ObjectContext.DeleteObject(ppp);
                     context.SaveChanges();
-
+                    
                 }
                 catch (UpdateException)
                 {

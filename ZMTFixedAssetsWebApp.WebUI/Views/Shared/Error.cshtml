@@ -1,28 +1,4 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Error</title>
-</head>
-<body>
-    <h2>
-        
-        @if (@Model.Exception != null)
-        {
-            <p>
-              Controller: @Model.ControllerName, Action: @Model.ActionName 
-            </p>
-            <p>
-              Message: @Model.Exception.Message
-            </p>
-            <p>
-              Stack Trace: @Model.Exception.StackTrace
-            </p>
-        }
-    </h2>
-</body>
-</html>
+﻿
+<div id="ajax_main_content">
+        @Html.Partial("_Error")
+</div>

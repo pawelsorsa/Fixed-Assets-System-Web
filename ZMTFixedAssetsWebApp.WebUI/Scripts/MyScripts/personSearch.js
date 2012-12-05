@@ -24,7 +24,19 @@
         }
 
 
+        function OnFailure(xhr) {
+            //window.location.replace('index')
+            $('#wrapper').html(xhr.responseText);
+        }
+
+        function OnSuccessEdit() {
+            $('#OnSuccessEdit').html("<p>complete</p>");
+        }
+
+
         $(document).ready(function (e) {
+
+
             $("#btn_delete").live("click", function () {
                 var text = $(this).parent().parent().text();
                 var tab_validtion = $("#validation tr");

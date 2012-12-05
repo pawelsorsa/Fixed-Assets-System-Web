@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using ZMTFixedAssetsWebApp.WebUI.Validation;
 
 namespace ZMTFixedAssetsWebApp.Domain.Model
 {
     public class PersonSectionModel
     {
+        [PersonIdValidation(ErrorMessage= "Pracownik o podanym ID istnieje")]
         [Required(ErrorMessage = "Pole ID jest wymanage")]
         [Range(1, 999999999, ErrorMessage = "ID powinno być liczbą")]
         public int id { get; set; }
