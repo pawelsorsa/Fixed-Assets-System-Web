@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="33b2ade3-15ce-4a1e-b3b2-30ef9033cbb0" name="Admin@ADMIN-KOMPUTER 2012-12-09 18:13:23" runUser="Admin-Komputer\Admin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f6c044c9-0e3f-4f1b-8ba3-a15348056ed4">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Admin_ADMIN-KOMPUTER 2012-12-09 18_13_23">
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\bin\ZMTFixedAssetsWebApp.WebUI.dll" />
+      <DeploymentItem filename="D:\c#\Ninject.dll" />
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.Domain\bin\Debug\ZMTFixedAssetsWebApp.Domain.dll" />
+      <DeploymentItem filename="D:\c#\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-12-09T18:13:23.2799478+01:00" queuing="2012-12-09T18:13:23.4579580+01:00" start="2012-12-09T18:13:23.4909598+01:00" finish="2012-12-09T18:13:24.7130297+01:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CantAddPerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="a3ff57f2-eb65-3612-4ac7-d98d8c3622d8">
+      <Execution id="094ca7b7-ac25-4ae8-a86a-d95fb29ebc61" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantAddPerson" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="a3ff57f2-eb65-3612-4ac7-d98d8c3622d8" executionId="094ca7b7-ac25-4ae8-a86a-d95fb29ebc61" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="094ca7b7-ac25-4ae8-a86a-d95fb29ebc61" testId="a3ff57f2-eb65-3612-4ac7-d98d8c3622d8" testName="CantAddPerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.5542113" startTime="2012-12-09T18:13:23.5009604+01:00" endTime="2012-12-09T18:13:24.6120240+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="094ca7b7-ac25-4ae8-a86a-d95fb29ebc61">
+    </UnitTestResult>
+  </Results>
+</TestRun>

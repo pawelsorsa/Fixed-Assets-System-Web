@@ -22,7 +22,7 @@ namespace ZMTFixedAssetsWebApp.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-           
+
             routes.MapRoute(
                null,                                           // Route name
                "Person/List",                                      // URL with parameters
@@ -68,13 +68,13 @@ namespace ZMTFixedAssetsWebApp.WebUI
                "Person/Search",
                new { controller = "Person", action = "Search", query = UrlParameter.Optional }
            );
+            
 
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Person", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
 
             
         }

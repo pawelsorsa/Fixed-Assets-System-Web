@@ -1,0 +1,11 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.DeleteObject
+
+<p class='header'>Usuwanie pracownika <b>@Model.Id </b</p>
+<p>@Model.Description</p>
+
+@using (Ajax.BeginForm("Delete", "Person", new { id = Model.Id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }))
+{
+    <input type=submit class='submitButton' value="TAK" />
+    @Ajax.ActionLink("NIE", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure"  }, new { @class = "submitButton" })
+}
+    

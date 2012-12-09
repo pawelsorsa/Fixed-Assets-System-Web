@@ -1,0 +1,54 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.PersonSectionAddEditModel
+
+<p class='header'>Tworzenie pracownika</p>
+
+@using (Ajax.BeginForm("Add", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }))
+{
+    @Html.ValidationSummary(true);
+    <table width="100%">
+                <tr>
+                    <td width='30%'>@Html.Label("ID: ")</td>
+                   @* <td width='30%'>@Html.TextBoxFor(x => x.id, new { Value = "" })</td> *@
+                    <td width='30%'>@Html.EditorFor(x => x.id)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.id)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Imię: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.name)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.name)</td>
+                </tr>      
+                <tr>
+                    <td width='30%'>@Html.Label("Nazwisko: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.surname)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.surname)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Email: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.email)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.email)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Nr kierunkowy: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.area_code)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.area_code)</td>  
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Nr telefonu: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.phone_number)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.phone_number)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Nr telefonu komórkowego: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.phone_number2)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.phone_number2)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Sekcja: ")</td>
+                    <td width='30%'>@Html.DropDownListFor(x => x.section_name, @Model.SectionList)</td>
+                    <td width='40%'></td>    
+                </tr>      
+    </table>   
+    <hr />
+    <input type=submit class='submitButton' value="Dodaj pracownika" />
+    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "submitButton" })
+}

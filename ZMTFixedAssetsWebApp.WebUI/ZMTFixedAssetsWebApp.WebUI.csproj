@@ -173,7 +173,7 @@
     <Content Include="Views\Person\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_PersonList.cshtml" />
+    <Content Include="Views\Shared\Person\_PersonList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Person\Edit.cshtml" />
@@ -194,23 +194,21 @@
     <Content Include="Views\Shared\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_PersonDelete.cshtml" />
+    <Content Include="Views\Shared\Person\_PersonDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_PersonEdit.cshtml" />
+    <Content Include="Views\Shared\Person\_PersonEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_PersonIndex.cshtml" />
+    <Content Include="Views\Shared\Person\_PersonIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_PersonListAll.cshtml" />
+    <Content Include="Views\Shared\Person\_PersonListAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_PersonAdd.cshtml" />
+    <Content Include="Views\Shared\Person\_PersonAdd.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Error.cshtml" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

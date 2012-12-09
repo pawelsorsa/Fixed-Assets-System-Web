@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Text;
 using System.Web.Mvc.Ajax;
 
-
 namespace ZMTFixedAssetsWebApp.WebUI.HtmlHelpers
 {
     public static class PagingHelpers
@@ -23,6 +22,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.HtmlHelpers
                 AjaxOptions ao = new AjaxOptions();
                 ao.UpdateTargetId = TargetDiv;
                 ao.HttpMethod = "GET";
+                ao.OnFailure = "OnFailure";
                 dict.Add("page", 1);
 
                 if (CurrentPage - 1 > 0)

@@ -286,8 +286,8 @@ a.link
 {
     border: 1px solid black;
     text-align: center;
+    background-color: #ffc;
 }
-
 
 .table_head_list
 {
@@ -385,6 +385,11 @@ a.link
 
 #OnSuccessEdit
 {
-    background: red;
+    font-size: 14px;
+    font-weight: bold;
+    color: Red;
+   /* border: 1px solid red; */
     text-align: center;
+    height: 40px;
+    vertical-align: middle;
 }

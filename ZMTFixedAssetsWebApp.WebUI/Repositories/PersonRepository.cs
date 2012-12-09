@@ -6,6 +6,7 @@ using ZMTFixedAssetsWebApp.Domain.Abstract;
 using ZMTFixedAssetsWebApp.Domain.Model;
 using System.Data.Entity.Infrastructure;
 using System.Data;
+using System.Collections;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 {
@@ -21,61 +22,41 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 
         public void AddPerson(Person person)
         {
-            try
+            using (EFDbContext context = new EFDbContext())
             {
-                context.Persons.Add(person);     
+                context.Persons.Add(person);
                 context.SaveChanges();
-            }
-            catch (UpdateException ex)
-            {
-                
-                throw new UpdateException(ex.InnerException.Message);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message.ToString());
             }
         }
 
 
         public void EditPerson(Person person)
         {
-           // context.Entry(person).State = System.Data.EntityState.Modified;
-            context.SaveChanges();
+            using (EFDbContext context = new EFDbContext())
+            {
+                context.SaveChanges();
+            }
         }
 
 
-        public void DeletePerson(Person person)
+        public void DeletePerson(int id)
         {
+
             using (EFDbContext context = new EFDbContext())
             {
-                try
-                {
-                    Person ppp = new Person() { id = person.id }; 
-                   // context.Entry(person).State = System.Data.EntityState.Deleted;
-                    ((IObjectContextAdapter)context).ObjectContext.AttachTo("Persons", ppp);
-                    ((IObjectContextAdapter)context).ObjectContext.DeleteObject(ppp);
-                    context.SaveChanges();
-                    
-                }
-                catch (UpdateException)
-                {
-                    throw new UpdateException(string.Format(
-                    "Nie udało się edytować pracownika. Popraw dane i spróbuj ponownie"));
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message.ToString());
-                }
-               
+                Person ppp = new Person() { id = id };
+                context.Persons.Attach(ppp);
+                context.Persons.Remove(ppp);
+                context.SaveChanges();
             }
-            
-            
         }
 
         public void SaveChanges()
         {
-            context.SaveChanges();
+            using (EFDbContext context = new EFDbContext())
+            {
+                context.SaveChanges();
+            }
         }
 
 

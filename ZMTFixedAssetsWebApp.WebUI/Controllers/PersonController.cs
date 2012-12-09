@@ -55,7 +55,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             PersonListModel model = CreatePersonListView(Section, Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query);  
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_PersonIndex", model);
+                return PartialView("Person/_PersonIndex", model);
             }
             return View(model);
         }
@@ -74,14 +74,13 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                         
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_PersonEdit", model);
+                return PartialView("Person/_PersonEdit", model);
             }
             return View("Edit", model);
         }
         
 
         [HttpPost]
-        //public ActionResult Edit([Bind(Include = "name, surname, section_name, email,area_code,phone_number,phone_number2")]PersonSectionAddEditModel model)
         public ActionResult Edit(PersonSectionAddEditModel model)
         {
             ModelState.Remove("Id"); 
@@ -104,7 +103,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 model.SectionList = SectionsShortNamesList();
                 if (Request.IsAjaxRequest())
                 {
-                    return PartialView("_PersonEdit", model);
+                    return PartialView("Person/_PersonEdit", model);
                 }
                 return View(model);
             }
@@ -117,51 +116,43 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             Person person = personRepository.People.FirstOrDefault(x => x.id == id);
             if (person != null)
             {
-
                 DeleteObject model = new DeleteObject();
                 model.Description = "Czy napewno chcesz usunąć pracownika: " + person.id + " " + person.name + " " + person.surname + "?";
                 model.Id = id;
-
+                
                 if (Request.IsAjaxRequest())
                 {
-                    return PartialView("_PersonDelete", model);
+                    return PartialView("Person/_PersonDelete", model);
                 }
+                 
                 return View("Delete", model);
             }
             else
             {
-                string absUrl = Url.Action("List", "Person", null, Request.Url.Scheme);
                 InfoModel model = new InfoModel() 
                 { 
                     Description = "Podany pracownik nie istnieje",
-                    ReturnUrl = absUrl
+                    Action = "Index", Controller = "Person"
                 };
                 return View("Info", model);
             }
         }
 
 
+       
         [HttpPost]
         public ActionResult Delete(DeleteObject model)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    Person person = personRepository.People.FirstOrDefault(x => x.id == model.Id);
-                    personRepository.DeletePerson(person);
+                    personRepository.DeletePerson(model.Id);
                     return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Nie udało się edytować pracowanika. Proszę skontaktować się z administratorem");
-                }
             }
             else
             {
                 if (Request.IsAjaxRequest())
                 {
-                    return PartialView("_PersonDelete", model);
+                    return PartialView("Person/_PersonDelete", model);
                 }
                 return View("Delete", model);
             }
@@ -177,7 +168,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             model.SectionList = SectionsShortNamesList();
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_PersonAdd", model);
+                return PartialView("Person/_PersonAdd", model);
             }
             return View(model);
         }
@@ -196,9 +187,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 }
                 catch (Exception ex)
                 {
-                    //HandleErrorInfo error = new System.Web.Mvc.HandleErrorInfo(ex, "Person", "Add");                   // return RedirectToAction("Error", );
-                    //return RedirectToAction("Index",
-                    throw new Exception(ex.Message);
+                    throw new Exception("Wystąpił błąd podczas dodawania pracownika. Proszę o kontakt z administratorem. Error message: " + ex.Message);
                 }
             }
             else
@@ -206,7 +195,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 model.SectionList = SectionsShortNamesList();
                 if (Request.IsAjaxRequest())
                 {
-                    return PartialView("_PersonAdd", model);
+                    return PartialView("Person/_PersonAdd", model);
                 }
                 return View(model);
             }
@@ -225,7 +214,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         }
 
 
-    
 
         [HttpGet]
         public ActionResult List(string Section = "", int Page = 1, bool ShowAll = false, string OrderBy = "name", int ItemsPerPage = 10, bool ASC = false, bool Search = false, string Query="")
@@ -235,7 +223,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_PersonList", model);
+                return PartialView("Person/_PersonList", model);
             }
             
             return View(model);
@@ -378,7 +366,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             if (personSection.phone_number2 != null) person.phone_number2 = personSection.phone_number2;
             if (personSection.surname != null) person.surname = personSection.surname.ToUpper();
            // person.id_section = section_ctrl.GetAllShortNameSections().Where(x => x.Value == personSection.section_name).Select(x => x.Key).First();
-            
             int id = 0;
             int.TryParse(personSection.section_name, out id);
             person.id_section = id;

@@ -1,4 +1,15 @@
-﻿
-<div id="ajax_main_content">
-        @Html.Partial("_Error")
+﻿<div id="ajax_main_content">
+@model System.Web.Mvc.HandleErrorInfo
+
+@if (@Model != null && @Model.Exception != null)
+        {
+            <p>
+              Controller: @Model.ControllerName, Action: @Model.ActionName 
+            </p>
+            <p>
+              @Model.Exception.Message
+            </p>
+    }
+    
+@Ajax.ActionLink("Powrót do strony głównej", "Index", "Person", new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET",  OnFailure = "OnFailure" })
 </div>

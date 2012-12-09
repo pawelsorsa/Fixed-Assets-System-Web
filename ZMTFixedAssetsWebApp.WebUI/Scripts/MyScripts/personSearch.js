@@ -30,22 +30,25 @@
         }
 
         function OnSuccessEdit() {
-            $('#OnSuccessEdit').html("<p>complete</p>");
+            $('#OnSuccessEdit').show();
+            $('#OnSuccessEdit').slideUp(2000);
         }
 
 
         $(document).ready(function (e) {
+          //  $('#OnSuccessEdit').hide();
+
 
 
             $("#btn_delete").live("click", function () {
                 var text = $(this).parent().parent().text();
                 var tab_validtion = $("#validation tr");
-               // alert(text);
+                // alert(text);
                 tab_validtion.each(function (i, l) {
                     var result = $(this).find("td").eq(0).text();
                     var tab_split = result.split(':');
                     if (text.trim() == tab_split[1].trim()) {
-                        $(this).remove();   
+                        $(this).remove();
                     }
 
                 });

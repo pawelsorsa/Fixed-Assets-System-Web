@@ -3,7 +3,9 @@
     ViewBag.Title = "Info";
 }
 
+<div id="ajax_main_content">
 <h2>Info</h2>
 <p>@Model.Description</p>
 
-<a href="@Model.ReturnUrl">Powrót</a>
+@Ajax.ActionLink("Powrót", @Model.Action, @Model.Controller, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" })
+</div>

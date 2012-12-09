@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="847ee9a1-bfd5-4e40-bea1-922ab9f5f8ce" name="Admin@ADMIN-KOMPUTER 2012-12-09 20:45:40" runUser="Admin-Komputer\Admin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f6c044c9-0e3f-4f1b-8ba3-a15348056ed4">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Admin_ADMIN-KOMPUTER 2012-12-09 20_45_40">
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\bin\ZMTFixedAssetsWebApp.WebUI.dll" />
+      <DeploymentItem filename="D:\c#\Ninject.dll" />
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.Domain\bin\Debug\ZMTFixedAssetsWebApp.Domain.dll" />
+      <DeploymentItem filename="D:\c#\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-12-09T20:45:40.1146253+01:00" queuing="2012-12-09T20:45:40.3336379+01:00" start="2012-12-09T20:45:40.4016418+01:00" finish="2012-12-09T20:45:41.9607309+01:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="6" executed="6" passed="6" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CanDeletePerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="d0895da2-a254-3293-a751-fc6aae545dc9">
+      <Execution id="108b3b41-a365-40bc-b954-de66a348a23d" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanDeletePerson" />
+    </UnitTest>
+    <UnitTest name="CantDeletePerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="c97fa15e-5564-602b-e2d0-4994dbbfb87b">
+      <Execution id="efe65cc0-7ac9-45e0-837f-ea5bf0f39376" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantDeletePerson" />
+    </UnitTest>
+    <UnitTest name="CantAddPerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="a3ff57f2-eb65-3612-4ac7-d98d8c3622d8">
+      <Execution id="bbaec718-10f4-4a22-92cb-c82fb64c01e3" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantAddPerson" />
+    </UnitTest>
+    <UnitTest name="GetAllPeople" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="153f69cc-116d-c9fd-27ce-b3896f239667">
+      <Execution id="850a710f-70d5-432c-9cfd-d2e50de3d1f6" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetAllPeople" />
+    </UnitTest>
+    <UnitTest name="CanAddPerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="8ffe0097-d333-2d2f-e8e1-30634a0f71e3">
+      <Execution id="f14b78a8-ac6e-481d-b4bd-afb4bc68ca01" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanAddPerson" />
+    </UnitTest>
+    <UnitTest name="CanEditPerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="0301020c-7f9d-d009-5f9a-1e6ada2a32a3">
+      <Execution id="5dac94e5-9a5e-4948-a3d5-25204cd0f132" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanEditPerson" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="0301020c-7f9d-d009-5f9a-1e6ada2a32a3" executionId="5dac94e5-9a5e-4948-a3d5-25204cd0f132" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="153f69cc-116d-c9fd-27ce-b3896f239667" executionId="850a710f-70d5-432c-9cfd-d2e50de3d1f6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8ffe0097-d333-2d2f-e8e1-30634a0f71e3" executionId="f14b78a8-ac6e-481d-b4bd-afb4bc68ca01" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3ff57f2-eb65-3612-4ac7-d98d8c3622d8" executionId="bbaec718-10f4-4a22-92cb-c82fb64c01e3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c97fa15e-5564-602b-e2d0-4994dbbfb87b" executionId="efe65cc0-7ac9-45e0-837f-ea5bf0f39376" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d0895da2-a254-3293-a751-fc6aae545dc9" executionId="108b3b41-a365-40bc-b954-de66a348a23d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="5dac94e5-9a5e-4948-a3d5-25204cd0f132" testId="0301020c-7f9d-d009-5f9a-1e6ada2a32a3" testName="CanEditPerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.5591856" startTime="2012-12-09T20:45:40.4556448+01:00" endTime="2012-12-09T20:45:41.7827208+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5dac94e5-9a5e-4948-a3d5-25204cd0f132">
+    </UnitTestResult>
+    <UnitTestResult executionId="850a710f-70d5-432c-9cfd-d2e50de3d1f6" testId="153f69cc-116d-c9fd-27ce-b3896f239667" testName="GetAllPeople" computerName="ADMIN-KOMPUTER" duration="00:00:00.0063293" startTime="2012-12-09T20:45:41.7907212+01:00" endTime="2012-12-09T20:45:41.8057221+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="850a710f-70d5-432c-9cfd-d2e50de3d1f6">
+    </UnitTestResult>
+    <UnitTestResult executionId="f14b78a8-ac6e-481d-b4bd-afb4bc68ca01" testId="8ffe0097-d333-2d2f-e8e1-30634a0f71e3" testName="CanAddPerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0135216" startTime="2012-12-09T20:45:41.8147226+01:00" endTime="2012-12-09T20:45:41.8347237+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f14b78a8-ac6e-481d-b4bd-afb4bc68ca01">
+    </UnitTestResult>
+    <UnitTestResult executionId="bbaec718-10f4-4a22-92cb-c82fb64c01e3" testId="a3ff57f2-eb65-3612-4ac7-d98d8c3622d8" testName="CantAddPerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0091825" startTime="2012-12-09T20:45:41.8417241+01:00" endTime="2012-12-09T20:45:41.8577250+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bbaec718-10f4-4a22-92cb-c82fb64c01e3">
+    </UnitTestResult>
+    <UnitTestResult executionId="efe65cc0-7ac9-45e0-837f-ea5bf0f39376" testId="c97fa15e-5564-602b-e2d0-4994dbbfb87b" testName="CantDeletePerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0142389" startTime="2012-12-09T20:45:41.8667256+01:00" endTime="2012-12-09T20:45:41.8897269+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="efe65cc0-7ac9-45e0-837f-ea5bf0f39376">
+    </UnitTestResult>
+    <UnitTestResult executionId="108b3b41-a365-40bc-b954-de66a348a23d" testId="d0895da2-a254-3293-a751-fc6aae545dc9" testName="CanDeletePerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0076773" startTime="2012-12-09T20:45:41.8967273+01:00" endTime="2012-12-09T20:45:41.9117281+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="108b3b41-a365-40bc-b954-de66a348a23d">
+    </UnitTestResult>
+  </Results>
+</TestRun>
