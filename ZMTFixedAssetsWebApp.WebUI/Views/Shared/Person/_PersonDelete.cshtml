@@ -5,7 +5,7 @@
 
 @using (Ajax.BeginForm("Delete", "Person", new { id = Model.Id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }))
 {
-    <input type=submit class='submitButton' value="TAK" />
-    @Ajax.ActionLink("NIE", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure"  }, new { @class = "submitButton" })
+    <input type=submit class='submitButton' onclick="LoadHistory('/Person/Index')" value="TAK" />
+    @Ajax.ActionLink("NIE", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure"  }, new { @class = "submitButton",  @onclick = "raiseCounter()", @rel = "ajax" })
 }
     

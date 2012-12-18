@@ -1,5 +1,5 @@
 ﻿@model ZMTFixedAssetsWebApp.Domain.Model.PersonSectionAddEditModel
-
+ 
 <p class='header'>Edytowanie pracownika <b>@Model.id </b</p>
 
 @using (Ajax.BeginForm("Edit", "Person", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnSuccess = "OnSuccessEdit" }))
@@ -44,7 +44,8 @@
                 </tr>      
     </table>   
     <hr />
-    <input type=submit class='submitButton' value="Zapisz zmiany" />
-    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton" })
+    
+    <input type=submit  name="validater" class='submitButton' onclick="LoadHistory('/Person/Index')" value="Zapisz zmiany" />
+    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @onclick = "raiseCounter()", @rel = "ajax" })
 }
 

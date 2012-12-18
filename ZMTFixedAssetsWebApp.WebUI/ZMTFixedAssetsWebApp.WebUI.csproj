@@ -129,6 +129,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\MyScripts\jquery.history.js" />
+    <Content Include="Scripts\MyScripts\jquery.livequery.js" />
+    <Content Include="Scripts\MyScripts\Myhistory.js" />
     <Content Include="Scripts\MyScripts\personSearch.js" />
     <Content Include="Scripts\Test.js" />
     <Content Include="Web.config">
@@ -208,7 +211,9 @@
   <ItemGroup>
     <Content Include="Views\Shared\Person\_PersonAdd.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Shared\_Info.cshtml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

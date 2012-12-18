@@ -48,22 +48,15 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             Query = "";
         }
         
-        [HttpGet]
+
         public ActionResult Index()
         {
-           
             PersonListModel model = CreatePersonListView(Section, Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query);  
             if (Request.IsAjaxRequest())
             {
                 return PartialView("Person/_PersonIndex", model);
             }
             return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Index(FormCollection collection)
-        {
-            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -134,6 +127,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                     Description = "Podany pracownik nie istnieje",
                     Action = "Index", Controller = "Person"
                 };
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("_Info", model);
+                }
                 return View("Info", model);
             }
         }

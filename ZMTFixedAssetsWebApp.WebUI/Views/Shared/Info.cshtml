@@ -1,11 +1,3 @@
-﻿@model ZMTFixedAssetsWebApp.WebUI.Models.InfoModel
-@{
-    ViewBag.Title = "Info";
-}
-
-<div id="ajax_main_content">
-<h2>Info</h2>
-<p>@Model.Description</p>
-
-@Ajax.ActionLink("Powrót", @Model.Action, @Model.Controller, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" })
+﻿<div id="ajax_main_content">
+    @Html.Partial("_Info") 
 </div>
