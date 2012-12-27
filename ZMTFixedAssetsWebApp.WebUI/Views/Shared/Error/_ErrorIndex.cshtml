@@ -1,0 +1,15 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+<script type="text/javascript">
+    
+</script>
+@if (@Model != null && @Model.Exception != null)
+        {
+            <p>
+              Controller: @Model.ControllerName, Action: @Model.ActionName 
+            </p>
+            <p>
+              @Model.Exception.Message
+            </p>
+    }
+    
+@Ajax.ActionLink("Powrót do strony głównej", "Index", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @onclick = "raiseCounter()", @rel = "ajax" })

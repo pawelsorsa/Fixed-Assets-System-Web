@@ -2,7 +2,7 @@
 
 <p class='header'>Tworzenie pracownika</p>
 
-@using (Ajax.BeginForm("Add", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }))
+@using (Ajax.BeginForm("Add", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnSuccess = "OnCompleteEdit('/Person/Index')" }, new { @id = "form_unobtrusive" }))
 {
     @Html.ValidationSummary(true);
     <table width="100%">
@@ -49,6 +49,6 @@
                 </tr>      
     </table>   
     <hr />
-    <input type=submit class='submitButton' onclick="LoadHistory('/Person/Index')" value="Dodaj pracownika" />
+    <input type=submit class='submitButton' value="Dodaj pracownika" />
     @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "submitButton", @onclick = "raiseCounter()", @rel = "ajax" })
 }

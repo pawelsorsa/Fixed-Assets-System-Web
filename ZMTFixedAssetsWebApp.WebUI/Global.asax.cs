@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ZMTFixedAssetsWebApp.WebUI.Infrastructure;
+using ZMTFixedAssetsWebApp.WebUI.Controllers;
 
 namespace ZMTFixedAssetsWebApp.WebUI
 {
@@ -15,6 +16,19 @@ namespace ZMTFixedAssetsWebApp.WebUI
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+
+            //filters.Add(new HandleErrorAttribute()
+            //{
+            //    ExceptionType = typeof(Exception),
+            //    View = "Index",
+            //});
+
+            //filters.Add(new HandleErrorAttribute
+            //{
+            //    ExceptionType = typeof(HttpException),
+            //    View = "NotFound"
+            //});
+
             filters.Add(new HandleErrorAttribute());
         }
 
@@ -22,6 +36,7 @@ namespace ZMTFixedAssetsWebApp.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+          
             routes.MapRoute(
                null,                                           // Route name
                "Person/Index",                                      // URL with parameters
@@ -40,7 +55,6 @@ namespace ZMTFixedAssetsWebApp.WebUI
              new { controller = "Person", action = "List", section = (string)null, page = UrlParameter.Optional, sortby = UrlParameter.Optional },
              new { page = @"^\d{1,3}$" }
             );
-
 
             routes.MapRoute(
                null,                                           // Route name
@@ -61,7 +75,6 @@ namespace ZMTFixedAssetsWebApp.WebUI
              new { id = @"^\d{1,3}$" }
              );
 
-
             routes.MapRoute(
                 "SortByList",
                 "Person/Lists/SortByList",
@@ -73,7 +86,6 @@ namespace ZMTFixedAssetsWebApp.WebUI
                "Person/Search",
                new { controller = "Person", action = "Search", query = UrlParameter.Optional }
            );
-
             
             routes.MapRoute(
                 "Default", // Route name
@@ -81,9 +93,6 @@ namespace ZMTFixedAssetsWebApp.WebUI
                 new { controller = "Person", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
-           
-
-            
         }
 
         protected void Application_Start()
@@ -97,7 +106,6 @@ namespace ZMTFixedAssetsWebApp.WebUI
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
 
-
-       
+      
     }
 }

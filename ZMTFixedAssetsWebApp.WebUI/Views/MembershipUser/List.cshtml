@@ -1,0 +1,61 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<MembershipUser>
+
+@{
+    ViewBag.Title = "Lista użytkowników";
+}
+
+<h2>Lista procowników</h2>
+<table width="100%">
+    <thead>
+        <tr class='table_head_list'>
+            <th rowspan="2"></th>
+            <th rowspan="2">User Name</th>
+            <th rowspan="2">Email</th>
+            <th colspan="4">Dates</th>
+            <th colspan="4">Status</th>
+        </tr>
+        <tr class='table_head_list'>
+            <th>Created</th>
+            <th>Last Login</th>
+            <th>Last Active</th>
+            <th>Last Lock</th>
+            <th>Online</th>
+            <th>Approved</th>
+            <th>Locked</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var user in Model)
+            {
+        <tr>
+            <td>@Html.ActionLink("Details", "Details", "User", new { username = user.UserName }, null)</td>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>@user.CreationDate.ToShortDateString()</td>
+            <td>@user.LastLoginDate.ToShortDateString()</td>
+            <td>@user.LastActivityDate.ToShortDateString()</td>
+            @if (@user.CreationDate > @user.LastLockoutDate)
+            { <td></td>;
+            }
+            else
+            { <td>@user.LastLockoutDate.ToShortDateString()</td> }>
+            <td>@Html.CheckBox("IsOnline", user.IsOnline, new { disabled = "disabled" })</td>
+            <td>@Html.CheckBox("IsApproved", user.IsApproved, new { disabled = "disabled" })</td>
+            <td>XXXX</td>
+            <td>yyyyy</td>
+            @*<td>@Html.CheckBox("IsLockedOut" + user.UserName, "IsLockedOut", user.IsLockedOut, !user.IsLockedOut, user.UserName)</td>
+            <td>@Html.CheckBox("Delete" + user.UserName, "Delete", false, (String.Compare(user.UserName, Page.User.Identity.Name, true) == 0), user.UserName)</td>
+       *@ </tr>
+            }
+        }
+        else
+        {
+        <tr>
+            <td colspan="11">No users present</td>
+        </tr>
+        }
+    </tbody>
+</table>

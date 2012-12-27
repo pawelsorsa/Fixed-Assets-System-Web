@@ -12,7 +12,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
     {
         public DbSet<Person> Persons { get; set; }
         public DbSet<Section> Sections { get; set; }
-
+        public DbSet<MembershipUser> MembershipUsers { get; set; }
 
        
 

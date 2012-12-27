@@ -15,10 +15,12 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return View("_Error");
+                return View("_ErrorIndex");
             }
-            return View("Index");
+
+            return View();
         }
+
 
         public ActionResult NotFound(string aspxerrorpath)
         {

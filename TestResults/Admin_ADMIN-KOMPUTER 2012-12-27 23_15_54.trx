@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="c0ed9dba-23ed-44e3-bdd0-c9a55a3ca58c" name="Admin@ADMIN-KOMPUTER 2012-12-27 23:15:54" runUser="Admin-Komputer\Admin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f6c044c9-0e3f-4f1b-8ba3-a15348056ed4">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Admin_ADMIN-KOMPUTER 2012-12-27 23_15_54">
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\bin\ZMTFixedAssetsWebApp.WebUI.dll" />
+      <DeploymentItem filename="D:\c#\Ninject.dll" />
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.Domain\bin\Debug\ZMTFixedAssetsWebApp.Domain.dll" />
+      <DeploymentItem filename="D:\c#\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-12-27T23:15:54.3021942+01:00" queuing="2012-12-27T23:15:54.5592089+01:00" start="2012-12-27T23:15:54.6552144+01:00" finish="2012-12-27T23:15:56.6243271+01:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="7" executed="7" passed="5" error="0" failed="2" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CanDeletePerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="d0895da2-a254-3293-a751-fc6aae545dc9">
+      <Execution id="449ca658-5abc-4db7-87a8-128dfdde17d4" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanDeletePerson" />
+    </UnitTest>
+    <UnitTest name="CantDeletePerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="c97fa15e-5564-602b-e2d0-4994dbbfb87b">
+      <Execution id="4abf240c-57b8-49c1-9f6a-1e9d084c5eef" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantDeletePerson" />
+    </UnitTest>
+    <UnitTest name="CantAddPerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="a3ff57f2-eb65-3612-4ac7-d98d8c3622d8">
+      <Execution id="b6277a99-ec06-4cc5-85f0-1ee1ee9ad1eb" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantAddPerson" />
+    </UnitTest>
+    <UnitTest name="GetAllPeople" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="153f69cc-116d-c9fd-27ce-b3896f239667">
+      <Execution id="41a030c5-cd6a-4325-a462-6e2b10e78ad2" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetAllPeople" />
+    </UnitTest>
+    <UnitTest name="CanAddPerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="8ffe0097-d333-2d2f-e8e1-30634a0f71e3">
+      <Execution id="6b18318c-9eac-4550-a139-ac94d156346e" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanAddPerson" />
+    </UnitTest>
+    <UnitTest name="CantEditPerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="dab25657-895d-24cf-726b-ae970c2adb45">
+      <Execution id="29c1f312-c44b-4c9e-8f6a-6f708fff72a1" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantEditPerson" />
+    </UnitTest>
+    <UnitTest name="CanEditPerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="0301020c-7f9d-d009-5f9a-1e6ada2a32a3">
+      <Execution id="3b96e419-3f65-429b-a880-9b4cfd325bf4" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanEditPerson" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="0301020c-7f9d-d009-5f9a-1e6ada2a32a3" executionId="3b96e419-3f65-429b-a880-9b4cfd325bf4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="153f69cc-116d-c9fd-27ce-b3896f239667" executionId="41a030c5-cd6a-4325-a462-6e2b10e78ad2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8ffe0097-d333-2d2f-e8e1-30634a0f71e3" executionId="6b18318c-9eac-4550-a139-ac94d156346e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3ff57f2-eb65-3612-4ac7-d98d8c3622d8" executionId="b6277a99-ec06-4cc5-85f0-1ee1ee9ad1eb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c97fa15e-5564-602b-e2d0-4994dbbfb87b" executionId="4abf240c-57b8-49c1-9f6a-1e9d084c5eef" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d0895da2-a254-3293-a751-fc6aae545dc9" executionId="449ca658-5abc-4db7-87a8-128dfdde17d4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dab25657-895d-24cf-726b-ae970c2adb45" executionId="29c1f312-c44b-4c9e-8f6a-6f708fff72a1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="3b96e419-3f65-429b-a880-9b4cfd325bf4" testId="0301020c-7f9d-d009-5f9a-1e6ada2a32a3" testName="CanEditPerson" computerName="ADMIN-KOMPUTER" duration="00:00:01.0041247" startTime="2012-12-27T23:15:54.6622148+01:00" endTime="2012-12-27T23:15:56.3233098+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3b96e419-3f65-429b-a880-9b4cfd325bf4">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest.CanEditPerson threw exception: 
+System.Exception: Nie udało się edytować pracowanika. Proszę skontaktować się z administratorem</Message>
+          <StackTrace>    at ZMTFixedAssetsWebApp.WebUI.Controllers.PersonController.Edit(PersonSectionAddEditModel model) in C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\Controllers\PersonController.cs:line 77
+   at ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest.CanEditPerson() in C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\PersonUnitTest.cs:line 98
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="41a030c5-cd6a-4325-a462-6e2b10e78ad2" testId="153f69cc-116d-c9fd-27ce-b3896f239667" testName="GetAllPeople" computerName="ADMIN-KOMPUTER" duration="00:00:00.0092049" startTime="2012-12-27T23:15:56.3283101+01:00" endTime="2012-12-27T23:15:56.3433110+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="41a030c5-cd6a-4325-a462-6e2b10e78ad2">
+    </UnitTestResult>
+    <UnitTestResult executionId="6b18318c-9eac-4550-a139-ac94d156346e" testId="8ffe0097-d333-2d2f-e8e1-30634a0f71e3" testName="CanAddPerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0441248" startTime="2012-12-27T23:15:56.3473112+01:00" endTime="2012-12-27T23:15:56.4103148+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6b18318c-9eac-4550-a139-ac94d156346e">
+    </UnitTestResult>
+    <UnitTestResult executionId="b6277a99-ec06-4cc5-85f0-1ee1ee9ad1eb" testId="a3ff57f2-eb65-3612-4ac7-d98d8c3622d8" testName="CantAddPerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0044180" startTime="2012-12-27T23:15:56.4153151+01:00" endTime="2012-12-27T23:15:56.4263157+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b6277a99-ec06-4cc5-85f0-1ee1ee9ad1eb">
+    </UnitTestResult>
+    <UnitTestResult executionId="4abf240c-57b8-49c1-9f6a-1e9d084c5eef" testId="c97fa15e-5564-602b-e2d0-4994dbbfb87b" testName="CantDeletePerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0785404" startTime="2012-12-27T23:15:56.4313160+01:00" endTime="2012-12-27T23:15:56.5173209+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4abf240c-57b8-49c1-9f6a-1e9d084c5eef">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest.CantDeletePerson threw exception: 
+System.ArgumentNullException: Value cannot be null.
+Parameter name: request</Message>
+          <StackTrace>    at System.Web.Mvc.AjaxRequestExtensions.IsAjaxRequest(HttpRequestBase request)
+   at ZMTFixedAssetsWebApp.WebUI.Controllers.PersonController.Delete(Int32 id) in C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\Controllers\PersonController.cs:line 118
+   at ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest.CantDeletePerson() in C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\PersonUnitTest.cs:line 165
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="449ca658-5abc-4db7-87a8-128dfdde17d4" testId="d0895da2-a254-3293-a751-fc6aae545dc9" testName="CanDeletePerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0094365" startTime="2012-12-27T23:15:56.5223212+01:00" endTime="2012-12-27T23:15:56.5483227+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="449ca658-5abc-4db7-87a8-128dfdde17d4">
+    </UnitTestResult>
+    <UnitTestResult executionId="29c1f312-c44b-4c9e-8f6a-6f708fff72a1" testId="dab25657-895d-24cf-726b-ae970c2adb45" testName="CantEditPerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0062272" startTime="2012-12-27T23:15:56.5543231+01:00" endTime="2012-12-27T23:15:56.5673238+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="29c1f312-c44b-4c9e-8f6a-6f708fff72a1">
+    </UnitTestResult>
+  </Results>
+</TestRun>

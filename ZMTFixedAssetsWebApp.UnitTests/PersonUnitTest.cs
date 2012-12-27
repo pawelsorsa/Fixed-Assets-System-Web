@@ -18,24 +18,23 @@ namespace ZMTFixedAssetsWebApp.UnitTests
         [TestMethod]
         public void GetAllPeople()
         {
-            Mock<IPersonRepository> mock_person = new Mock<IPersonRepository>();
-            Mock<ISectionRepository> mock_section = new Mock<ISectionRepository>();
-            mock_section.Setup(m => m.Sections).Returns(CreateSectionTab().AsQueryable());
-            mock_person.Setup(m => m.People).Returns(CreatePersonTab().AsQueryable());
+            Mock<IRepository<Person>> mock_person = new Mock<IRepository<Person>>();
+            Mock<IRepository<Section>> mock_section = new Mock<IRepository<Section>>();
+            mock_section.Setup(m => m.Repository).Returns(CreateSectionTab().AsQueryable());
+            mock_person.Setup(m => m.Repository).Returns(CreatePersonTab().AsQueryable());
 
             PersonController controller = new PersonController(mock_person.Object, mock_section.Object);
 
-            Assert.AreEqual(mock_person.Object.People.Count(), 6);
+            Assert.AreEqual(mock_person.Object.Repository.Count(), 6);
         }
 
         [TestMethod]
         public void CanAddPerson()
         {
-            Mock<IPersonRepository> mock_person = new Mock<IPersonRepository>();
-            Mock<ISectionRepository> mock_section = new Mock<ISectionRepository>();
-
-            mock_section.Setup(m => m.Sections).Returns(CreateSectionTab().AsQueryable());
-            mock_person.Setup(m => m.People).Returns(CreatePersonTab().AsQueryable());
+            Mock<IRepository<Person>> mock_person = new Mock<IRepository<Person>>();
+            Mock<IRepository<Section>> mock_section = new Mock<IRepository<Section>>();
+            mock_section.Setup(m => m.Repository).Returns(CreateSectionTab().AsQueryable());
+            mock_person.Setup(m => m.Repository).Returns(CreatePersonTab().AsQueryable());
 
             PersonController controller = new PersonController(mock_person.Object, mock_section.Object);
             PersonSectionAddEditModel personSection = new PersonSectionAddEditModel();
@@ -50,7 +49,7 @@ namespace ZMTFixedAssetsWebApp.UnitTests
             personSection.phone_number2 = 666666;
 
             var redirectToRouteResult = controller.Add(personSection) as RedirectToRouteResult;
-            mock_person.Verify(m => m.AddPerson(It.IsAny<Person>()), Times.Once());
+            mock_person.Verify(m => m.AddObject(It.IsAny<Person>()), Times.Once());
 
             Assert.IsNotNull(redirectToRouteResult);
             Assert.AreEqual("Index", redirectToRouteResult.RouteValues["Action"]);
@@ -61,16 +60,15 @@ namespace ZMTFixedAssetsWebApp.UnitTests
         [ExpectedException(typeof(Exception))]
         public void CantAddPerson()
         {
-            Mock<IPersonRepository> mock_person = new Mock<IPersonRepository>();
-            Mock<ISectionRepository> mock_section = new Mock<ISectionRepository>();
-
-            mock_section.Setup(m => m.Sections).Returns(CreateSectionTab().AsQueryable());
-            mock_person.Setup(m => m.People).Returns(CreatePersonTab().AsQueryable());
+            Mock<IRepository<Person>> mock_person = new Mock<IRepository<Person>>();
+            Mock<IRepository<Section>> mock_section = new Mock<IRepository<Section>>();
+            mock_section.Setup(m => m.Repository).Returns(CreateSectionTab().AsQueryable());
+            mock_person.Setup(m => m.Repository).Returns(CreatePersonTab().AsQueryable());
 
             PersonController controller = new PersonController(mock_person.Object, mock_section.Object);
             PersonSectionAddEditModel personSection = null;
             var redirectToRouteResult = controller.Add(personSection) as RedirectToRouteResult;
-            mock_person.Verify(m => m.AddPerson(It.IsAny<Person>()), Times.Once());
+            mock_person.Verify(m => m.AddObject(It.IsAny<Person>()), Times.Once());
 
             Assert.IsNotNull(redirectToRouteResult);
             Assert.AreEqual("Index", redirectToRouteResult.RouteValues["Action"]);
@@ -80,11 +78,10 @@ namespace ZMTFixedAssetsWebApp.UnitTests
         [TestMethod]
         public void CanEditPerson()
         {
-            Mock<IPersonRepository> mock_person = new Mock<IPersonRepository>();
-            Mock<ISectionRepository> mock_section = new Mock<ISectionRepository>();
-
-            mock_section.Setup(m => m.Sections).Returns(CreateSectionTab().AsQueryable());
-            mock_person.Setup(m => m.People).Returns(CreatePersonTab().AsQueryable());
+            Mock<IRepository<Person>> mock_person = new Mock<IRepository<Person>>();
+            Mock<IRepository<Section>> mock_section = new Mock<IRepository<Section>>();
+            mock_section.Setup(m => m.Repository).Returns(CreateSectionTab().AsQueryable());
+            mock_person.Setup(m => m.Repository).Returns(CreatePersonTab().AsQueryable());
 
             PersonController controller = new PersonController(mock_person.Object, mock_section.Object);
             PersonSectionAddEditModel personSection = new PersonSectionAddEditModel();
@@ -100,7 +97,7 @@ namespace ZMTFixedAssetsWebApp.UnitTests
 
             var redirectToRouteResult = controller.Edit(personSection) as RedirectToRouteResult;
 
-            Person temp = mock_person.Object.People.FirstOrDefault(x => x.id == 5);
+            Person temp = mock_person.Object.Repository.FirstOrDefault(x => x.id == 5);
             Assert.AreEqual(temp.name, "ZBIGNIEW");
             Assert.AreEqual(temp.surname, "STRZELEC");
             Assert.AreEqual(temp.area_code, 44);
@@ -109,7 +106,7 @@ namespace ZMTFixedAssetsWebApp.UnitTests
             Assert.AreEqual(temp.phone_number, 12345);
             Assert.AreEqual(temp.phone_number2, 666666);
 
-            mock_person.Verify(m => m.EditPerson(temp), Times.Once());
+            mock_person.Verify(m => m.EditObject(temp), Times.Once());
 
             Assert.IsNotNull(redirectToRouteResult);
             Assert.AreEqual("Index", redirectToRouteResult.RouteValues["Action"]);
@@ -120,18 +117,17 @@ namespace ZMTFixedAssetsWebApp.UnitTests
         [ExpectedException(typeof(Exception))]
         public void CantEditPerson()
         {
-            Mock<IPersonRepository> mock_person = new Mock<IPersonRepository>();
-            Mock<ISectionRepository> mock_section = new Mock<ISectionRepository>();
-
-            mock_section.Setup(m => m.Sections).Returns(CreateSectionTab().AsQueryable());
-            mock_person.Setup(m => m.People).Returns(CreatePersonTab().AsQueryable());
+            Mock<IRepository<Person>> mock_person = new Mock<IRepository<Person>>();
+            Mock<IRepository<Section>> mock_section = new Mock<IRepository<Section>>();
+            mock_section.Setup(m => m.Repository).Returns(CreateSectionTab().AsQueryable());
+            mock_person.Setup(m => m.Repository).Returns(CreatePersonTab().AsQueryable());
 
             PersonController controller = new PersonController(mock_person.Object, mock_section.Object);
             PersonSectionAddEditModel personSection = null;
 
             var redirectToRouteResult = controller.Edit(personSection) as RedirectToRouteResult;
 
-            mock_person.Verify(m => m.EditPerson(It.IsAny<Person>()), Times.Never());
+            mock_person.Verify(m => m.EditObject(It.IsAny<Person>()), Times.Never());
 
             Assert.IsNotNull(redirectToRouteResult);
             Assert.AreEqual("Index", redirectToRouteResult.RouteValues["Action"]);
@@ -140,12 +136,11 @@ namespace ZMTFixedAssetsWebApp.UnitTests
 
         [TestMethod]
         public void CanDeletePerson()
-        { 
-            Mock<IPersonRepository> mock_person = new Mock<IPersonRepository>();
-            Mock<ISectionRepository> mock_section = new Mock<ISectionRepository>();
-            
-            mock_section.Setup(m=>m.Sections).Returns(CreateSectionTab().AsQueryable());
-            mock_person.Setup(m => m.People).Returns(CreatePersonTab().AsQueryable());
+        {
+            Mock<IRepository<Person>> mock_person = new Mock<IRepository<Person>>();
+            Mock<IRepository<Section>> mock_section = new Mock<IRepository<Section>>();
+            mock_section.Setup(m => m.Repository).Returns(CreateSectionTab().AsQueryable());
+            mock_person.Setup(m => m.Repository).Returns(CreatePersonTab().AsQueryable());
 
             PersonController controller = new PersonController(mock_person.Object, mock_section.Object);
             DeleteObject model = new DeleteObject() { Description = "XXXX", Id = 5 };
@@ -154,29 +149,28 @@ namespace ZMTFixedAssetsWebApp.UnitTests
 
             Assert.IsNotNull(redirectToRouteResult);
             Assert.AreEqual("Index", redirectToRouteResult.RouteValues["Action"]);
-            mock_person.Verify(m => m.DeletePerson(model.Id), Times.Once());
+            mock_person.Verify(m => m.DeleteObject(model.Id), Times.Once());
         }
 
         [TestMethod]
         public void CantDeletePerson()
         {
-            Mock<IPersonRepository> mock_person = new Mock<IPersonRepository>();
-            Mock<ISectionRepository> mock_section = new Mock<ISectionRepository>();
-
-            mock_section.Setup(m => m.Sections).Returns(CreateSectionTab().AsQueryable());
-            mock_person.Setup(m => m.People).Returns(CreatePersonTab().AsQueryable());
+            Mock<IRepository<Person>> mock_person = new Mock<IRepository<Person>>();
+            Mock<IRepository<Section>> mock_section = new Mock<IRepository<Section>>();
+            mock_section.Setup(m => m.Repository).Returns(CreateSectionTab().AsQueryable());
+            mock_person.Setup(m => m.Repository).Returns(CreatePersonTab().AsQueryable());
 
             PersonController controller = new PersonController(mock_person.Object, mock_section.Object);
             DeleteObject model = new DeleteObject() { Description = "XXXX", Id = 155 };
             var viewResult = controller.Delete(model.Id) as ViewResult;
-            
+
             Assert.IsNotNull(viewResult);
             Assert.AreEqual("Info", viewResult.ViewName);
             Assert.AreEqual("Podany pracownik nie istnieje", ((InfoModel)viewResult.Model).Description);
             Assert.AreEqual("Index", ((InfoModel)viewResult.Model).Action);
             Assert.AreEqual("Person", ((InfoModel)viewResult.Model).Controller);
-            
-            mock_person.Verify(m => m.DeletePerson(model.Id), Times.Never());
+
+            mock_person.Verify(m => m.DeleteObject(model.Id), Times.Never());
         }
 
         private Person[] CreatePersonTab()

@@ -19,7 +19,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Validation
             var id = (int)value;
 
             PersonRepository repository = new PersonRepository();
-            bool result = repository.People.Any(x => x.id == id);
+            bool result = repository.Repository.Any(x => x.id == id);
 
             return !result;
         }

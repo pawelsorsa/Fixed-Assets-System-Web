@@ -16,8 +16,8 @@ namespace ZMTFixedAssetsWebApp.UnitTests
         [TestMethod]
         public void GetAllShortNames()
         {
-            Mock<ISectionRepository> mock = new Mock<ISectionRepository>();
-            mock.Setup(m => m.Sections).Returns(new Section []
+            Mock<IRepository<Section>> mock = new Mock<IRepository<Section>>();
+            mock.Setup(m => m.Repository).Returns(new Section []
             {
                 new Section { id = 1, short_name = "IMZ1" },
                 new Section { id = 2, short_name = "IMZ2" },

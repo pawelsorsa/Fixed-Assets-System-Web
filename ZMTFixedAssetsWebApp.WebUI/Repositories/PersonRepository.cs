@@ -10,55 +10,37 @@ using System.Collections;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 {
-    public class PersonRepository : IPersonRepository
+    public class PersonRepository : IRepository<Person>
     {
         private EFDbContext context = new EFDbContext();
 
-        public IQueryable<Person> People
+        public IQueryable<Person> Repository
         {
-            get { return context.Persons.AsQueryable(); }
+            get { return context.Persons.AsQueryable(); } 
         }
 
-
-        public void AddPerson(Person person)
+        public void AddObject(Person obj)
         {
-            using (EFDbContext context = new EFDbContext())
-            {
-                context.Persons.Add(person);
-                context.SaveChanges();
-            }
+            context.Persons.Add(obj);
+            context.SaveChanges(); 
         }
 
-
-        public void EditPerson(Person person)
+        public void DeleteObject(int id)
         {
-            using (EFDbContext context = new EFDbContext())
-            {
-                context.SaveChanges();
-            }
+            Person person = new Person() { id = id };
+            context.Persons.Attach(person);
+            context.Persons.Remove(person);
+            context.SaveChanges();
         }
 
-
-        public void DeletePerson(int id)
+        public void EditObject(Person obj)
         {
-
-            using (EFDbContext context = new EFDbContext())
-            {
-                Person ppp = new Person() { id = id };
-                context.Persons.Attach(ppp);
-                context.Persons.Remove(ppp);
-                context.SaveChanges();
-            }
+            context.SaveChanges();
         }
 
-        public void SaveChanges()
+        int IRepository<Person>.SaveChanges()
         {
-            using (EFDbContext context = new EFDbContext())
-            {
-                context.SaveChanges();
-            }
+            return context.SaveChanges();
         }
-
-
     }
 }

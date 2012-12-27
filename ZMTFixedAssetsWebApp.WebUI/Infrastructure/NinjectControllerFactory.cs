@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using ZMTFixedAssetsWebApp.Domain.Abstract;
 using ZMTFixedAssetsWebApp.WebUI.Repositories;
+using System.Web.Security;
+using ZMTFixedAssetsWebApp.Domain.Model;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Infrastructure
 {
@@ -30,8 +32,8 @@ namespace ZMTFixedAssetsWebApp.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            ninjectKernel.Bind<ISectionRepository>().To<SectionRepository>();
-            ninjectKernel.Bind<IPersonRepository>().To<PersonRepository>();
+            ninjectKernel.Bind<IRepository<Section>>().To<SectionRepository>();
+            ninjectKernel.Bind<IRepository<Person>>().To<PersonRepository>();
         }
 
         public IKernel Kernel

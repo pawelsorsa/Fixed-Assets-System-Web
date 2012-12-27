@@ -1,0 +1,9 @@
+﻿@if(Request.IsAuthenticated) {
+    <text>Witaj <strong style="color: Red">@User.Identity.Name</strong>
+    
+    [  @Ajax.ActionLink("Wyloguj", "LogOff", "Account", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @onclick = "LogOff('Person/Index')", @rel = "ajax" })]</text>
+}
+else 
+{
+    @:[  @Ajax.ActionLink("Zaloguj", "LogOn", "Account", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @onclick = "raiseCounter()", @rel = "ajax" })]
+}

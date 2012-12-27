@@ -119,13 +119,19 @@ a.link
 	padding: 0px 15px 0 0px;	
 }
 
-
-
-#menu {
-	width: 800px;
-	height: 50px;
+#menu_container
+{
+    width: 800px;
+    height: 50px;
 	margin: 0px auto;
 	background: #000000;
+	
+}
+
+#menu 
+{
+    width: 650px;
+	float: left;
 }
 
 #menu ul {
@@ -392,4 +398,23 @@ a.link
     text-align: center;
     height: 40px;
     vertical-align: middle;
+}
+
+
+#logindisplay
+{
+    height: 38px;
+    width: 130px;
+    color: White;
+    float: right;
+    position:relative;
+    vertical-align: middle;
+    padding-top: 12px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+#logindisplay a
+{
+    color: White;
 }

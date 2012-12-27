@@ -1,5 +1,4 @@
-﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PersonListModel
- 
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.Domain.Model.PersonSectionModel>
 <table id="person-list-table" width="100%">
             <thead>
                 <tr class='table_head_list'>
@@ -34,7 +33,6 @@
 </table>
 @{
     Dictionary<string, object> routeValues = new Dictionary<string, object>();
-    routeValues.Add("Section", Model.Section);
     routeValues.Add("ShowAll", Model.ShowAll);
     routeValues.Add("OrderBy", Model.OrderBy);
     routeValues.Add("ItemsPerPage", Model.ItemsPerPage);
@@ -52,8 +50,7 @@
 
 @using (Ajax.BeginForm("List", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_content", HttpMethod = "POST", OnFailure = "OnFailure" }))
 {    
-     @Html.HiddenFor(x => x.Page);
-     @Html.HiddenFor(x => x.Section);                                   
+     @Html.HiddenFor(x => x.Page);                            
      @Html.HiddenFor(x => x.TotalRecords);
      @Html.HiddenFor(x => x.Query);
      
