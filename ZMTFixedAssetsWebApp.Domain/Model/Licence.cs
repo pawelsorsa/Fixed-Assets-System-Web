@@ -36,21 +36,13 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             get { return _assign_fixed_asset; }
             set
             {
-                try
+                if (_assign_fixed_asset != value)
                 {
-                    _settingFK = true;
-                    if (_assign_fixed_asset != value)
+                    if (FixedAsset != null && FixedAsset.id != value)
                     {
-                        if (FixedAsset != null && FixedAsset.id != value)
-                        {
-                            FixedAsset = null;
-                        }
-                        _assign_fixed_asset = value;
+                        FixedAsset = null;
                     }
-                }
-                finally
-                {
-                    _settingFK = false;
+                    _assign_fixed_asset = value;
                 }
             }
         }
@@ -79,21 +71,13 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             get { return _id_kind; }
             set
             {
-                try
+                if (_id_kind != value)
                 {
-                    _settingFK = true;
-                    if (_id_kind != value)
+                    if (Kind != null && Kind.id != value)
                     {
-                        if (Kind != null && Kind.id != value)
-                        {
-                            Kind = null;
-                        }
-                        _id_kind = value;
+                        Kind = null;
                     }
-                }
-                finally
-                {
-                    _settingFK = false;
+                    _id_kind = value;
                 }
             }
         }
@@ -101,28 +85,9 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         public virtual string created_by
         {
-            get { return _created_by; }
-            set
-            {
-                try
-                {
-                    _settingFK = true;
-                    if (_created_by != value)
-                    {
-                        if (MembershipUser != null && MembershipUser.login != value)
-                        {
-                            MembershipUser = null;
-                        }
-                        _created_by = value;
-                    }
-                }
-                finally
-                {
-                    _settingFK = false;
-                }
-            }
+            get;
+            set;
         }
-        private string _created_by;
     
         public virtual System.DateTime last_modified_date
         {
@@ -168,26 +133,9 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
         private Kind _kind;
-    
-        public virtual MembershipUser MembershipUser
-        {
-            get { return _membershipUser; }
-            set
-            {
-                if (!ReferenceEquals(_membershipUser, value))
-                {
-                    var previousValue = _membershipUser;
-                    _membershipUser = value;
-                    FixupMembershipUser(previousValue);
-                }
-            }
-        }
-        private MembershipUser _membershipUser;
 
         #endregion
         #region Association Fixup
-    
-        private bool _settingFK = false;
     
         private void FixupFixedAsset(FixedAsset previousValue)
         {
@@ -226,30 +174,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
                 {
                     id_kind = Kind.id;
                 }
-            }
-        }
-    
-        private void FixupMembershipUser(MembershipUser previousValue)
-        {
-            if (previousValue != null && previousValue.Licences.Contains(this))
-            {
-                previousValue.Licences.Remove(this);
-            }
-    
-            if (MembershipUser != null)
-            {
-                if (!MembershipUser.Licences.Contains(this))
-                {
-                    MembershipUser.Licences.Add(this);
-                }
-                if (created_by != MembershipUser.login)
-                {
-                    created_by = MembershipUser.login;
-                }
-            }
-            else if (!_settingFK)
-            {
-                created_by = null;
             }
         }
 

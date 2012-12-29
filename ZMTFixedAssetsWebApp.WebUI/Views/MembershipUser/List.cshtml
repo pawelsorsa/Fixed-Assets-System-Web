@@ -1,10 +1,10 @@
-﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<MembershipUser>
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.WebUI.Models.MembershipUserModel>
 
 @{
     ViewBag.Title = "Lista użytkowników";
 }
 
-<h2>Lista procowników</h2>
+<h2>Lista użytkowników</h2>
 <table width="100%">
     <thead>
         <tr class='table_head_list'>
@@ -26,9 +26,9 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model != null && Model.Count > 0)
+        @if (Model != null)
         {
-            foreach (var user in Model)
+            foreach (var user in Model.List)
             {
         <tr>
             <td>@Html.ActionLink("Details", "Details", "User", new { username = user.UserName }, null)</td>
@@ -37,18 +37,13 @@
             <td>@user.CreationDate.ToShortDateString()</td>
             <td>@user.LastLoginDate.ToShortDateString()</td>
             <td>@user.LastActivityDate.ToShortDateString()</td>
-            @if (@user.CreationDate > @user.LastLockoutDate)
-            { <td></td>;
-            }
-            else
-            { <td>@user.LastLockoutDate.ToShortDateString()</td> }>
+            <td>@user.LastLockoutDate.ToShortDateString()</td>
             <td>@Html.CheckBox("IsOnline", user.IsOnline, new { disabled = "disabled" })</td>
             <td>@Html.CheckBox("IsApproved", user.IsApproved, new { disabled = "disabled" })</td>
-            <td>XXXX</td>
-            <td>yyyyy</td>
-            @*<td>@Html.CheckBox("IsLockedOut" + user.UserName, "IsLockedOut", user.IsLockedOut, !user.IsLockedOut, user.UserName)</td>
-            <td>@Html.CheckBox("Delete" + user.UserName, "Delete", false, (String.Compare(user.UserName, Page.User.Identity.Name, true) == 0), user.UserName)</td>
-       *@ </tr>
+            <td>@Html.CheckBox("IsLockedOut", user.IsLockedOut, new { disabled = "disabled" })</td>
+            <td>delete</td>
+           
+           </tr>
             }
         }
         else

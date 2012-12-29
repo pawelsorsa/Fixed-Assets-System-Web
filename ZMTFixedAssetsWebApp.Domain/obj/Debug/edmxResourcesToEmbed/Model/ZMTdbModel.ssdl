@@ -6,9 +6,6 @@
     <EntitySet Name="FixedAsset" EntityType="ZMTdbModel.Store.FixedAsset" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Kind" EntityType="ZMTdbModel.Store.Kind" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Licence" EntityType="ZMTdbModel.Store.Licence" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Membership_User_Role" EntityType="ZMTdbModel.Store.Membership_User_Role" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="MembershipRole" EntityType="ZMTdbModel.Store.MembershipRole" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="MembershipUser" EntityType="ZMTdbModel.Store.MembershipUser" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PeripheralDevice" EntityType="ZMTdbModel.Store.PeripheralDevice" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Person" EntityType="ZMTdbModel.Store.Person" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Section" EntityType="ZMTdbModel.Store.Section" store:Type="Tables" Schema="dbo" />
@@ -44,18 +41,6 @@
     <AssociationSet Name="FK_Licence_FixedAsset" Association="ZMTdbModel.Store.FK_Licence_FixedAsset">
       <End Role="FixedAsset" EntitySet="FixedAsset" />
       <End Role="Licence" EntitySet="Licence" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Licence_MembershipUser" Association="ZMTdbModel.Store.FK_Licence_MembershipUser">
-      <End Role="MembershipUser" EntitySet="MembershipUser" />
-      <End Role="Licence" EntitySet="Licence" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Membership_User_Role_MembershipRole" Association="ZMTdbModel.Store.FK_Membership_User_Role_MembershipRole">
-      <End Role="MembershipRole" EntitySet="MembershipRole" />
-      <End Role="Membership_User_Role" EntitySet="Membership_User_Role" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Membership_User_Role_MembershipUser" Association="ZMTdbModel.Store.FK_Membership_User_Role_MembershipUser">
-      <End Role="MembershipUser" EntitySet="MembershipUser" />
-      <End Role="Membership_User_Role" EntitySet="Membership_User_Role" />
     </AssociationSet>
     <AssociationSet Name="FK_Person_Section" Association="ZMTdbModel.Store.FK_Person_Section">
       <End Role="Section" EntitySet="Section" />
@@ -132,36 +117,6 @@
     <Property Name="created_by" Type="varchar" MaxLength="20" />
     <Property Name="last_modified_date" Type="date" Nullable="false" />
     <Property Name="last_modified_login" Type="varchar" MaxLength="20" />
-  </EntityType>
-  <EntityType Name="Membership_User_Role">
-    <Key>
-      <PropertyRef Name="Login" />
-      <PropertyRef Name="RoleId" />
-    </Key>
-    <Property Name="Login" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="RoleId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="MembershipRole">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="20" />
-  </EntityType>
-  <EntityType Name="MembershipUser">
-    <Key>
-      <PropertyRef Name="login" />
-    </Key>
-    <Property Name="login" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="password" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="name" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="surname" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="creation_date" Type="date" Nullable="false" />
-    <Property Name="last_login_date" Type="date" Nullable="false" />
-    <Property Name="is_online" Type="bit" Nullable="false" />
-    <Property Name="is_active" Type="bit" Nullable="false" />
-    <Property Name="PLKLogin" Type="int" />
   </EntityType>
   <EntityType Name="PeripheralDevice">
     <Key>
@@ -298,42 +253,6 @@
       </Principal>
       <Dependent Role="Licence">
         <PropertyRef Name="assign_fixed_asset" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Licence_MembershipUser">
-    <End Role="MembershipUser" Type="ZMTdbModel.Store.MembershipUser" Multiplicity="0..1" />
-    <End Role="Licence" Type="ZMTdbModel.Store.Licence" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MembershipUser">
-        <PropertyRef Name="login" />
-      </Principal>
-      <Dependent Role="Licence">
-        <PropertyRef Name="created_by" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Membership_User_Role_MembershipRole">
-    <End Role="MembershipRole" Type="ZMTdbModel.Store.MembershipRole" Multiplicity="1" />
-    <End Role="Membership_User_Role" Type="ZMTdbModel.Store.Membership_User_Role" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MembershipRole">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Membership_User_Role">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Membership_User_Role_MembershipUser">
-    <End Role="MembershipUser" Type="ZMTdbModel.Store.MembershipUser" Multiplicity="1" />
-    <End Role="Membership_User_Role" Type="ZMTdbModel.Store.Membership_User_Role" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MembershipUser">
-        <PropertyRef Name="login" />
-      </Principal>
-      <Dependent Role="Membership_User_Role">
-        <PropertyRef Name="Login" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

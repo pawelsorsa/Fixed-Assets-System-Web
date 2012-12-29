@@ -72,18 +72,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private ObjectSet<Licence> _licences;
     
-        public ObjectSet<MembershipRole> MembershipRoles
-        {
-            get { return _membershipRoles  ?? (_membershipRoles = CreateObjectSet<MembershipRole>("MembershipRoles")); }
-        }
-        private ObjectSet<MembershipRole> _membershipRoles;
-    
-        public ObjectSet<MembershipUser> MembershipUsers
-        {
-            get { return _membershipUsers  ?? (_membershipUsers = CreateObjectSet<MembershipUser>("MembershipUsers")); }
-        }
-        private ObjectSet<MembershipUser> _membershipUsers;
-    
         public ObjectSet<PeripheralDevice> PeripheralDevices
         {
             get { return _peripheralDevices  ?? (_peripheralDevices = CreateObjectSet<PeripheralDevice>("PeripheralDevices")); }

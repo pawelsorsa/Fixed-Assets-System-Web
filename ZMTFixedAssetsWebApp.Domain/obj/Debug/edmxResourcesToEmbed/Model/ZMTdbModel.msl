@@ -77,30 +77,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MembershipRoles">
-      <EntityTypeMapping TypeName="ZMTdbModel.MembershipRole">
-        <MappingFragment StoreEntitySet="MembershipRole">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MembershipUsers">
-      <EntityTypeMapping TypeName="ZMTdbModel.MembershipUser">
-        <MappingFragment StoreEntitySet="MembershipUser">
-          <ScalarProperty Name="login" ColumnName="login" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="surname" ColumnName="surname" />
-          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
-          <ScalarProperty Name="last_login_date" ColumnName="last_login_date" />
-          <ScalarProperty Name="is_online" ColumnName="is_online" />
-          <ScalarProperty Name="is_active" ColumnName="is_active" />
-          <ScalarProperty Name="PLKLogin" ColumnName="PLKLogin" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PeripheralDevices">
       <EntityTypeMapping TypeName="ZMTdbModel.PeripheralDevice">
         <MappingFragment StoreEntitySet="PeripheralDevice">
@@ -147,13 +123,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="Membership_User_Role" TypeName="ZMTdbModel.Membership_User_Role" StoreEntitySet="Membership_User_Role">
-      <EndProperty Name="MembershipRole">
-        <ScalarProperty Name="id" ColumnName="RoleId" />
-      </EndProperty>
-      <EndProperty Name="MembershipUser">
-        <ScalarProperty Name="login" ColumnName="Login" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

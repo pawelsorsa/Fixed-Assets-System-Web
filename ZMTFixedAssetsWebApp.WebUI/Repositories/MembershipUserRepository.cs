@@ -2,22 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 using ZMTFixedAssetsWebApp.Domain.Abstract;
-using ZMTFixedAssetsWebApp.Domain.Model;
+using System.Web.Security;
+using ZMTFixedAssetsWebApp.WebUI.Models;
 
 
 namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 {
-    public class MembershipUserRepository : IRepository<MembershipUser>
+    public class MembershipUserRepository : IRepository<MembershipUserModel>
     {
-        private EFDbContext context = new EFDbContext();
-
-        public IQueryable<MembershipUser> Repository
+        //Membership.GetAllUsers().Cast<MembershipUser>().AsQueryable<MembershipUser>(), page.HasValue ? page.Value : 0, 10);
+        //
+        
+  
+        public IQueryable<MembershipUserModel> Repository
         {
-            get { return context.MembershipUsers.AsQueryable(); } 
+            get 
+            {
+                List<MembershipUserModel> model = new List<MembershipUserModel>();
+
+                foreach (var x in Membership.GetAllUsers().Cast<MembershipUser>().AsQueryable())
+                {
+                    MembershipUserModel temp = new MembershipUserModel(x.ProviderName,
+                        x.UserName, x.ProviderUserKey, x.Email, x.PasswordQuestion, x.Comment, x.IsApproved,
+                        x.IsLockedOut, x.CreationDate, x.LastLoginDate, x.LastActivityDate, x.LastPasswordChangedDate, x.LastLockoutDate, x.IsOnline);
+                    model.Add(temp);
+                }
+                return model.AsQueryable(); 
+            } 
         }
 
-        public void AddObject(MembershipUser obj)
+        public void AddObject(MembershipUserModel obj)
         {
             throw new NotImplementedException();
         }
@@ -27,8 +43,9 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             throw new NotImplementedException();
         }
 
-        public void EditObject(MembershipUser obj)
+        public void EditObject(MembershipUserModel obj)
         {
+           
             throw new NotImplementedException();
         }
 

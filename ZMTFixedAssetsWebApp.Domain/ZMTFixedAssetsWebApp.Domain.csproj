@@ -61,12 +61,6 @@
     <Compile Include="Model\Licence.cs">
       <DependentUpon>ZMTdbEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MembershipRole.cs">
-      <DependentUpon>ZMTdbEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\MembershipUser.cs">
-      <DependentUpon>ZMTdbEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\PeripheralDevice.cs">
       <DependentUpon>ZMTdbEntities.tt</DependentUpon>
     </Compile>

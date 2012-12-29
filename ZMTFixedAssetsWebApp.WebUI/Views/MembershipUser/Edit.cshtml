@@ -1,0 +1,65 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.MembershipUserModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "MembershipUser",  new { username = Model.UserName }, FormMethod.Post, null))
+{
+    
+    <table>
+    <tbody>
+    <tr>
+        <th>User Name</th>
+        <td>@Html.TextBoxFor(x => x.UserName, new { @disabled = true })</td>
+        <th>Email</th>
+        <td>@Html.TextBoxFor(x => x.Email)</td>
+    </tr>
+    <tr>
+        <th>Created</th>
+        <td>@Html.TextBoxFor(x => x.CreationDate, new { @disabled = true })<</td>
+        <th>Last login</th>
+        <td>@Html.TextBoxFor(x => x.LastLoginDate, new { @disabled = true })</td>
+    </tr>
+    <tr>
+        <th>Last active</th>
+        <td>@Html.TextBoxFor(x => x.LastActivityDate, new { @disabled = true })</td>
+        <th>Last lock</th>
+        <td>@Html.TextBoxFor(x => x.LastLockoutDate, new { @disabled = true })</td>
+    </tr>
+    <tr>
+        <th>Online</th>
+        <td>@Html.CheckBoxFor(x => x.IsOnline, new { @disabled = true })</td>
+        <th>Approved</th>
+        <td>@Html.CheckBoxFor(x => x.IsApproved)</td>
+    </tr>
+    <tr>
+        <th>Locked</th>
+        <td>@Html.CheckBoxFor(x => x.IsLockedOut, new { @disabled = true })</td>
+        
+    <tr>
+        <tr>
+            <th>Comment</th>
+        <td>@Html.TextAreaFor(x => x.Comment)</td>
+    <tr>
+        <th colspan="4">Roles</th>
+    </tr>
+    <tr>
+        <td colspan="4">
+            @Html.CheckBoxListFor(model => model.SelectedSources, Model.SubscriptionSources)
+           
+        </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4"><input type="submit" value="Save" /></td>
+    </tr>
+    </tfoot>
+</table>
+
+
+        
+}

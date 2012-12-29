@@ -9,6 +9,7 @@ using ZMTFixedAssetsWebApp.Domain.Abstract;
 using ZMTFixedAssetsWebApp.WebUI.Repositories;
 using System.Web.Security;
 using ZMTFixedAssetsWebApp.Domain.Model;
+using ZMTFixedAssetsWebApp.WebUI.Models;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Infrastructure
 {
@@ -34,6 +35,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Infrastructure
         {
             ninjectKernel.Bind<IRepository<Section>>().To<SectionRepository>();
             ninjectKernel.Bind<IRepository<Person>>().To<PersonRepository>();
+            ninjectKernel.Bind<IRepository<MembershipUserModel>>().To<MembershipUserRepository>();
         }
 
         public IKernel Kernel

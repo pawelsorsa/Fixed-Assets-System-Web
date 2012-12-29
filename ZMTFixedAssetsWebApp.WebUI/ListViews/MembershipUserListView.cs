@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ZMTFixedAssetsWebApp.WebUI.Models;
-using ZMTFixedAssetsWebApp.Domain.Model;
-using ZMTFixedAssetsWebApp.Domain.Abstract;
 using ZMTFixedAssetsWebApp.WebUI.LinqHelpers;
 using System.Web.Mvc;
+using System.Web.Security;
+using ZMTFixedAssetsWebApp.WebUI.Models;
+using ZMTFixedAssetsWebApp.Domain.Abstract;
 
 namespace ZMTFixedAssetsWebApp.WebUI.ListViews
 {
-    public sealed class MembershipUserListView : ListViewModel<MembershipUser, MembershipUser>
+    public sealed class MembershipUserListView : ListViewAsCollectionModel<MembershipUserModel>
     {
 
-        public MembershipUserListView(IRepository<MembershipUser> userRepository)
+        public MembershipUserListView(IRepository<MembershipUserModel> userRepository)
             : base(userRepository)
         {
         }
@@ -32,17 +32,13 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
             return items;
         }
 
-        protected override MembershipUser CreateExtendedObejctModelFromObjectModel(MembershipUser obj)
-        {
-            throw new NotImplementedException();
-        }
 
-        protected override CountRecordsAndCreateListModel<MembershipUser> CountRecordsAndCreateListModel(Domain.Abstract.IRepository<MembershipUser> repo, string sortby, bool asc, string query, bool search)
+        protected override CountRecordsAndCreateListModel<MembershipUserModel> CountRecordsAndCreateListModel(Domain.Abstract.IRepository<MembershipUserModel> repo, string sortby, bool asc, string query, bool search)
         {
-            List<MembershipUser> usersList = new List<MembershipUser>();
+            List<MembershipUserModel> usersList = new List<MembershipUserModel>();
             Dictionary<string, string> QueryList = CreateQueryListDictionary(query);
             usersList = Repositry.Repository.OrderByFieldNullLast(sortby, asc).ToList();
-            int id_section = 0;
+
             if (QueryList.Count != 0)
             {
             }
@@ -51,7 +47,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
                 usersList = usersList.ToList();
             }
             int count = usersList.Count();
-            return new CountRecordsAndCreateListModel<MembershipUser>() { List = usersList.AsQueryable(), Count = count };
+            return new CountRecordsAndCreateListModel<MembershipUserModel>() { List = usersList.AsQueryable(), Count = count };
         }
     }
 }

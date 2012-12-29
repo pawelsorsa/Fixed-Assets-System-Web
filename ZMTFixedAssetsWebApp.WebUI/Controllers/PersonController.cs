@@ -39,9 +39,9 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return PartialView("Person/_PersonIndex", model.CreateExtendedListModel(1, false, "name", 10, false, false, ""));
+                return PartialView("Person/_PersonIndex", model.CreateListModel(1, false, "name", 10, false, false, ""));
             }
-            return View(model.CreateExtendedListModel(1, false, "name", 10, false, false, ""));
+            return View(model.CreateListModel(1, false, "name", 10, false, false, ""));
         }
 
      //   [ZMTFixedAssetsWebApp.WebUI.ActionFilters.AccessDeniedAuthorize(Roles="Admins")]
@@ -189,10 +189,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return PartialView("Person/_PersonList", model.CreateExtendedListModel(Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query));
+                return PartialView("Person/_PersonList", model.CreateListModel(Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query));
             }
 
-            return View(model.CreateExtendedListModel(Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query));
+            return View(model.CreateListModel(Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query));
         }
 
 

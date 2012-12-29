@@ -93,5 +93,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
             items.Add(new SelectListItem { Text = "Telefon kom.", Value = "phone_number2" });
             return items;
         }
+
     }
 }
