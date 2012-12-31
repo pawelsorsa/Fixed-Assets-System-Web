@@ -41,7 +41,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
         {
             List<Person> personList = new List<Person>();
             Dictionary<string, string> QueryList = CreateQueryListDictionary(query);
-            personList = Repositry.Repository.OrderByFieldNullLast(sortby, asc).ToList();
+            personList = Repositry.Repository.OrderByFieldNullLast(sortby, asc, "id").ToList();
             int id_section = 0;
             if (QueryList.Count != 0)
             {

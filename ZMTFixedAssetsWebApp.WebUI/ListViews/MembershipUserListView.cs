@@ -22,13 +22,13 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
         public override List<SelectListItem> OrderByList()
         {
             List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "ID", Value = "ID" });
-            items.Add(new SelectListItem { Text = "Imię", Value = "name" });
-            items.Add(new SelectListItem { Text = "Nazwisko", Value = "surname" });
-            items.Add(new SelectListItem { Text = "Sekcja", Value = "id_section" });
-            items.Add(new SelectListItem { Text = "Email", Value = "email" });
-            items.Add(new SelectListItem { Text = "Telefon", Value = "phone_number" });
-            items.Add(new SelectListItem { Text = "Telefon kom.", Value = "phone_number2" });
+            items.Add(new SelectListItem { Text = "UserName", Value = "UserName" });
+            items.Add(new SelectListItem { Text = "Email", Value = "Email" });
+            items.Add(new SelectListItem { Text = "CreationDate", Value = "CreationDate" });
+            items.Add(new SelectListItem { Text = "LastLoginDate", Value = "LastLoginDate" });
+            items.Add(new SelectListItem { Text = "LastActivityDate", Value = "LastActivityDate" });
+            items.Add(new SelectListItem { Text = "LastLockoutDate", Value = "LastLockoutDate" });
+            items.Add(new SelectListItem { Text = "IsOnline", Value = "IsOnline" });
             return items;
         }
 
@@ -37,10 +37,11 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
         {
             List<MembershipUserModel> usersList = new List<MembershipUserModel>();
             Dictionary<string, string> QueryList = CreateQueryListDictionary(query);
-            usersList = Repositry.Repository.OrderByFieldNullLast(sortby, asc).ToList();
+            usersList = Repositry.Repository.OrderByFieldNullLast(sortby, asc, "UserName").ToList();
 
             if (QueryList.Count != 0)
             {
+                
             }
             else
             {

@@ -86,12 +86,38 @@ namespace ZMTFixedAssetsWebApp.WebUI
                "Person/Search",
                new { controller = "Person", action = "Search", query = UrlParameter.Optional }
            );
-            
+
+            // **************** MEMEBERSHIPUSER ************************************
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "MembershipUser/Index",                                      // URL with parameters
+            new { controller = "MembershipUser", action = "Index", sortby = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "MembershipUser/Delete/{username}",                                      // URL with parameters
+            new { controller = "MembershipUser", action = "Delete", username = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "MembershipUser/Edit/{username}",                                      // URL with parameters
+            new { controller = "MembershipUser", action = "Edit", username = UrlParameter.Optional }
+            );
+
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Person", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
+
+          
+
+           
+
 
         }
 

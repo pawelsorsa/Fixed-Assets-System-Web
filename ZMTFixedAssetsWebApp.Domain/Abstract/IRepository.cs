@@ -9,7 +9,7 @@ namespace ZMTFixedAssetsWebApp.Domain.Abstract
     {
         IQueryable<T> Repository { get; }
         void AddObject(T obj);
-        void DeleteObject(int id);
+        void DeleteObject(T obj);
         void EditObject(T obj);
         int SaveChanges();
     }

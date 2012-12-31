@@ -25,9 +25,9 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             context.SaveChanges(); 
         }
 
-        public void DeleteObject(int id)
+        public void DeleteObject(Person obj)
         {
-            Person person = new Person() { id = id };
+            Person person = new Person() { id = obj.id };
             context.Persons.Attach(person);
             context.Persons.Remove(person);
             context.SaveChanges();

@@ -38,15 +38,29 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             throw new NotImplementedException();
         }
 
-        public void DeleteObject(int id)
+        public void DeleteObject(MembershipUserModel obj)
         {
-            throw new NotImplementedException();
+            Membership.DeleteUser(obj.UserName);
         }
 
         public void EditObject(MembershipUserModel obj)
         {
-           
-            throw new NotImplementedException();
+            MembershipUser user = Membership.GetUser(obj.UserName);
+            user.Comment = obj.Comment;
+            user.Email = obj.Email;
+            user.IsApproved = obj.IsApproved;
+            // user.LastActivityDate = model.LastActivityDate;
+            // user.LastLoginDate = model.LastLoginDate;
+            Membership.UpdateUser(user);
+
+            if (Roles.GetRolesForUser(obj.UserName).Count() > 0)
+            {
+                Roles.RemoveUserFromRoles(obj.UserName, Roles.GetRolesForUser(obj.UserName));
+            }
+            if (obj.SelectedSources.Count() > 0)
+            {
+                Roles.AddUserToRoles(obj.UserName, obj.SelectedSources.ToArray());
+            }
         }
 
         public int SaveChanges()

@@ -37,7 +37,9 @@
                 <li>@Html.ActionLink("Home", "Index", "Person", null, null)</li>
                @* <li>@Html.Raw(@HttpUtility.UrlDecode(@Html.ActionLink("About", "List", "Person").ToHtmlString())))</li> *@
                 <li>@Html.ActionLink("About", "List", "Person")</li>
-                <li>@Ajax.ActionLink("Powrót", "Index", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @onclick = "raiseCounter()", @rel = "ajax" })</li>
+                <li>@Ajax.ActionLink("Powrót", "Index", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</li>
+                <li>@Ajax.ActionLink("MembershipUsers", "Index", "MembershipUser", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</li>
+            
             </ul>
         </div>
         <div id="logindisplay">

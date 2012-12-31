@@ -19,7 +19,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Models
         public virtual PaginatedListModel<T> CreateListModel(int page, bool show_all, string sortby, int items_per_page, bool ASC, bool search, string query)
         {
             List<SelectListItem> _ItemsPerPageList = ItemsPerPageList();
-            List<SelectListItem> _OrderByList = ItemsPerPageList();
+            List<SelectListItem> _OrderByList = OrderByList();
 
             CountRecordsAndCreateListModel<T> _CountRecordsAndCreateListModel = CountRecordsAndCreateListModel(Repositry, sortby, ASC, query, search);
             if (!CheckIfItemsPerPageExist(items_per_page, _ItemsPerPageList)) { items_per_page = 10; }

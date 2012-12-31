@@ -22,7 +22,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             throw new NotImplementedException();
         }
 
-        public void DeleteObject(int id)
+        public void DeleteObject(Section obj)
         {
             throw new NotImplementedException();
         }

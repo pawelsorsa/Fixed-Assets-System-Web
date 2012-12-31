@@ -49,13 +49,32 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         public ActionResult Edit(int id)
         {
             Person person = personRepository.Repository.FirstOrDefault(x => x.id == id);
-            PersonSectionAddEditModel model = CreatePersonSetionAddEditFromPerson(person);
-                        
-            if (Request.IsAjaxRequest())
+
+            if (person != null)
             {
-                return PartialView("Person/_PersonEdit", model);
+
+                PersonSectionAddEditModel model = CreatePersonSetionAddEditFromPerson(person);
+
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("Person/_PersonEdit", model);
+                }
+                return View("Edit", model);
             }
-            return View("Edit", model);
+            else
+            {
+                InfoModel model = new InfoModel()
+                {
+                    Description = "Podany pracownik nie istnieje",
+                    Action = "Index",
+                    Controller = "Person"
+                };
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("_Info", model);
+                }
+                return View("Info", model);
+            }
         }
         
 
@@ -79,7 +98,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             }
             else
             {
-                
                 model.SectionList = section_ctrl.SectionsShortNamesList();
                 
                 if (Request.IsAjaxRequest())
@@ -97,7 +115,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             Person person = personRepository.Repository.FirstOrDefault(x => x.id == id);
             if (person != null)
             {
-                DeleteObject model = new DeleteObject();
+                DeleteObjectById model = new DeleteObjectById();
                 model.Description = "Czy napewno chcesz usunąć pracownika: " + person.id + " " + person.name + " " + person.surname + "?";
                 model.Id = id;
                 
@@ -126,11 +144,12 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 
        
         [HttpPost]
-        public ActionResult Delete(DeleteObject model)
+        public ActionResult Delete(DeleteObjectById model)
         {
             if (ModelState.IsValid)
             {
-                    personRepository.DeleteObject(model.Id);
+                Person person = new Person() { id = model.Id };
+                    personRepository.DeleteObject(person);
                     return RedirectToAction("Index");
             }
             else

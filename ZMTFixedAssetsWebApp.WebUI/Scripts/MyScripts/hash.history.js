@@ -4,7 +4,6 @@
     $('a[rel=ajax]').livequery("click", function () {
         var hash = this.href.replace("http://", "");
         var url = hash.substring(window.location.host.length);
-
         LoadHistory(url);
         return false;
     });

@@ -1,0 +1,94 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.WebUI.Models.MembershipUserModel>
+<div id="ajax_content">
+@{
+    ViewBag.Title = "Lista użytkowników";
+}
+
+
+<table width="100%">
+    <thead>
+        <tr class='table_head_list'>
+            <th rowspan="2"></th>
+            <th rowspan="2">User Name</th>
+            <th rowspan="2">Email</th>
+            <th colspan="4">Dates</th>
+            <th colspan="4">Status</th>
+        </tr>
+        <tr class='table_head_list'>
+            <th>Created</th>
+            <th>Last Login</th>
+            <th>Last Active</th>
+            <th>Last Lock</th>
+            <th>Online</th>
+            <th>Approved</th>
+            <th>Locked</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var user in Model.List)
+            {
+        <tr>
+            <td>@Ajax.ActionLink("Details", "Edit", new { username = @user.UserName }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>@user.CreationDate.ToShortDateString()</td>
+            <td>@user.LastLoginDate.ToShortDateString()</td>
+            <td>@user.LastActivityDate.ToShortDateString()</td>
+            <td>@user.LastLockoutDate.ToShortDateString()</td>
+            <td>@Html.CheckBox("IsOnline", user.IsOnline, new { disabled = "disabled" })</td>
+            <td>@Html.CheckBox("IsApproved", user.IsApproved, new { disabled = "disabled" })</td>
+            <td>@Html.CheckBox("IsLockedOut", user.IsLockedOut, new { disabled = "disabled" })</td>
+            <td>@Ajax.ActionLink("Usuń", "Delete", new { username = @user.UserName }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+           
+           </tr>
+            }
+        }
+        else
+        {
+        <tr>
+            <td colspan="11">No users present</td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+@{
+    Dictionary<string, object> routeValues = new Dictionary<string, object>();
+    routeValues.Add("ShowAll", Model.ShowAll);
+    routeValues.Add("OrderBy", Model.OrderBy);
+    routeValues.Add("ItemsPerPage", Model.ItemsPerPage);
+    routeValues.Add("ASC", Model.ASC);
+    routeValues.Add("Query", Model.Query);
+}
+@{ if (!Model.ShowAll)
+   {
+    <div id="pager">
+        @Ajax.Pager((int)Model.Page, (int)Model.TotalRecords, "ajax_content", routeValues, "MembershipUser", "List", (int)Model.ItemsPerPage)
+    </div>   
+    }
+}
+<hr />
+
+@using (Ajax.BeginForm("List", "MembershipUser", null, new AjaxOptions { UpdateTargetId = "ajax_content", HttpMethod = "POST", OnFailure = "OnFailure" }))
+{    
+     @Html.HiddenFor(x => x.Page);                            
+     @Html.HiddenFor(x => x.TotalRecords);
+     @Html.HiddenFor(x => x.Query);
+     
+     
+     <p>Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
+     Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
+     Pokaż wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
+    <input type="submit" value="OK" />
+    </p>  
+}
+
+@Ajax.ActionLink("Powrót", "Index", "MembershipUser", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new {  @onclick = "raiseCounter()", @rel = "ajax" })
+<br />
+</div>
+
+

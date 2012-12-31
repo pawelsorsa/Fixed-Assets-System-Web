@@ -31,8 +31,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Models
         public MembershipUserModel()
         {
             SubscriptionSources = null;
-            SelectedSources = new [] { "" };
-
+            SelectedSources = new string [] { };
         }
 
 

@@ -84,8 +84,9 @@
     <Compile Include="ListViews\PersonListView.cs" />
     <Compile Include="MembershipProviders\CustomRoleProvider.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DeleteObjectByName.cs" />
     <Compile Include="Models\CountRecordsAndCreateListModel.cs" />
-    <Compile Include="Models\DeleteObject.cs" />
+    <Compile Include="Models\DeleteObjectById.cs" />
     <Compile Include="Models\ListViewAsCollectionModel.cs" />
     <Compile Include="Models\ListViewBase.cs" />
     <Compile Include="Models\ListViewModel.cs" />
@@ -243,8 +244,14 @@
     <Content Include="Views\Shared\Account\_AccessDenied.cshtml" />
     <Content Include="Views\MembershipUser\List.cshtml" />
     <Content Include="Views\MembershipUser\Edit.cshtml" />
+    <Content Include="Views\MembershipUser\Delete.cshtml" />
+    <Content Include="Views\MembershipUser\Index.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\MembershipUser\_MembershipUserList.cshtml" />
+    <Content Include="Views\Shared\MembershipUser\_MembershipUserEdit.cshtml" />
+    <Content Include="Views\Shared\MembershipUser\_MembershipUserDelete.cshtml" />
+    <Content Include="Views\Shared\MembershipUser\_MembershipUserIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Error\_ErrorIndex.cshtml" />

@@ -10,12 +10,14 @@ namespace ZMTFixedAssetsWebApp.WebUI.LinqHelpers
 {
     public static class LinqHelpers
     {
-        public static IQueryable<T> OrderByFieldNullLast<T>(this IQueryable<T> q, string SortField, bool Ascending)
+        public static IQueryable<T> OrderByFieldNullLast<T>(this IQueryable<T> q, string SortField, bool Ascending, string DefaultProperty)
         {
             var param = Expression.Parameter(typeof(T), "x"); //(x)
             MemberExpression prop = null;
 
             PropertyInfo xxx = typeof(T).GetProperty(SortField);
+            
+
             bool isnumeric;
 
             if (xxx != null)
@@ -25,13 +27,17 @@ namespace ZMTFixedAssetsWebApp.WebUI.LinqHelpers
             }
             else
             {
-                prop = Expression.Property(param, "id");//(x.property)
+                prop = Expression.Property(param, DefaultProperty);//(x.property)
                 isnumeric = true;
             }
 
             var exp = Expression.Lambda(prop, param); // x => x.property
+
             var body = Expression.Equal(Expression.PropertyOrField(param, SortField),
-               isnumeric ? Expression.Constant(0) : Expression.Constant(null)); // x.parameter == 0 || x.parameter == null
+                xxx.PropertyType == typeof(bool) ? Expression.Constant(new bool()) :
+              xxx.PropertyType == typeof(DateTime) ? Expression.Constant(new DateTime()) :
+                isnumeric ? Expression.Constant(0) : Expression.Constant(null)); // x.parameter == 0 || x.parameter == null
+             
             var lambda = Expression.Lambda<Func<T, bool>>(body, param); //x => x.parameter == null
             
         
