@@ -10,6 +10,7 @@ using ZMTFixedAssetsWebApp.WebUI.Models;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 {
+    [ZMTFixedAssetsWebApp.WebUI.ActionFilters.AccessDeniedAuthorize(Roles = "Admins")]
     [HandleError]
     public class MembershipUserController : Controller
     {
@@ -22,6 +23,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             membershipUserListView = new MembershipUserListView(membershipUserRepository);
         }
 
+
         public ActionResult Index()
         {
             if (Request.IsAjaxRequest())
@@ -30,6 +32,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             }
             return View(membershipUserListView.CreateListModel(1, false, "UserName", 10, false, false, ""));
         }
+
 
         [HttpGet]
         public ActionResult List(int Page = 1, bool ShowAll = false, string OrderBy = "UserName", int ItemsPerPage = 10, bool ASC = false, bool Search = false, string Query = "")
@@ -73,7 +76,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 {
                     Description = "Podany użytkownik nie istnieje",
                     Action = "Index",
-                    Controller = "Person"
+                    Controller = "MembershipUser"
                 };
                 if (Request.IsAjaxRequest())
                 {
@@ -83,6 +86,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             }
         }
 
+        [ZMTFixedAssetsWebApp.WebUI.ActionFilters.AccessDeniedAuthorize(Roles = "Admins")]
         [HttpPost]
         public ActionResult Edit(MembershipUserModel model)
         {
@@ -90,6 +94,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
+        [ZMTFixedAssetsWebApp.WebUI.ActionFilters.AccessDeniedAuthorize(Roles = "Admins")]
         [HttpGet]
         public ActionResult Delete(string username)
         {
@@ -124,6 +129,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         }
 
 
+        [ZMTFixedAssetsWebApp.WebUI.ActionFilters.AccessDeniedAuthorize(Roles = "Admins")]
         [HttpPost]
         public ActionResult Delete(DeleteObjectByName model)
         {
@@ -141,6 +147,16 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 }
                 return View("Delete", model);
             }
+        }
+
+        public JsonResult SortByList()
+        {
+            IQueryable list = membershipUserListView.OrderByList().AsQueryable();
+
+            return Json(new SelectList(
+                            list,
+                            "Value",
+                            "Text"), JsonRequestBehavior.AllowGet);
         }
 
 

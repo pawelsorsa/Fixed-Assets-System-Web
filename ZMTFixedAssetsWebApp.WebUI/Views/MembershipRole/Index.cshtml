@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Lista roli";
+}
+
+<div id="ajax_main_content">
+        <script type="text/javascript">
+        $(document).ready(function (e) {     
+               global_url_getjson_sortby = "/MembershipUser/SortByList";
+               $.getScript("@Url.Content("~/Scripts/MyScripts/membershiprole.scripts.js")", function (x) {
+                });  
+        });
+        </script>
+        @Html.Partial("MembershipRole/_MembershipRoleIndex") 
+
+</div>

@@ -1,0 +1,20 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.MembershipRoleModel
+
+<p class='header'>Edytowanie roli <b>@Model.Name </b</p>
+<br />
+
+@using (Ajax.BeginForm("Edit", "MembershipRole", new { RoleName = Model.Name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/MembershipRole')" }, new { @id = "form_unobtrusive" }))
+{
+    @Html.HiddenFor(x => x.Name);
+    @Html.HiddenFor(x => x.Users);
+    
+    
+    @Html.CheckBoxListFor(model => model.SelectedSources, Model.SubscriptionSources)
+    
+    <hr />
+    <p class="centre_object"><input type=submit class='submitButton' value="Zapisz zmiany" />
+    @Ajax.ActionLink("Anuluj", "Index", "MembershipRole", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>
+}
+
+

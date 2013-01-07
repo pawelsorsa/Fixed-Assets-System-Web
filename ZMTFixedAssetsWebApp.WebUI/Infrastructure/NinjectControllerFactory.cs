@@ -36,6 +36,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Infrastructure
             ninjectKernel.Bind<IRepository<Section>>().To<SectionRepository>();
             ninjectKernel.Bind<IRepository<Person>>().To<PersonRepository>();
             ninjectKernel.Bind<IRepository<MembershipUserModel>>().To<MembershipUserRepository>();
+            ninjectKernel.Bind<IRepository<MembershipRoleModel>>().To<MembershipRoleRepository>();
         }
 
         public IKernel Kernel

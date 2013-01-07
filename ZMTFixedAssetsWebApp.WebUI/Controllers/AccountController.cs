@@ -41,7 +41,7 @@ namespace MvcApplication3.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Person");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else
@@ -70,7 +70,6 @@ namespace MvcApplication3.Controllers
             return View();
         }
 
-        
 
         //
         // GET: /Account/LogOff
@@ -79,7 +78,7 @@ namespace MvcApplication3.Controllers
         {
             SignOut();
 
-            return RedirectToAction("Index", "Person");
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -109,7 +108,7 @@ namespace MvcApplication3.Controllers
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Person");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

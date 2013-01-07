@@ -50,5 +50,5 @@
     </table>   
     <hr />
     <input type=submit class='submitButton' value="Dodaj pracownika" />
-    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "submitButton", @onclick = "raiseCounter()", @rel = "ajax" })
+    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
 }

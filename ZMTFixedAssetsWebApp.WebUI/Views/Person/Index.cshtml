@@ -1,6 +1,16 @@
 ﻿@{
     ViewBag.Title = "Lista pracowników";
 }
+
 <div id="ajax_main_content">
+    <script type="text/javascript">
+      
+
+        $(document).ready(function (e) {    
+        global_url_getjson_sortby = "/Person/SortByList";
+               $.getScript("@Url.Content("~/Scripts/MyScripts/person.scripts.js")", function (x) {
+                });  
+        });
+        </script>
     @Html.Partial("Person/_PersonIndex") 
 </div>

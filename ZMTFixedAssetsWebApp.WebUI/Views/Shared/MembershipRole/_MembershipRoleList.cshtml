@@ -1,0 +1,70 @@
+﻿<div id="ajax_context">
+@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.WebUI.Models.MembershipRoleModel>
+@{
+    ViewBag.Title = "Lista roli";
+}
+
+<table class="list_table" width="100%">
+            <thead>
+                <tr class='table_head_list'>
+                    <th width="15%">Nazwa</th>
+                    <th width="75%">Użytkownicy</th>
+                    <th width="5%">Edytuj</th>
+                    <th width="5%">Usuń</th>
+                </tr>
+            </thead>
+            <tbody>
+
+@foreach (var x in Model.List)
+{
+     <tr>
+            <td>@x.Name</td>
+            <td>
+                @foreach (var user in @x.Users)
+                {
+                    @Html.ActionLink(" [" + user + "] ", "Edit", "MembershipUser", new { username = user }, null)
+                }
+
+            </td>
+            <td>@Ajax.ActionLink("Edytuj", "Edit",  new { RoleName = @x.Name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@Ajax.ActionLink("Usuń", "Delete", new { RoleName = @x.Name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    Dictionary<string, object> routeValues = new Dictionary<string, object>();
+    routeValues.Add("ShowAll", Model.ShowAll);
+    routeValues.Add("OrderBy", Model.OrderBy);
+    routeValues.Add("ItemsPerPage", Model.ItemsPerPage);
+    routeValues.Add("ASC", Model.ASC);
+    routeValues.Add("Query", Model.Query);
+}
+@{ if (!Model.ShowAll)
+   {
+    <div id="pager">
+        @Ajax.Pager((int)Model.Page, (int)Model.TotalRecords, "ajax_content", routeValues, "MembershipRole", "List", (int)Model.ItemsPerPage)
+    </div>   
+    }
+}
+<hr />
+
+@using (Ajax.BeginForm("List", "MembershipRole", null, new AjaxOptions { UpdateTargetId = "ajax_content", HttpMethod = "POST", OnFailure = "OnFailure" }))
+{    
+     @Html.HiddenFor(x => x.Page);                            
+     @Html.HiddenFor(x => x.TotalRecords);
+     @Html.HiddenFor(x => x.Query);
+     
+     
+     <p>Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
+     Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
+     Pokaż wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
+    <input type="submit" value="OK" />
+    </p>  
+}
+
+@Ajax.ActionLink("Powrót", "Index", "MembershipRole", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })
+<br />
+</div>

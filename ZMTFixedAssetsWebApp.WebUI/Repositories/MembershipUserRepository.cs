@@ -13,9 +13,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
     public class MembershipUserRepository : IRepository<MembershipUserModel>
     {
         //Membership.GetAllUsers().Cast<MembershipUser>().AsQueryable<MembershipUser>(), page.HasValue ? page.Value : 0, 10);
-        //
-        
-  
+
         public IQueryable<MembershipUserModel> Repository
         {
             get 

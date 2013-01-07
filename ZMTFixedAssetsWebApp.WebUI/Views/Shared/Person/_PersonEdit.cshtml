@@ -1,7 +1,7 @@
 ﻿@model ZMTFixedAssetsWebApp.Domain.Model.PersonSectionAddEditModel
  
 <p class='header'>Edytowanie pracownika <b>@Model.id </b</p>
-@using (Ajax.BeginForm("Edit", "Person", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/Person/Index')" }, new { @id = "form_unobtrusive" }))
+@using (Ajax.BeginForm("Edit", "Person", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/Person')" }, new { @id = "form_unobtrusive" }))
 { 
     @Html.ValidationSummary(true);
     <table width="100%">
@@ -44,7 +44,9 @@
     </table>   
     <hr />
     
-    <input type=submit class='submitButton' value="Zapisz zmiany" />
-    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @onclick = "raiseCounter()", @rel = "ajax" })
-}
+    <p class="centre_object"><input type=submit class='submitButton' value="Zapisz zmiany" />
+    @Ajax.ActionLink("Anuluj", "Index", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+
+    </p>
+    }
 

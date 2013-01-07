@@ -5,7 +5,7 @@
 }
 
 
-<table width="100%">
+<table class="list_table" width="100%">
     <thead>
         <tr class='table_head_list'>
             <th rowspan="2"></th>
@@ -31,7 +31,7 @@
             foreach (var user in Model.List)
             {
         <tr>
-            <td>@Ajax.ActionLink("Details", "Edit", new { username = @user.UserName }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@Ajax.ActionLink("Edytuj", "Edit", new { username = @user.UserName }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
             <td>@user.UserName</td>
             <td>@user.Email</td>
             <td>@user.CreationDate.ToShortDateString()</td>
@@ -87,7 +87,7 @@
     </p>  
 }
 
-@Ajax.ActionLink("Powrót", "Index", "MembershipUser", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new {  @onclick = "raiseCounter()", @rel = "ajax" })
+@Ajax.ActionLink("Powrót", "Index", "MembershipUser", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })
 <br />
 </div>
 

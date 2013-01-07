@@ -3,5 +3,13 @@
 }
 
 <div id="ajax_main_content">
-    @Html.Partial("MembershipUser/_MembershipUserList") 
+        <script type="text/javascript">
+        $(document).ready(function (e) {     
+               global_url_getjson_sortby = "/MembershipUser/SortByList";
+               $.getScript("@Url.Content("~/Scripts/MyScripts/membershipuser.scripts.js")", function (x) {
+                });  
+        });
+        </script>
+        @Html.Partial("MembershipUser/_MembershipUserIndex") 
+
 </div>

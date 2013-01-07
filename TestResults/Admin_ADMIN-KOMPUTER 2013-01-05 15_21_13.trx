@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="7d8957ed-f414-4029-a89a-ef8088c7fcb0" name="Admin@ADMIN-KOMPUTER 2013-01-05 15:21:13" runUser="Admin-Komputer\Admin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f6c044c9-0e3f-4f1b-8ba3-a15348056ed4">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Admin_ADMIN-KOMPUTER 2013-01-05 15_21_13">
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\bin\ZMTFixedAssetsWebApp.WebUI.dll" />
+      <DeploymentItem filename="D:\c#\Ninject.dll" />
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.Domain\bin\Debug\ZMTFixedAssetsWebApp.Domain.dll" />
+      <DeploymentItem filename="D:\c#\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-01-05T15:21:13.7931198+01:00" queuing="2013-01-05T15:21:13.9901311+01:00" start="2013-01-05T15:21:14.0301334+01:00" finish="2013-01-05T15:21:15.0711929+01:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CantDeletePerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="c97fa15e-5564-602b-e2d0-4994dbbfb87b">
+      <Execution id="d43cc723-d0b0-4b4e-9387-2a6ef253fbdc" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantDeletePerson" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="c97fa15e-5564-602b-e2d0-4994dbbfb87b" executionId="d43cc723-d0b0-4b4e-9387-2a6ef253fbdc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="d43cc723-d0b0-4b4e-9387-2a6ef253fbdc" testId="c97fa15e-5564-602b-e2d0-4994dbbfb87b" testName="CantDeletePerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.3056237" startTime="2013-01-05T15:21:14.0771361+01:00" endTime="2013-01-05T15:21:15.0271904+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d43cc723-d0b0-4b4e-9387-2a6ef253fbdc">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest.CantDeletePerson threw exception: 
+System.NotSupportedException: Invalid setup on a non-virtual (overridable in VB) member: x =&gt; x.Headers["X-Requested-With"]</Message>
+          <StackTrace>    at Moq.Mock.ThrowIfCantOverride(Expression setup, MethodInfo method)
+   at Moq.Mock.&lt;&gt;c__DisplayClass1c`2.&lt;Setup&gt;b__1b()
+   at Moq.PexProtector.Invoke[T](Func`1 function)
+   at Moq.Mock.Setup[T,TResult](Mock mock, Expression`1 expression, Func`1 condition)
+   at Moq.Mock.&lt;&gt;c__DisplayClass1f`2.&lt;SetupGet&gt;b__1e()
+   at Moq.PexProtector.Invoke[T](Func`1 function)
+   at Moq.Mock.SetupGet[T,TProperty](Mock mock, Expression`1 expression, Func`1 condition)
+   at Moq.Mock`1.SetupGet[TProperty](Expression`1 expression)
+   at ZMTFixedAssetsWebApp.UnitTests.PersonUnitTest.CantDeletePerson() in C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\PersonUnitTest.cs:line 163
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

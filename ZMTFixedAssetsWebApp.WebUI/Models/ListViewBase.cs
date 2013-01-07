@@ -35,7 +35,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Models
             string[] split = query.Split(',');
             foreach (var x in split)
             {
-                string[] s = x.Split(':');
+                string[] s = x.Split(new char [] {':'}, 2);
 
                 if (s.Length > 1) { temp.Add(s[0], s[1]); }
             }
@@ -60,7 +60,5 @@ namespace ZMTFixedAssetsWebApp.WebUI.Models
         {
             return ItemsPerPageList.Exists(x => x.Value == ItemsPerPage.ToString());
         }
-
-        //
     }
 }

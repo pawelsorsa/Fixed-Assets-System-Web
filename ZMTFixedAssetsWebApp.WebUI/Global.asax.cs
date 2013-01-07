@@ -36,13 +36,13 @@ namespace ZMTFixedAssetsWebApp.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-          
+
             routes.MapRoute(
                null,                                           // Route name
-               "Person/Index",                                      // URL with parameters
+               "Person",                                      // URL with parameters
                new { controller = "Person", action = "Index", sortby = UrlParameter.Optional }
             );
-            
+
             routes.MapRoute(
                null,                                           // Route name
                "Person/List",                                      // URL with parameters
@@ -52,28 +52,23 @@ namespace ZMTFixedAssetsWebApp.WebUI
             routes.MapRoute(
              null,                                           // Route name
              "Person/List/{page}",                                      // URL with parameters
-             new { controller = "Person", action = "List", section = (string)null, page = UrlParameter.Optional, sortby = UrlParameter.Optional },
+             new { controller = "Person", action = "List", page = UrlParameter.Optional, sortby = UrlParameter.Optional },
              new { page = @"^\d{1,3}$" }
             );
 
             routes.MapRoute(
-               null,                                           // Route name
-               "Person/List/{section}",                                      // URL with parameters
-               new { controller = "Person", action = "List", section = UrlParameter.Optional, page = 1 }
-            );
+              null,                                           // Route name
+              "Person/Edit/{id}",                                      // URL with parameters
+              new { controller = "Person", action = "Edit", id = UrlParameter.Optional }
+              );
 
-            routes.MapRoute(
-               null,                                           // Route name
-               "Person/List/{section}/{page}",                                      // URL with parameters
-               new { controller = "Person", action = "List", section = UrlParameter.Optional, page = 1 }
-            );
 
             routes.MapRoute(
              null,                                           // Route name
-             "Person/Edit/{id}",                                      // URL with parameters
-             new { controller = "Person", action = "Edit", id = UrlParameter.Optional },
-             new { id = @"^\d{1,3}$" }
+             "Person/Delete/{id}",                                      // URL with parameters
+             new { controller = "Person", action = "Delete", id = UrlParameter.Optional }
              );
+
 
             routes.MapRoute(
                 "SortByList",
@@ -91,7 +86,7 @@ namespace ZMTFixedAssetsWebApp.WebUI
 
             routes.MapRoute(
             null,                                           // Route name
-            "MembershipUser/Index",                                      // URL with parameters
+            "MembershipUser",                                      // URL with parameters
             new { controller = "MembershipUser", action = "Index", sortby = UrlParameter.Optional }
             );
 
@@ -111,14 +106,10 @@ namespace ZMTFixedAssetsWebApp.WebUI
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Person", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
           
-
-           
-
-
         }
 
         protected void Application_Start()

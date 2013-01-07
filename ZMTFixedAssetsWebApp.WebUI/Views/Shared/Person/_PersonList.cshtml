@@ -1,5 +1,6 @@
 ﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.Domain.Model.PersonSectionModel>
-<table id="person-list-table" width="100%">
+
+<table class="list_table" width="100%">
             <thead>
                 <tr class='table_head_list'>
                     <th width="4%">ID</th>
@@ -25,9 +26,9 @@
             <td>@x.email</td>
             <td>@x.phone_number</td>
             <td>@x.phone_number2</td>
-            <td>@Ajax.ActionLink("Edytuj", "Edit", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @onclick = "raiseCounter()", @rel = "ajax" })</td>
-            <td>@Ajax.ActionLink("Usuń", "Delete", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @onclick = "raiseCounter()", @rel = "ajax" })</td>
-     </tr>
+            <td>@Ajax.ActionLink("Edytuj", "Edit",  new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@Ajax.ActionLink("Usuń", "Delete", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+        </tr>
 }
     </tbody>
 </table>
@@ -44,7 +45,7 @@
     <div id="pager">
         @Ajax.Pager((int)Model.Page, (int)Model.TotalRecords, "ajax_content", routeValues, "Person", "List", (int)Model.ItemsPerPage)
     </div>   
-    }
+   }
 }
 <hr />
 
@@ -55,7 +56,7 @@
      @Html.HiddenFor(x => x.Query);
      
      
-     <p>@Ajax.ActionLink("Dodaj pracownika", "Add", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "add_employee_btn", @onclick = "raiseCounter()", @rel = "ajax" })Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     <p>@Ajax.ActionLink("Dodaj pracownika", "Add", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "add_employee_btn", @rel = "ajax" })Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
      Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
      Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
      Pokaż wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
@@ -63,5 +64,5 @@
     </p>  
 }
 
-@Ajax.ActionLink("Powrót", "Index", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new {  @onclick = "raiseCounter()", @rel = "ajax" })
+@Ajax.ActionLink("Powrót", "Index", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })
 <br />

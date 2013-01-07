@@ -10,15 +10,20 @@
 });
 
 function LoadHistory(url) {
-    if (window.location.pathname == "/") {
-        $.history.load(url);
-        $('#ajax_main_content').hide();
-        $('#loading').show();
-        getPage(url);
-    }
-    else {
-        window.location.href = "/";
-    }
+    $.history.load(url);
+    $('#ajax_main_content').hide();
+    $('#loading').show();
+    getPage(url);
+
+//    if (window.location.pathname == "/") {
+//        $.history.load(url);
+//        $('#ajax_main_content').hide();
+//        $('#loading').show();
+//        getPage(url);
+//    }
+//    else {
+//        window.location.href = "/";
+//    }
 }
 
 function pageload(hash) {

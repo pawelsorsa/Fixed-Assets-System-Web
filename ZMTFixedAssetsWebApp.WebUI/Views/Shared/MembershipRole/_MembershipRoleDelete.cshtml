@@ -1,0 +1,14 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.DeleteObjectByName
+
+<p class='header'>Usuwanie roli <b>@Model.Name </b</p>
+<p>@Model.Description</p>
+
+@using (Ajax.BeginForm("Delete", "MembershipRole", @Model, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/MembershipRole')" }, new { @id = "form_unobtrusive" }))
+{   
+    <hr />
+    <p class="centre_object">
+        <input type=submit class='submitButton' onclick="LoadHistory('/MembershipRole/Index')" value="TAK" />
+        @Ajax.ActionLink("NIE", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure"  }, new { @class = "submitButton",  @rel = "ajax" })
+    </p>
+}
+    

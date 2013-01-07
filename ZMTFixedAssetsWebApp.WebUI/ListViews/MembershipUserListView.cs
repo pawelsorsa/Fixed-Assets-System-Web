@@ -22,13 +22,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
         public override List<SelectListItem> OrderByList()
         {
             List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "UserName", Value = "UserName" });
+            items.Add(new SelectListItem { Text = "Nazwa użytkownika", Value = "UserName" });
             items.Add(new SelectListItem { Text = "Email", Value = "Email" });
-            items.Add(new SelectListItem { Text = "CreationDate", Value = "CreationDate" });
-            items.Add(new SelectListItem { Text = "LastLoginDate", Value = "LastLoginDate" });
-            items.Add(new SelectListItem { Text = "LastActivityDate", Value = "LastActivityDate" });
-            items.Add(new SelectListItem { Text = "LastLockoutDate", Value = "LastLockoutDate" });
-            items.Add(new SelectListItem { Text = "IsOnline", Value = "IsOnline" });
+            items.Add(new SelectListItem { Text = "Data utworzenia", Value = "CreationDate" });
+            items.Add(new SelectListItem { Text = "Data ostatniego logowania", Value = "LastLoginDate" });
             return items;
         }
 
@@ -41,7 +38,26 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
 
             if (QueryList.Count != 0)
             {
+                string UserName, Email, CreationDate, LastLoginDate;
                 
+                UserName = Email = CreationDate = LastLoginDate = "";
+                QueryList.TryGetValue("UserName", out UserName);
+                QueryList.TryGetValue("Email", out Email);
+                QueryList.TryGetValue("CreationDate", out CreationDate);
+                QueryList.TryGetValue("LastLoginDate", out LastLoginDate);
+                
+                DateTime _LastLoginDate;
+                DateTime.TryParse(LastLoginDate, out _LastLoginDate);
+                DateTime _CreationDate;
+                DateTime.TryParse(CreationDate, out _CreationDate);
+                
+
+                usersList = usersList.Where(x =>
+                    (UserName != null ? x.UserName == UserName : x.UserName != "") &&
+                    (Email != null ? x.Email == Email : x.Email != "") &&
+                    (LastLoginDate != null ? x.LastLoginDate.ToShortDateString() == _LastLoginDate.ToShortDateString() : x.LastLoginDate != null) &&
+                    (CreationDate != null ? x.CreationDate.ToShortDateString() == _CreationDate.ToShortDateString() : x.CreationDate != null)
+                    ).ToList();
             }
             else
             {

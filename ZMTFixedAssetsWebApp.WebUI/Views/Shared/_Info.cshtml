@@ -3,8 +3,14 @@
     ViewBag.Title = "Info";
 }
 
-<h2>Info</h2>
+<h2>Info</h2
 <p>@Model.Description</p>
 
-@Ajax.ActionLink("Powrót", @Model.Action, @Model.Controller, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" })
+@{ 
+    string action = @Model.Action;
+    string controller = @Model.Controller;
+ }
+
+
+@Ajax.ActionLink("Powrót", action, controller, null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })
 

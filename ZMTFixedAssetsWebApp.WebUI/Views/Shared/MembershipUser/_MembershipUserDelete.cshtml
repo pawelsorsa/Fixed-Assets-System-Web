@@ -4,8 +4,11 @@
 <p>@Model.Description</p>
 
 @using (Ajax.BeginForm("Delete", "MembershipUser", @Model, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/MembershipUser/Index')" }, new { @id = "form_unobtrusive" }))
-{
-    <input type=submit class='submitButton' onclick="LoadHistory('/MembershipUser/Index')" value="TAK" />
-    @Ajax.ActionLink("NIE", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure"  }, new { @class = "submitButton",  @rel = "ajax" })
+{   
+    <hr />
+    <p class="centre_object">
+        <input type=submit class='submitButton' onclick="LoadHistory('/MembershipUser/Index')" value="TAK" />
+        @Ajax.ActionLink("NIE", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure"  }, new { @class = "submitButton",  @rel = "ajax" })
+    </p>
 }
     

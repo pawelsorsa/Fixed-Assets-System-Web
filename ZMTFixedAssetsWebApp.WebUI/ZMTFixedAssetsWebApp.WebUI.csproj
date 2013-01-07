@@ -69,6 +69,8 @@
     <Compile Include="ActionFilters\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MembershipRoleController.cs" />
     <Compile Include="Controllers\MembershipUserController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="LinqHelpers\LinqHelpers.cs" />
+    <Compile Include="ListViews\MembershipRoleListView.cs" />
     <Compile Include="ListViews\MembershipUserListView.cs" />
     <Compile Include="ListViews\PersonListView.cs" />
     <Compile Include="MembershipProviders\CustomRoleProvider.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="Models\ListViewAsCollectionModel.cs" />
     <Compile Include="Models\ListViewBase.cs" />
     <Compile Include="Models\ListViewModel.cs" />
+    <Compile Include="Models\MembershipRoleModel.cs" />
     <Compile Include="Models\MembershipUserModel.cs" />
     <Compile Include="Models\PaginatedListModel.cs" />
     <Compile Include="Models\HandleErrorInfo.cs" />
@@ -99,6 +103,7 @@
     <Compile Include="Models\PersonSectionModel.cs" />
     <Compile Include="Models\SubscribeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MembershipRoleRepository.cs" />
     <Compile Include="Repositories\MembershipUserRepository.cs" />
     <Compile Include="Repositories\SectionRepository.cs" />
     <Compile Include="Repositories\DbContext.cs" />
@@ -149,8 +154,8 @@
     <Content Include="Scripts\MyScripts\jquery.history.js" />
     <Content Include="Scripts\MyScripts\jquery.livequery.js" />
     <Content Include="Scripts\MyScripts\hash.history.js" />
+    <Content Include="Scripts\MyScripts\membershipuser.scripts.js" />
     <Content Include="Scripts\MyScripts\person.scripts.js" />
-    <Content Include="Scripts\Test.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -246,12 +251,23 @@
     <Content Include="Views\MembershipUser\Edit.cshtml" />
     <Content Include="Views\MembershipUser\Delete.cshtml" />
     <Content Include="Views\MembershipUser\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\MembershipUser\AccessDenied.cshtml" />
+    <Content Include="Views\MembershipRole\Index.cshtml" />
+    <Content Include="Views\MembershipRole\Edit.cshtml" />
+    <Content Include="Views\MembershipRole\List.cshtml" />
+    <Content Include="Views\MembershipRole\Delete.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\MembershipUser\_MembershipUserList.cshtml" />
     <Content Include="Views\Shared\MembershipUser\_MembershipUserEdit.cshtml" />
     <Content Include="Views\Shared\MembershipUser\_MembershipUserDelete.cshtml" />
     <Content Include="Views\Shared\MembershipUser\_MembershipUserIndex.cshtml" />
+    <Content Include="Views\Shared\Home\_Index.cshtml" />
+    <Content Include="Views\Shared\MembershipRole\_MembershipRoleEdit.cshtml" />
+    <Content Include="Views\Shared\MembershipRole\_MembershipRoleIndex.cshtml" />
+    <Content Include="Views\Shared\MembershipRole\_MembershipRoleList.cshtml" />
+    <Content Include="Views\Shared\MembershipRole\_MembershipRoleDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Error\_ErrorIndex.cshtml" />

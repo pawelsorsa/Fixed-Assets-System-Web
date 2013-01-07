@@ -54,14 +54,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Models
             LoadCheckBoxList();      
         }
 
-
         private void LoadCheckBoxList()
         {
             SubscriptionSources = new SelectList(Roles.GetAllRoles());
             SelectedSources = Roles.GetRolesForUser(UserName);
-        }
-
-        
-       
+        }       
     }
 }

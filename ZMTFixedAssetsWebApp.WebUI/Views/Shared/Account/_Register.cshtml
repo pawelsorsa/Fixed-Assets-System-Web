@@ -12,8 +12,8 @@
     Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.
 </p>
 
-
-@using(Ajax.BeginForm("Register", "Account", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/Person/Index')" }, new { @id = "form_unobtrusive" }))
+@*@using(Ajax.BeginForm("Register", "Account", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" } ))*@
+@using(Html.BeginForm("Register", "Account", null))
 {
     @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
     <div>

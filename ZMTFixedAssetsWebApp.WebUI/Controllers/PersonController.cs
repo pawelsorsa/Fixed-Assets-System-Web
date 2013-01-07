@@ -44,7 +44,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             return View(model.CreateListModel(1, false, "name", 10, false, false, ""));
         }
 
-     //   [ZMTFixedAssetsWebApp.WebUI.ActionFilters.AccessDeniedAuthorize(Roles="Admins")]
+        [ZMTFixedAssetsWebApp.WebUI.ActionFilters.AccessDeniedAuthorize(Roles="Admins")]
         [HttpGet]
         public ActionResult Edit(int id)
         {

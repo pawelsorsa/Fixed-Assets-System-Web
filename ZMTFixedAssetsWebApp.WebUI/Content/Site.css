@@ -288,11 +288,16 @@ a.link
 }
 
 
-#person-list-table tr td
+.list_table tr td
 {
     border: 1px solid black;
     text-align: center;
     background-color: #ffc;  
+}
+
+.centre_object
+{
+    text-align: center;
 }
 
 .table_head_list
@@ -417,4 +422,19 @@ a.link
 #logindisplay a
 {
     color: White;
+}
+
+.title_page
+{
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    background-color: Black;
+    margin-top: 1px;
+    margin-bottom: 2px;
+    margin-right: 1px;
+    margin-left: 1px;
+    padding: 12px;
+    font-family:Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }

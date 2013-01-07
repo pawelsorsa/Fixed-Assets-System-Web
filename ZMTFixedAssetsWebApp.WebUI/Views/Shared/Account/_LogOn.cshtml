@@ -7,13 +7,13 @@
 <h2>Log On</h2>
 <p>
 
-    Please enter your user name and password.  @Ajax.ActionLink("Register", "Register", "Account", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @onclick = "raiseCounter()", @rel = "ajax" }) if you don't have an account.
+    Please enter your user name and password.  @Ajax.ActionLink("Register", "Register", "Account", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" }) if you don't have an account.
 </p>
 
 
 @Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
 
-@using (Ajax.BeginForm("LogOn", "Account", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteLogOnLogout('/Person/Index')" }, new { @id = "form_unobtrusive", @rel = "xxx" }))
+@using (Html.BeginForm("LogOn", "Account", null))
 {
     <div>
         <fieldset>
