@@ -4,11 +4,11 @@
     ViewBag.Title = "Edit";
 }
 
-<p class='header'>Edytowanie użytkownika <b>@Model.UserName </b</p>
-@using (Ajax.BeginForm("Edit", "MembershipUser", new { username = Model.UserName }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/MembershipUser/Index')" }, new { @id = "form_unobtrusive" }))
+<p class='header'>Edytowanie użytkownika <b>@Model.UserName </b></p>
+
+@using (Ajax.BeginForm("Edit", "MembershipUser", new { username = Model.UserName }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/MembershipUser')" }, new { @id = "form_unobtrusive" }))
 {
   <table align="center" width="100%">
-    <tbody>
     <tr>
         <th>User Name:</th>
         <td>@Html.TextBoxFor(x => x.UserName, new { @disabled = true })</td>
@@ -54,16 +54,14 @@
            <hr />
         </td>
     </tr>
-    </tbody>
   
-    <tfoot>
+
     <tr>
         <td colspan="4" align="center"> 
     <input type=submit class='submitButton' value="Zapisz zmiany" />
     @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
 </td>
     </tr>
-    </tfoot>
 </table>
 
 

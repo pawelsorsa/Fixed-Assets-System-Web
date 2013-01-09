@@ -21,10 +21,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
         public override List<SelectListItem> OrderByList()
         {
             List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "Nazwa użytkownika", Value = "UserName" });
-            items.Add(new SelectListItem { Text = "Email", Value = "Email" });
-            items.Add(new SelectListItem { Text = "Data utworzenia", Value = "CreationDate" });
-            items.Add(new SelectListItem { Text = "Data ostatniego logowania", Value = "LastLoginDate" });
+            items.Add(new SelectListItem { Text = "Nazwa roli", Value = "Name" });
             return items;
         }
 
@@ -37,21 +34,13 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
 
             if (QueryList.Count != 0)
             {
-                string UserName, Email, CreationDate, LastLoginDate;
+                string UserName, RoleName;
 
-                UserName = Email = CreationDate = LastLoginDate = "";
-                QueryList.TryGetValue("UserName", out UserName);
-                QueryList.TryGetValue("Email", out Email);
-                QueryList.TryGetValue("CreationDate", out CreationDate);
-                QueryList.TryGetValue("LastLoginDate", out LastLoginDate);
-
-                DateTime _LastLoginDate;
-                DateTime.TryParse(LastLoginDate, out _LastLoginDate);
-                DateTime _CreationDate;
-                DateTime.TryParse(CreationDate, out _CreationDate);
-
-
-                rolesList = rolesList.Where(x =>  x.Name == UserName).ToList();
+                UserName = RoleName = "";
+                QueryList.TryGetValue("Name", out RoleName);
+                
+                rolesList = rolesList.Where(x =>
+                    (RoleName != null ? x.Name == RoleName : x.Name != "")).ToList();
             }
             else
             {

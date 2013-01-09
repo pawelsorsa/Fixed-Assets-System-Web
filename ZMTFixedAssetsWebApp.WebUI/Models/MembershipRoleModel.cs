@@ -4,11 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.ComponentModel.DataAnnotations;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Models
 {
     public class MembershipRoleModel
     {
+        [Required(ErrorMessage = "Pole nazwa jest wymanage")]
+        [StringLength(20, ErrorMessage = "Nazwa roli powinno zawierać maksymalnie 30 znaków")]
         public string Name { get; set; }
         public string [] Users { get; set; }
         public SelectList SubscriptionSources { get; set; } // This property contains the available options

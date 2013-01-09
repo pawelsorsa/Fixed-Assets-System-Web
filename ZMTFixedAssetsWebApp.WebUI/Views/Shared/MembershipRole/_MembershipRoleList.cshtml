@@ -1,5 +1,7 @@
-﻿<div id="ajax_context">
-@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.WebUI.Models.MembershipRoleModel>
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.WebUI.Models.MembershipRoleModel>
+
+<div id="ajax_content">
+
 @{
     ViewBag.Title = "Lista roli";
 }
@@ -7,8 +9,8 @@
 <table class="list_table" width="100%">
             <thead>
                 <tr class='table_head_list'>
-                    <th width="15%">Nazwa</th>
-                    <th width="75%">Użytkownicy</th>
+                    <th width="25%">Nazwa</th>
+                    <th width="65%">Użytkownicy</th>
                     <th width="5%">Edytuj</th>
                     <th width="5%">Usuń</th>
                 </tr>
@@ -22,11 +24,12 @@
             <td>
                 @foreach (var user in @x.Users)
                 {
-                    @Html.ActionLink(" [" + user + "] ", "Edit", "MembershipUser", new { username = user }, null)
+                    @Html.ActionLink(" [" + user + "]", "Index", "MembershipUser", null, null, "MembershipUser/Edit/" + user + "", null, null);
+                    // @Html.ActionLink(" [" + user + "] ", "Edit", "MembershipUser", new { username = user }, null)                                                 
                 }
 
             </td>
-            <td>@Ajax.ActionLink("Edytuj", "Edit",  new { RoleName = @x.Name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@Ajax.ActionLink("Edytuj", "Edit", "MembershipRole", new { RoleName = @x.Name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
             <td>@Ajax.ActionLink("Usuń", "Delete", new { RoleName = @x.Name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
             
         </tr>
@@ -56,8 +59,8 @@
      @Html.HiddenFor(x => x.TotalRecords);
      @Html.HiddenFor(x => x.Query);
      
-     
-     <p>Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     <p>@Ajax.ActionLink("Dodaj role", "Add", "MembershipRole", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "add_employee_btn", @rel = "ajax" })
+     Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
      Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
      Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
      Pokaż wszystkie: @Html.CheckBoxFor(x => x.ShowAll)

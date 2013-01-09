@@ -103,6 +103,27 @@ namespace ZMTFixedAssetsWebApp.WebUI
             );
 
 
+            // **************** MEMEBERSHIPROLE ************************************
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "MembershipRole",                                      // URL with parameters
+            new { controller = "MembershipRole", action = "Index", sortby = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "MembershipRole/Delete/{RoleName}",                                      // URL with parameters
+            new { controller = "MembershipRole", action = "Delete", RoleName = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "MembershipRole/Edit/{RoleName}",                                      // URL with parameters
+            new { controller = "MembershipRole", action = "Edit", username = UrlParameter.Optional }
+            );
+
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

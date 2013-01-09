@@ -3,7 +3,7 @@
 <p class='header'>Usuwanie pracownika <b>@Model.Id </b</p>
 <p>@Model.Description</p>
 
-@using (Ajax.BeginForm("Delete", "Person", new { id = @Model.Id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/Person')" }, new { @id = "form_unobtrusive" }))
+@using (Ajax.BeginForm("Delete", "Person", new { id = @Model.Id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @id = "form_unobtrusive" }))
 {
     <hr />
     <p class="centre_object">

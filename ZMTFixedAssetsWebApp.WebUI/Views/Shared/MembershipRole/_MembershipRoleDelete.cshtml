@@ -3,7 +3,7 @@
 <p class='header'>Usuwanie roli <b>@Model.Name </b</p>
 <p>@Model.Description</p>
 
-@using (Ajax.BeginForm("Delete", "MembershipRole", @Model, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/MembershipRole')" }, new { @id = "form_unobtrusive" }))
+@using (Ajax.BeginForm("Delete", "MembershipRole", @Model, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @id = "form_unobtrusive" }))
 {   
     <hr />
     <p class="centre_object">

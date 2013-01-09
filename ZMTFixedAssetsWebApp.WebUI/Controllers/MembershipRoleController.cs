@@ -9,6 +9,7 @@ using ZMTFixedAssetsWebApp.WebUI.Models;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 {
+    [ZMTFixedAssetsWebApp.WebUI.ActionFilters.AccessDeniedAuthorize(Roles = "Admins")]
     public class MembershipRoleController : Controller
     {
         //
@@ -45,7 +46,12 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             return View(membershipRoleListView.CreateListModel(Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query));
         }
 
-
+        [HttpPost]
+        public ActionResult List(PaginatedListModel<MembershipRoleModel> model, FormCollection collection)
+        {
+            model.Page = 1;
+            return RedirectToAction("List", model);
+        }
 
         [HttpGet]
         public ActionResult Edit(string RoleName)
@@ -82,6 +88,63 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             membershipRoleRepository.EditObject(model);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            MembershipRoleModel model = new MembershipRoleModel();
+            
+                model.LoadCheckBoxList();
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("MembershipRole/_MembershipRoleAdd", model);
+                }
+                return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult Add(MembershipRoleModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (membershipRoleRepository.Repository.Any(x => x.Name == model.Name))
+                {
+                    InfoModel info_model = new InfoModel()
+                    {
+                        Description = "Podana rola istnieje. Proszę podać inną nazwę.",
+                        Action = "Index",
+                        Controller = "MembershipRole"
+                    };
+                    if (Request.IsAjaxRequest())
+                    {
+                        return PartialView("_Info", info_model);
+                    }
+                    return View("Info", info_model);
+                }
+                else
+                {
+                    try
+                    {
+                        membershipRoleRepository.AddObject(model);
+                        return RedirectToAction("Index");
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Wystąpił błąd podczas dodawania roli. Proszę o kontakt z administratorem. Error message: " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("MembershipRole/_MembershipRoleAdd", model);
+                }
+                return View(model);
+            }
+
         }
 
 
@@ -138,5 +201,15 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             }
         }
 
+
+        public JsonResult SortByList()
+        {
+            IQueryable list = membershipRoleListView.OrderByList().AsQueryable();
+
+            return Json(new SelectList(
+                            list,
+                            "Value",
+                            "Text"), JsonRequestBehavior.AllowGet);
+        }
     }
 }

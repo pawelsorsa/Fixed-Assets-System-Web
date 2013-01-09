@@ -3,7 +3,7 @@
 <p class='header'>Usuwanie użytkownika <b>@Model.Name </b</p>
 <p>@Model.Description</p>
 
-@using (Ajax.BeginForm("Delete", "MembershipUser", @Model, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/MembershipUser/Index')" }, new { @id = "form_unobtrusive" }))
+@using (Ajax.BeginForm("Delete", "MembershipUser", @Model, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @id = "form_unobtrusive" }))
 {   
     <hr />
     <p class="centre_object">

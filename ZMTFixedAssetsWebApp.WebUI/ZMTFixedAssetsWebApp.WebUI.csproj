@@ -85,7 +85,8 @@
     <Compile Include="ListViews\MembershipRoleListView.cs" />
     <Compile Include="ListViews\MembershipUserListView.cs" />
     <Compile Include="ListViews\PersonListView.cs" />
-    <Compile Include="MembershipProviders\CustomRoleProvider.cs" />
+    <Compile Include="ListViews\SectionListView.cs" />
+    <Compile Include="Controllers\MembershipProviders\CustomRoleProvider.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DeleteObjectByName.cs" />
     <Compile Include="Models\CountRecordsAndCreateListModel.cs" />
@@ -150,6 +151,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\MyScripts\section.scripts.js" />
+    <Content Include="Scripts\MyScripts\membershiprole.scripts.js" />
     <Content Include="Scripts\MyScripts\global.scripts.js" />
     <Content Include="Scripts\MyScripts\jquery.history.js" />
     <Content Include="Scripts\MyScripts\jquery.livequery.js" />
@@ -257,6 +260,9 @@
     <Content Include="Views\MembershipRole\Edit.cshtml" />
     <Content Include="Views\MembershipRole\List.cshtml" />
     <Content Include="Views\MembershipRole\Delete.cshtml" />
+    <Content Include="Views\MembershipRole\Add.cshtml" />
+    <Content Include="Views\Section\Index.cshtml" />
+    <Content Include="Views\Section\List.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\MembershipUser\_MembershipUserList.cshtml" />
@@ -268,6 +274,9 @@
     <Content Include="Views\Shared\MembershipRole\_MembershipRoleIndex.cshtml" />
     <Content Include="Views\Shared\MembershipRole\_MembershipRoleList.cshtml" />
     <Content Include="Views\Shared\MembershipRole\_MembershipRoleDelete.cshtml" />
+    <Content Include="Views\Shared\MembershipRole\_MembershipRoleAdd.cshtml" />
+    <Content Include="Views\Shared\Section\_SectionIndex.cshtml" />
+    <Content Include="Views\Shared\Section\_SectionList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Error\_ErrorIndex.cshtml" />

@@ -38,6 +38,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 
         public void DeleteObject(MembershipUserModel obj)
         {
+            Roles.RemoveUserFromRoles(obj.UserName, Roles.GetRolesForUser(obj.UserName));
             Membership.DeleteUser(obj.UserName);
         }
 

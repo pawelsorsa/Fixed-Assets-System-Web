@@ -11,16 +11,16 @@ namespace ZMTFixedAssetsWebApp.WebUI.ActionFilters
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
-            /*
+            
             if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 filterContext.Result = new RedirectResult("~/Account/LogOn");
                 return;
             }
-            */
+            
             if (filterContext.Result is HttpUnauthorizedResult)
             {
-                filterContext.Result = new RedirectResult("~/Account/AccessDenied");
+                 filterContext.Result = new RedirectResult("~/Account/AccessDenied");
             }
         }
     }

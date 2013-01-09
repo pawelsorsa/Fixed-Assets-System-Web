@@ -29,10 +29,15 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
         public void AddObject(MembershipRoleModel obj)
         {
             Roles.CreateRole(obj.Name);
+            if (obj.SelectedSources.Count() > 0)
+            {
+                Roles.AddUsersToRole(obj.SelectedSources.ToArray(), obj.Name);
+            }
         }
 
         public void DeleteObject(MembershipRoleModel obj)
         {
+            Roles.RemoveUsersFromRole(Roles.GetUsersInRole(obj.Name), obj.Name);
             Roles.DeleteRole(obj.Name);
         }
 

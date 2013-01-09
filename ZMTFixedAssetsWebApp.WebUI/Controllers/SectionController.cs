@@ -5,28 +5,58 @@ using System.Web;
 using System.Web.Mvc;
 using ZMTFixedAssetsWebApp.Domain.Abstract;
 using ZMTFixedAssetsWebApp.Domain.Model;
+using ZMTFixedAssetsWebApp.WebUI.ListViews;
+using ZMTFixedAssetsWebApp.WebUI.Models;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 {
     public class SectionController : Controller
     {
-        public IRepository<Section> repository;
+        public IRepository<Section> sectionRepository;
+        private SectionListView sectionListView;
+
 
         public SectionController(IRepository<Section> repo)
         {
-            repository = repo;
+            sectionRepository = repo;
+            sectionListView = new SectionListView(sectionRepository);
         }
 
         public ActionResult Index()
         {
-            return View();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Section/_SectionIndex", sectionListView.CreateListModel(1, false, "Id", 10, false, false, ""));
+            }
+
+            return View(sectionListView.CreateListModel(1, false, "Id", 10, false, false, ""));
+        }
+
+
+        [HttpGet]
+        public ActionResult List(int Page = 1, bool ShowAll = false, string OrderBy = "Id", int ItemsPerPage = 10, bool ASC = false, bool Search = false, string Query = "")
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Section/_SectionList", sectionListView.CreateListModel(Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query));
+            }
+
+            return View(sectionListView.CreateListModel(Page, ShowAll, OrderBy, ItemsPerPage, ASC, Search, Query));
+        }
+
+        [HttpPost]
+        public ActionResult List(PaginatedListModel<Section> model)
+        {
+            model.Page = 1;
+            return RedirectToAction("List", model);
         }
 
 
         public Dictionary<int, string> GetAllShortNameSections()
         {
             Dictionary<int, string> list = new Dictionary<int, string>();
-            list = repository.Repository.Select(x => new { x.id, x.short_name }).Distinct().ToDictionary(f => f.id, s => s.short_name);
+            list = sectionRepository.Repository.Select(x => new { x.id, x.short_name }).Distinct().ToDictionary(f => f.id, s => s.short_name);
             return list;
         }
 
@@ -57,11 +87,19 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 
         IEnumerable<string> SectionNameList()
         {
-            IEnumerable<string> list = repository.Repository.Select(x => x.short_name).AsEnumerable();
+            IEnumerable<string> list = sectionRepository.Repository.Select(x => x.short_name).AsEnumerable();
             return list;
         }
 
+        public JsonResult SortByList()
+        {
+            IQueryable list = sectionListView.OrderByList().AsQueryable();
 
+            return Json(new SelectList(
+                            list,
+                            "Value",
+                            "Text"), JsonRequestBehavior.AllowGet);
+        }
 
 
 

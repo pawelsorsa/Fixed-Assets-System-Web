@@ -1,0 +1,26 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.Domain.Model.Section>
+@{
+    ViewBag.Title = "Lista sekcji";
+}
+
+<p class="title_page">Lista sekcji</p>
+
+<div id="search_div">
+    <img src="../../Content/images/search.png" />
+    <div id="sortby_menu">OTWÓRZ MENU WYSZUKIWANIA</div>
+</div>
+
+<div id="sortby">
+
+    <table id="mytable" class="table_centre"></table>
+    <table id="validation" class="table_center_validation"></table>
+    <div id="sortlist"></div>
+    <hr width="90%"/>
+    <div id="search_button_centre"><input type="button" class='submitButton' id='btn_search' value="WYSZUKAJ"/></div>
+</div>
+
+
+<div id="ajax_main_content">
+    @Html.Partial("Section/_SectionList", Model) 
+</div>
+

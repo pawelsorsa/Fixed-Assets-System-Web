@@ -16,6 +16,7 @@ using System.Data;
 using ZMTFixedAssetsWebApp.WebUI.ListViews;
 
 
+
 namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 {
     [HandleError]
@@ -91,7 +92,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                     personRepository.EditObject(person);
                     return RedirectToAction("Index");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw new Exception("Nie udało się edytować pracowanika. Proszę skontaktować się z administratorem");
                 }               

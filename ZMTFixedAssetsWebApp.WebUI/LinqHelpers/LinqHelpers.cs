@@ -16,14 +16,16 @@ namespace ZMTFixedAssetsWebApp.WebUI.LinqHelpers
             MemberExpression prop = null;
 
             PropertyInfo xxx = typeof(T).GetProperty(SortField);
-            
-
+           
             bool isnumeric;
-
+            
             if (xxx != null)
             {
                 isnumeric = HelperMethods.HelperMethods.IsNumeric(xxx.PropertyType);
                 prop = Expression.Property(param, SortField); //(x.property) 
+
+
+                
             }
             else
             {
@@ -32,11 +34,26 @@ namespace ZMTFixedAssetsWebApp.WebUI.LinqHelpers
             }
 
             var exp = Expression.Lambda(prop, param); // x => x.property
+            Expression expr;
+            if (isnumeric)
+            {
+                 expr = Expression.Constant(0); // x.parameter == 0 
+            }
+            else if (xxx.PropertyType == typeof(bool))
+            {
+                expr = Expression.Constant(new bool());
+            }
+            else if (xxx.PropertyType == typeof(DateTime))
+            {
+                expr = Expression.Constant(new DateTime());
+            }
+            else
+            {
+                 expr = Expression.Constant(null);
+            }
+           
 
-            var body = Expression.Equal(Expression.PropertyOrField(param, SortField),
-                xxx.PropertyType == typeof(bool) ? Expression.Constant(new bool()) :
-              xxx.PropertyType == typeof(DateTime) ? Expression.Constant(new DateTime()) :
-                isnumeric ? Expression.Constant(0) : Expression.Constant(null)); // x.parameter == 0 || x.parameter == null
+            var body = Expression.Equal(Expression.PropertyOrField(param, SortField), expr); 
              
             var lambda = Expression.Lambda<Func<T, bool>>(body, param); //x => x.parameter == null
             

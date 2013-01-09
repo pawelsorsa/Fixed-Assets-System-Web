@@ -62,7 +62,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 MembershipUserModel model = new MembershipUserModel(user.ProviderName,
                             user.UserName, user.ProviderUserKey, user.Email, user.PasswordQuestion, user.Comment, user.IsApproved,
                             user.IsLockedOut, user.CreationDate, user.LastLoginDate, user.LastActivityDate, user.LastPasswordChangedDate, user.LastLockoutDate, user.IsOnline);
-
+              
                 if (Request.IsAjaxRequest())
                 {
                     return PartialView("MembershipUser/_MembershipUserEdit", model);

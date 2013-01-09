@@ -33,12 +33,13 @@
         <div id="menu">
 		    <ul>
                @* <li>@Html.Raw(@HttpUtility.UrlDecode(@Html.ActionLink("About", "List", "Person").ToHtmlString())))</li> *@
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Person", "Index", "Person", null, null)</li>
+                <li>@Html.ActionLink("Home", "Index", "Home", null, null, "Home", null, null)</li>
+                <li>@Html.ActionLink("Person", "Index", "Person", null, null, "Person", null, null)</li>
+                <li>@Html.ActionLink("Section", "Index", "Section", null, null, "Section", null, null)</li>
                 @*<li>@Ajax.ActionLink("Powrót", "Index", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</li>*@
-                <li>@Html.ActionLink("MembershipUsers", "Index", "MembershipUser", null, null)</li>
-                <li>@Html.ActionLink("MembershipRoles", "Index", "MembershipRole", null, new { area = "fdsfsdfds" })</li>
-                
+                <li>@Html.ActionLink("MembershipUsers", "Index", "MembershipUser", null, null, "MembershipUser", null, null)</li>
+                <li>@Html.ActionLink("MembershipRoles", "Index", "MembershipRole", null, null, "MembershipRole", null, null)</li>
+                    
                 @*<li>@Ajax.ActionLink("MembershipUsers", "Index", "MembershipUser", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</li>*@
             </ul>
         </div>
@@ -60,7 +61,7 @@
 	<div id="footer">
 		<p class="copyright">Copyright &copy; 2012 Paweł Sorsa. Template Designed by <a href="http://www.pawelsorsa.com/">pawelsorsa.com</a></p>
 		<p class="links"><a href="http://validator.w3.org/check/referer" class="xhtml">Valid XHTML</a>&nbsp;&nbsp;&nbsp;<a href="http://jigsaw.w3.org/css-validator/check/referer" class="css">Valid CSS</a> </p>
-	</div
+	</div>
 </div>
 </body>
 </html>

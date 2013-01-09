@@ -1,6 +1,7 @@
 ﻿@model ZMTFixedAssetsWebApp.Domain.Model.PersonSectionAddEditModel
  
-<p class='header'>Edytowanie pracownika <b>@Model.id </b</p>
+<p class='header'>Edytowanie pracownika <b>@Model.id </b></p>
+        
 @using (Ajax.BeginForm("Edit", "Person", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/Person')" }, new { @id = "form_unobtrusive" }))
 { 
     @Html.ValidationSummary(true);

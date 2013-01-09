@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Lista sekcji";
+}
+
+<div id="ajax_main_content">
+        <script type="text/javascript">
+        $(document).ready(function (e) {     
+               global_url_getjson_sortby = "/Section/SortByList";
+               $.getScript("@Url.Content("~/Scripts/MyScripts/section.scripts.js")", function (x) {
+                });  
+        });
+</script>
+        @Html.Partial("Section/_SectionIndex") 
+</div>

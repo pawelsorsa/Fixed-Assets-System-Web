@@ -48,7 +48,7 @@
                         data: { Query: query },
                         dataType: "text",
                         success: function (result) {
-                            var domElement = $(result); // create element from html
+                            var domElement = $(result); // create element from 
                             $("#ajax_content").html(domElement); // append to end of list  
                         }
                     });

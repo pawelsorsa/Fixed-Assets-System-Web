@@ -1,0 +1,23 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.MembershipRoleModel
+
+<p class='header'>Dodawanie roli</p>
+
+@using (Ajax.BeginForm("Add", "MembershipRole", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/MembershipRole')" }, new { @id = "form_unobtrusive" }))
+{
+    @Html.ValidationSummary(true);
+    @Html.Label("Nazwa: ")
+    @Html.TextBoxFor(x => x.Name)<br />
+    @Html.ValidationMessageFor(x => x.Name)
+    @Html.HiddenFor(x => x.Users);
+    <br />
+    
+    @Html.Label("Użytkownicy: ")
+    <hr />
+    @Html.CheckBoxListFor(model => model.SelectedSources, Model.SubscriptionSources)
+    
+    <hr />
+    <p class="centre_object"><input type=submit class='submitButton' value="Zapisz" />
+    @Ajax.ActionLink("Anuluj", "Index", "MembershipRole", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>
+}
+
