@@ -4,7 +4,7 @@
 
 @using (Ajax.BeginForm("Add", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnSuccess = "OnCompleteEdit('/Person/Index')" }, new { @id = "form_unobtrusive" }))
 {
-    @Html.ValidationSummary(true);
+    @Html.ValidationSummary(true)
     <table width="100%">
                 <tr>
                     <td width='30%'>@Html.Label("ID: ")</td>

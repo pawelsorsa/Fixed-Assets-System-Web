@@ -57,10 +57,9 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         public ActionResult Edit(string RoleName)
         {
             MembershipRoleModel model = membershipRoleRepository.Repository.FirstOrDefault(x => x.Name == RoleName);
-            
+            model.LoadCheckBoxList();
             if (model != null)
             {
-                model.LoadCheckBoxList();
                 if (Request.IsAjaxRequest())
                 {
                     return PartialView("MembershipRole/_MembershipRoleEdit", model);
@@ -94,46 +93,30 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         public ActionResult Add()
         {
             MembershipRoleModel model = new MembershipRoleModel();
-            
-                model.LoadCheckBoxList();
-                if (Request.IsAjaxRequest())
-                {
-                    return PartialView("MembershipRole/_MembershipRoleAdd", model);
-                }
-                return View(model);
+            model.LoadCheckBoxList();
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("MembershipRole/_MembershipRoleAdd", model);
+            }
+            return View(model);
+                
         }
 
 
         [HttpPost]
         public ActionResult Add(MembershipRoleModel model)
         {
+            model.LoadCheckBoxList();
             if (ModelState.IsValid)
             {
-                if (membershipRoleRepository.Repository.Any(x => x.Name == model.Name))
+                try
                 {
-                    InfoModel info_model = new InfoModel()
-                    {
-                        Description = "Podana rola istnieje. Proszę podać inną nazwę.",
-                        Action = "Index",
-                        Controller = "MembershipRole"
-                    };
-                    if (Request.IsAjaxRequest())
-                    {
-                        return PartialView("_Info", info_model);
-                    }
-                    return View("Info", info_model);
+                    membershipRoleRepository.AddObject(model);
+                    return RedirectToAction("Index");
                 }
-                else
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        membershipRoleRepository.AddObject(model);
-                        return RedirectToAction("Index");
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception("Wystąpił błąd podczas dodawania roli. Proszę o kontakt z administratorem. Error message: " + ex.Message);
-                    }
+                    throw new Exception("Wystąpił błąd podczas dodawania roli. Proszę o kontakt z administratorem. Error message: " + ex.Message);
                 }
             }
             else
@@ -145,8 +128,9 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 return View(model);
             }
 
-        }
 
+
+        }
 
         [HttpGet]
         public ActionResult Delete(string RoleName)

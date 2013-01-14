@@ -213,7 +213,6 @@ namespace ZMTFixedAssetsWebApp.UnitTests
                 new Section { id = 5, short_name = "IMZ5" },
                 new Section { id = 6, short_name = "IMZ6" },
             };
-
         }
 
     }

@@ -5,22 +5,26 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.ComponentModel.DataAnnotations;
+using ZMTFixedAssetsWebApp.WebUI.Validation;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Models
 {
     public class MembershipRoleModel
     {
-        [Required(ErrorMessage = "Pole nazwa jest wymanage")]
+        [RoleNameValidation(ErrorMessage = "Podana rola instnieje. Podaj inną nazwę")]
         [StringLength(20, ErrorMessage = "Nazwa roli powinno zawierać maksymalnie 30 znaków")]
+        [Required(ErrorMessage = "Pole nazwa jest wymanage")]
         public string Name { get; set; }
+
         public string [] Users { get; set; }
+        
         public SelectList SubscriptionSources { get; set; } // This property contains the available options
         public IEnumerable<string> SelectedSources { get; set; } // This property contains the selected options
 
         public MembershipRoleModel()
         {
-            SubscriptionSources = null;
-            SelectedSources = new string[] { };
+            Users = new string[] { };
+            SelectedSources = Users;
         }
 
         public MembershipRoleModel(string Name, string[] Users)

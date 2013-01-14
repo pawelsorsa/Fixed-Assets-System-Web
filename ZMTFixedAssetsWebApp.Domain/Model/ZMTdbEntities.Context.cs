@@ -78,6 +78,12 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private ObjectSet<PeripheralDevice> _peripheralDevices;
     
+        public ObjectSet<Subgroup> Subgroups
+        {
+            get { return _subgroups  ?? (_subgroups = CreateObjectSet<Subgroup>("Subgroups")); }
+        }
+        private ObjectSet<Subgroup> _subgroups;
+    
         public ObjectSet<Person> People
         {
             get { return _people  ?? (_people = CreateObjectSet<Person>("People")); }
@@ -89,12 +95,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             get { return _sections  ?? (_sections = CreateObjectSet<Section>("Sections")); }
         }
         private ObjectSet<Section> _sections;
-    
-        public ObjectSet<Subgroup> Subgroups
-        {
-            get { return _subgroups  ?? (_subgroups = CreateObjectSet<Subgroup>("Subgroups")); }
-        }
-        private ObjectSet<Subgroup> _subgroups;
 
         #endregion
     }

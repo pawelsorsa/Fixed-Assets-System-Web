@@ -15,8 +15,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
         public DbSet<Section> Sections { get; set; }
 
        
-
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
            //Database.SetInitializer<DbContext>(new CreateDatabaseIfNotExists<DbContext>());
@@ -35,7 +33,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             modelBuilder.Entity<Person>()
             .HasRequired(p => p.Section)
             .WithMany(u => u.People)
-            .HasForeignKey(x => x.id_section).WillCascadeOnDelete();
+            .HasForeignKey(x => x.id_section);
+
+            // Section Validation
+            // modelBuilder.Entity<Section>().Property(p => p.short_name).IsRequired().HasMaxLength(2);
 
 
         }

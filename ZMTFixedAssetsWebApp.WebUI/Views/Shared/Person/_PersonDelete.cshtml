@@ -1,6 +1,6 @@
 ﻿@model ZMTFixedAssetsWebApp.WebUI.Models.DeleteObjectById
 
-<p class='header'>Usuwanie pracownika <b>@Model.Id </b</p>
+<p class='header'>Usuwanie pracownika <b>@Model.Id </b></p>
 <p>@Model.Description</p>
 
 @using (Ajax.BeginForm("Delete", "Person", new { id = @Model.Id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @id = "form_unobtrusive" }))

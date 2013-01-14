@@ -228,21 +228,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private ICollection<Device> _devices;
     
-        public virtual Person Person
-        {
-            get { return _person; }
-            set
-            {
-                if (!ReferenceEquals(_person, value))
-                {
-                    var previousValue = _person;
-                    _person = value;
-                    FixupPerson(previousValue);
-                }
-            }
-        }
-        private Person _person;
-    
         public virtual Subgroup Subgroup
         {
             get { return _subgroup; }
@@ -289,6 +274,21 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
         private ICollection<Licence> _licences;
+    
+        public virtual Person Person
+        {
+            get { return _person; }
+            set
+            {
+                if (!ReferenceEquals(_person, value))
+                {
+                    var previousValue = _person;
+                    _person = value;
+                    FixupPerson(previousValue);
+                }
+            }
+        }
+        private Person _person;
 
         #endregion
         #region Association Fixup
@@ -319,30 +319,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
     
-        private void FixupPerson(Person previousValue)
-        {
-            if (previousValue != null && previousValue.FixedAssets.Contains(this))
-            {
-                previousValue.FixedAssets.Remove(this);
-            }
-    
-            if (Person != null)
-            {
-                if (!Person.FixedAssets.Contains(this))
-                {
-                    Person.FixedAssets.Add(this);
-                }
-                if (id_person != Person.id)
-                {
-                    id_person = Person.id;
-                }
-            }
-            else if (!_settingFK)
-            {
-                id_person = null;
-            }
-        }
-    
         private void FixupSubgroup(Subgroup previousValue)
         {
             if (previousValue != null && previousValue.FixedAssets.Contains(this))
@@ -364,6 +340,30 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             else if (!_settingFK)
             {
                 id_subgroup = null;
+            }
+        }
+    
+        private void FixupPerson(Person previousValue)
+        {
+            if (previousValue != null && previousValue.FixedAssets.Contains(this))
+            {
+                previousValue.FixedAssets.Remove(this);
+            }
+    
+            if (Person != null)
+            {
+                if (!Person.FixedAssets.Contains(this))
+                {
+                    Person.FixedAssets.Add(this);
+                }
+                if (id_person != Person.id)
+                {
+                    id_person = Person.id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                id_person = null;
             }
         }
     

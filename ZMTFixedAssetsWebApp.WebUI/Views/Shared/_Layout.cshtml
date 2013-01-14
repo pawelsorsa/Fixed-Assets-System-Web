@@ -33,12 +33,12 @@
         <div id="menu">
 		    <ul>
                @* <li>@Html.Raw(@HttpUtility.UrlDecode(@Html.ActionLink("About", "List", "Person").ToHtmlString())))</li> *@
-                <li>@Html.ActionLink("Home", "Index", "Home", null, null, "Home", null, null)</li>
-                <li>@Html.ActionLink("Person", "Index", "Person", null, null, "Person", null, null)</li>
-                <li>@Html.ActionLink("Section", "Index", "Section", null, null, "Section", null, null)</li>
+                <li>@Html.ActionLink("Home", "Index", "Home", null, null, null, null, null)</li>
+                <li>@Html.ActionLink("Person", "Index", "Person", null, null, null, null, null)</li>
+                <li>@Html.ActionLink("Section", "Index", "Section", null, null, null, null, null)</li>
                 @*<li>@Ajax.ActionLink("Powrót", "Index", "Person", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</li>*@
-                <li>@Html.ActionLink("MembershipUsers", "Index", "MembershipUser", null, null, "MembershipUser", null, null)</li>
-                <li>@Html.ActionLink("MembershipRoles", "Index", "MembershipRole", null, null, "MembershipRole", null, null)</li>
+                <li>@Html.ActionLink("MembershipUsers", "Index", "MembershipUser", null, null, null, null, null)</li>
+                <li>@Html.ActionLink("MembershipRoles", "Index", "MembershipRole", null, null, null, null, null)</li>
                     
                 @*<li>@Ajax.ActionLink("MembershipUsers", "Index", "MembershipUser", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</li>*@
             </ul>

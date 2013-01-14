@@ -1,0 +1,17 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.DeleteObjectByName
+
+<p class='header'>Usuwanie sekcji <b>@Model.Name </b></p>
+<p>@Model.Description</p>
+
+@using (Ajax.BeginForm("Delete", "Section", new { ShortName = @Model.Name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @id = "form_unobtrusive" }))
+{
+    @Html.ValidationSummary(true)
+    
+    @Html.HiddenFor(x=>x.Name)
+    @Html.ValidationMessageFor(x => x.Name);
+    <hr />
+    <p class="centre_object">
+    <input type=submit class='submitButton' onclick="LoadHistory('/Section')" value="TAK" />
+    @Ajax.ActionLink("NIE", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })</p>
+}
+    

@@ -14,9 +14,8 @@
                     <th width="28%">Nazwa</th>
                     <th width="13%">Miejscowość</th>
                     <th width="15%">Ulica</th>
-                    <th width="13%">Poczta</th>
-                    <th width="7%">Kod poczt.</th>
                     <th width="7%">Nr. tel.</th>
+                    <th width="7%">Szczegóły</th>
                     <th width="4%">Edytuj</th>
                     <th width="4%">Usuń</th>
                 </tr>
@@ -32,11 +31,10 @@
             <td>@item.name</td>
             <td>@item.locality</td>
             <td>@item.street</td>
-            <td>@item.post</td>
-            <td>@item.postal_code</td>
             <td>@item.phone_number</td>
-            <td>@Ajax.ActionLink("Edytuj", "Edit", new { username = @item.email }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
-            <td>@Ajax.ActionLink("Usuń", "Delete", new { username = @item.name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@Ajax.ActionLink("Szczegóły", "Details", new { ShortName = @item.short_name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@Ajax.ActionLink("Edytuj", "Edit", new { ShortName = @item.short_name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@Ajax.ActionLink("Usuń", "Delete", new { ShortName = @item.short_name }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
            
            </tr>
             }
@@ -61,7 +59,7 @@
 @{ if (!Model.ShowAll)
    {
     <div id="pager">
-        @Ajax.Pager((int)Model.Page, (int)Model.TotalRecords, "ajax_content", routeValues, "MembershipUser", "List", (int)Model.ItemsPerPage)
+        @Ajax.Pager((int)Model.Page, (int)Model.TotalRecords, "ajax_content", routeValues, "Section", "List", (int)Model.ItemsPerPage)
     </div>   
    }
 }
@@ -74,7 +72,7 @@
      @Html.HiddenFor(x => x.Query);
      
      
-     <p>Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     <p>@Ajax.ActionLink("Dodaj sekcje", "Add", "Section", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "add_employee_btn", @rel = "ajax" })Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
      Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
      Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
      Pokaż wszystkie: @Html.CheckBoxFor(x => x.ShowAll)

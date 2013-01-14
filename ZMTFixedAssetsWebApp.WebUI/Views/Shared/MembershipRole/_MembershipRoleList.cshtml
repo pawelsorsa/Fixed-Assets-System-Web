@@ -24,7 +24,7 @@
             <td>
                 @foreach (var user in @x.Users)
                 {
-                    @Html.ActionLink(" [" + user + "]", "Index", "MembershipUser", null, null, "MembershipUser/Edit/" + user + "", null, null);
+                    @Html.ActionLink(" [" + user + "]", "Index", "MembershipUser", null, null, "/MembershipUser/Edit/" + user + "", null, null);
                     // @Html.ActionLink(" [" + user + "] ", "Edit", "MembershipUser", new { username = user }, null)                                                 
                 }
 

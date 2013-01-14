@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="a9838259-541c-407c-bbef-d7c8efa1a11c" name="Admin@ADMIN-KOMPUTER 2013-01-14 21:05:48" runUser="Admin-Komputer\Admin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f6c044c9-0e3f-4f1b-8ba3-a15348056ed4">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Admin_ADMIN-KOMPUTER 2013-01-14 21_05_48">
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\bin\ZMTFixedAssetsWebApp.WebUI.dll" />
+      <DeploymentItem filename="D:\c#\Ninject.dll" />
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.Domain\bin\Debug\ZMTFixedAssetsWebApp.Domain.dll" />
+      <DeploymentItem filename="D:\c#\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-01-14T21:05:48.9370571+01:00" queuing="2013-01-14T21:05:49.0230620+01:00" start="2013-01-14T21:05:49.0590640+01:00" finish="2013-01-14T21:05:50.4821454+01:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CantDeleteSectionIfPersonListExist" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="1d53b574-ca15-b4f6-fa4f-85df179e4c8f">
+      <Execution id="52978f82-cd5b-42ec-aa23-72d165766a98" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantDeleteSectionIfPersonListExist" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="1d53b574-ca15-b4f6-fa4f-85df179e4c8f" executionId="52978f82-cd5b-42ec-aa23-72d165766a98" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="52978f82-cd5b-42ec-aa23-72d165766a98" testId="1d53b574-ca15-b4f6-fa4f-85df179e4c8f" testName="CantDeleteSectionIfPersonListExist" computerName="ADMIN-KOMPUTER" duration="00:00:00.8557197" startTime="2013-01-14T21:05:49.0810653+01:00" endTime="2013-01-14T21:05:50.3751393+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="52978f82-cd5b-42ec-aa23-72d165766a98">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest.CantDeleteSectionIfPersonListExist threw exception: 
+System.InvalidCastException: Unable to cast object of type 'ZMTFixedAssetsWebApp.WebUI.Models.DeleteObjectByName' to type 'ZMTFixedAssetsWebApp.WebUI.Models.InfoModel'.</Message>
+          <StackTrace>    at ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest.CantDeleteSectionIfPersonListExist() in C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\SectionUnitTest.cs:line 244
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

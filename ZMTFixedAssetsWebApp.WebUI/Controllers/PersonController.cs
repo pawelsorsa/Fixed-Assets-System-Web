@@ -147,20 +147,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         [HttpPost]
         public ActionResult Delete(DeleteObjectById model)
         {
-            if (ModelState.IsValid)
-            {
                 Person person = new Person() { id = model.Id };
-                    personRepository.DeleteObject(person);
-                    return RedirectToAction("Index");
-            }
-            else
-            {
-                if (Request.IsAjaxRequest())
-                {
-                    return PartialView("Person/_PersonDelete", model);
-                }
-                return View("Delete", model);
-            }
+                personRepository.DeleteObject(person);
+                return RedirectToAction("Index");    
+
         }
 
 
@@ -237,13 +227,13 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
  
         private void UpdatePerson(ref Person person, PersonSectionAddEditModel personSection)
         {
-            if (personSection.id != null) person.id = personSection.id;
-            if (personSection.area_code != null) person.area_code = personSection.area_code;
-            if (personSection.email != null) person.email = personSection.email;
-            if (personSection.name != null) person.name = personSection.name.ToUpper();
-            if (personSection.phone_number != null) person.phone_number = personSection.phone_number;
-            if (personSection.phone_number2 != null) person.phone_number2 = personSection.phone_number2;
-            if (personSection.surname != null) person.surname = personSection.surname.ToUpper();
+            if (personSection.id != null) person.id = personSection.id; else person.id = 0;
+            if (personSection.area_code != null) person.area_code = personSection.area_code; else person.area_code = null;
+            if (personSection.email != null) person.email = personSection.email; else person.email = null;
+            if (personSection.name != null) person.name = personSection.name.ToUpper(); else person.name = null;
+            if (personSection.phone_number != null) person.phone_number = personSection.phone_number; else person.phone_number = null;
+            if (personSection.phone_number2 != null) person.phone_number2 = personSection.phone_number2; else person.phone_number2 = null;
+            if (personSection.surname != null) person.surname = personSection.surname.ToUpper(); else person.surname = null;
            // person.id_section = GetAllShortNameSections().Where(x => x.Value == personSection.section_name).Select(x => x.Key).First();
             int id = 0;
             int.TryParse(personSection.section_name, out id);

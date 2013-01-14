@@ -37,7 +37,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 
         public void DeleteObject(MembershipRoleModel obj)
         {
-            Roles.RemoveUsersFromRole(Roles.GetUsersInRole(obj.Name), obj.Name);
+            if (Roles.GetUsersInRole(obj.Name).Count() > 0)
+            {
+                Roles.RemoveUsersFromRole(Roles.GetUsersInRole(obj.Name), obj.Name);
+            }
             Roles.DeleteRole(obj.Name);
         }
 

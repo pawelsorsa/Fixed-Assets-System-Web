@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="b0aa3cc6-6066-41e0-acaf-5c760f9b6f37" name="Admin@ADMIN-KOMPUTER 2013-01-14 21:06:22" runUser="Admin-Komputer\Admin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="f6c044c9-0e3f-4f1b-8ba3-a15348056ed4">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Admin_ADMIN-KOMPUTER 2013-01-14 21_06_22">
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\bin\ZMTFixedAssetsWebApp.WebUI.dll" />
+      <DeploymentItem filename="D:\c#\Ninject.dll" />
+      <DeploymentItem filename="C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.Domain\bin\Debug\ZMTFixedAssetsWebApp.Domain.dll" />
+      <DeploymentItem filename="D:\c#\Moq.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-01-14T21:06:22.9280012+01:00" queuing="2013-01-14T21:06:23.0980110+01:00" start="2013-01-14T21:06:23.1720152+01:00" finish="2013-01-14T21:06:25.0041200+01:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="9" executed="9" passed="8" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="GetAllSections" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="ede853c1-fa6b-90a8-6fa1-ff4ae9a2ae57">
+      <Execution id="27375c30-6a16-4773-b472-72c783aa316a" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetAllSections" />
+    </UnitTest>
+    <UnitTest name="CantDeleteSection" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="c0325675-5327-ba97-238b-08ec255283f6">
+      <Execution id="9bd1b764-b328-4a02-985b-6a915fd5242a" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantDeleteSection" />
+    </UnitTest>
+    <UnitTest name="CantAddSection" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="6495ae31-4b8d-c45e-3171-6dff7a4d3ce2">
+      <Execution id="f39824e8-92c4-49f3-8d0b-bf8e53d08f38" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantAddSection" />
+    </UnitTest>
+    <UnitTest name="CantDeleteSectionIfPersonListExist" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="1d53b574-ca15-b4f6-fa4f-85df179e4c8f">
+      <Execution id="6f1e2d87-064f-4fe6-9c5f-8ca5b1eebe94" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantDeleteSectionIfPersonListExist" />
+    </UnitTest>
+    <UnitTest name="CanAddSection" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="a0feee09-5563-bcfa-0ad5-4837524110d1">
+      <Execution id="3d5a9832-30ac-4b53-9d80-c3d16c9e7b85" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanAddSection" />
+    </UnitTest>
+    <UnitTest name="CantEditSection" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="cfd36951-2968-a586-3914-50d17e99fa35">
+      <Execution id="3b7d660a-e18b-4e26-99e3-1517cff275fc" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CantEditSection" />
+    </UnitTest>
+    <UnitTest name="CanDeleteSection" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="014b556d-7546-f754-97b6-9b49333dd2b8">
+      <Execution id="656de9f4-15da-4f1e-b721-18320beaa8bb" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanDeleteSection" />
+    </UnitTest>
+    <UnitTest name="CanEditPerson" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="3cab681f-8018-56e4-e537-d99681be8dad">
+      <Execution id="c269ee08-883e-4dac-af96-2c1809fbcbbf" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CanEditPerson" />
+    </UnitTest>
+    <UnitTest name="GetAllShortNames" storage="c:\users\admin\documents\visual studio 2010\projects\zmtfixedassetswebapp\zmtfixedassetswebapp.unittests\bin\debug\zmtfixedassetswebapp.unittests.dll" id="72513515-e2fb-5dab-cd46-48ba7b9590d1">
+      <Execution id="aff08bcb-b003-45c9-aef0-02cf0e1c4be2" />
+      <TestMethod codeBase="C:/Users/Admin/Documents/Visual Studio 2010/Projects/ZMTFixedAssetsWebApp/ZMTFixedAssetsWebApp.UnitTests/bin/Debug/ZMTFixedAssetsWebApp.UnitTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest, ZMTFixedAssetsWebApp.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetAllShortNames" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="014b556d-7546-f754-97b6-9b49333dd2b8" executionId="656de9f4-15da-4f1e-b721-18320beaa8bb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1d53b574-ca15-b4f6-fa4f-85df179e4c8f" executionId="6f1e2d87-064f-4fe6-9c5f-8ca5b1eebe94" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3cab681f-8018-56e4-e537-d99681be8dad" executionId="c269ee08-883e-4dac-af96-2c1809fbcbbf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6495ae31-4b8d-c45e-3171-6dff7a4d3ce2" executionId="f39824e8-92c4-49f3-8d0b-bf8e53d08f38" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="72513515-e2fb-5dab-cd46-48ba7b9590d1" executionId="aff08bcb-b003-45c9-aef0-02cf0e1c4be2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a0feee09-5563-bcfa-0ad5-4837524110d1" executionId="3d5a9832-30ac-4b53-9d80-c3d16c9e7b85" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0325675-5327-ba97-238b-08ec255283f6" executionId="9bd1b764-b328-4a02-985b-6a915fd5242a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cfd36951-2968-a586-3914-50d17e99fa35" executionId="3b7d660a-e18b-4e26-99e3-1517cff275fc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ede853c1-fa6b-90a8-6fa1-ff4ae9a2ae57" executionId="27375c30-6a16-4773-b472-72c783aa316a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="656de9f4-15da-4f1e-b721-18320beaa8bb" testId="014b556d-7546-f754-97b6-9b49333dd2b8" testName="CanDeleteSection" computerName="ADMIN-KOMPUTER" duration="00:00:00.5427562" startTime="2013-01-14T21:06:23.1790156+01:00" endTime="2013-01-14T21:06:24.3660835+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="656de9f4-15da-4f1e-b721-18320beaa8bb">
+    </UnitTestResult>
+    <UnitTestResult executionId="6f1e2d87-064f-4fe6-9c5f-8ca5b1eebe94" testId="1d53b574-ca15-b4f6-fa4f-85df179e4c8f" testName="CantDeleteSectionIfPersonListExist" computerName="ADMIN-KOMPUTER" duration="00:00:00.3715656" startTime="2013-01-14T21:06:24.3770841+01:00" endTime="2013-01-14T21:06:24.7541057+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6f1e2d87-064f-4fe6-9c5f-8ca5b1eebe94">
+    </UnitTestResult>
+    <UnitTestResult executionId="c269ee08-883e-4dac-af96-2c1809fbcbbf" testId="3cab681f-8018-56e4-e537-d99681be8dad" testName="CanEditPerson" computerName="ADMIN-KOMPUTER" duration="00:00:00.0159674" startTime="2013-01-14T21:06:24.7631062+01:00" endTime="2013-01-14T21:06:24.7861075+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c269ee08-883e-4dac-af96-2c1809fbcbbf">
+    </UnitTestResult>
+    <UnitTestResult executionId="f39824e8-92c4-49f3-8d0b-bf8e53d08f38" testId="6495ae31-4b8d-c45e-3171-6dff7a4d3ce2" testName="CantAddSection" computerName="ADMIN-KOMPUTER" duration="00:00:00.0467396" startTime="2013-01-14T21:06:24.7921079+01:00" endTime="2013-01-14T21:06:24.8441108+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f39824e8-92c4-49f3-8d0b-bf8e53d08f38">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest.CantAddSection threw exception System.Exception, but exception System.Data.Entity.Infrastructure.DbUpdateException was expected. Exception message: System.Exception: Wystąpił błąd podczas dodawania sekcji. Proszę o kontakt z administratorem. Error message: Object reference not set to an instance of an object.</Message>
+          <StackTrace>    at ZMTFixedAssetsWebApp.WebUI.Controllers.SectionController.Add(SectionModel model) in C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.WebUI\Controllers\SectionController.cs:line 205
+   at ZMTFixedAssetsWebApp.UnitTests.SectionUnitTest.CantAddSection() in C:\Users\Admin\Documents\Visual Studio 2010\Projects\ZMTFixedAssetsWebApp\ZMTFixedAssetsWebApp.UnitTests\SectionUnitTest.cs:line 92
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="aff08bcb-b003-45c9-aef0-02cf0e1c4be2" testId="72513515-e2fb-5dab-cd46-48ba7b9590d1" testName="GetAllShortNames" computerName="ADMIN-KOMPUTER" duration="00:00:00.0153437" startTime="2013-01-14T21:06:24.8581116+01:00" endTime="2013-01-14T21:06:24.8831131+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="aff08bcb-b003-45c9-aef0-02cf0e1c4be2">
+    </UnitTestResult>
+    <UnitTestResult executionId="3d5a9832-30ac-4b53-9d80-c3d16c9e7b85" testId="a0feee09-5563-bcfa-0ad5-4837524110d1" testName="CanAddSection" computerName="ADMIN-KOMPUTER" duration="00:00:00.0042422" startTime="2013-01-14T21:06:24.8901135+01:00" endTime="2013-01-14T21:06:24.8991140+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d5a9832-30ac-4b53-9d80-c3d16c9e7b85">
+    </UnitTestResult>
+    <UnitTestResult executionId="9bd1b764-b328-4a02-985b-6a915fd5242a" testId="c0325675-5327-ba97-238b-08ec255283f6" testName="CantDeleteSection" computerName="ADMIN-KOMPUTER" duration="00:00:00.0117854" startTime="2013-01-14T21:06:24.9051143+01:00" endTime="2013-01-14T21:06:24.9221153+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9bd1b764-b328-4a02-985b-6a915fd5242a">
+    </UnitTestResult>
+    <UnitTestResult executionId="3b7d660a-e18b-4e26-99e3-1517cff275fc" testId="cfd36951-2968-a586-3914-50d17e99fa35" testName="CantEditSection" computerName="ADMIN-KOMPUTER" duration="00:00:00.0048979" startTime="2013-01-14T21:06:24.9291157+01:00" endTime="2013-01-14T21:06:24.9391163+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3b7d660a-e18b-4e26-99e3-1517cff275fc">
+    </UnitTestResult>
+    <UnitTestResult executionId="27375c30-6a16-4773-b472-72c783aa316a" testId="ede853c1-fa6b-90a8-6fa1-ff4ae9a2ae57" testName="GetAllSections" computerName="ADMIN-KOMPUTER" duration="00:00:00.0132021" startTime="2013-01-14T21:06:24.9471167+01:00" endTime="2013-01-14T21:06:24.9651177+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="27375c30-6a16-4773-b472-72c783aa316a">
+    </UnitTestResult>
+  </Results>
+</TestRun>

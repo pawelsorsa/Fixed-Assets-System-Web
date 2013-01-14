@@ -1,0 +1,57 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.SectionModel
+ 
+<p class='header'>Edytowanie sekcji <b>@Model.short_name </b></p>
+   
+@using (Ajax.BeginForm("Edit", "Section", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/Section')" }, new { @id = "form_unobtrusive" }))
+{ 
+    @Html.ValidationSummary(true);
+    <table width="100%">
+                <tr>
+                    <td width='30%'>@Html.Label("Nazwa: ")</td>
+                    <td width='30%'>@Html.TextAreaFor(x => x.name)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.name)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Skrót: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.short_name)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.short_name)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Telefon: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.phone_number)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.phone_number)</td>  
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Email: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.email)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.email)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Miejscowość: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.locality)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.locality)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Adres: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.street)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.street)</td>
+                </tr>  
+                <tr>
+                    <td width='30%'>@Html.Label("Kod pocztowy: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.postal_code)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.postal_code)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Poczta: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.post)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.post)</td>
+                </tr>  
+    </table>   
+    <hr />
+    
+    <p class="centre_object"><input type=submit class='submitButton' value="Zapisz zmiany" />
+    @Ajax.ActionLink("Anuluj", "Index", "Section", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>
+
+}
+

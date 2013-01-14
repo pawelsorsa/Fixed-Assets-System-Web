@@ -144,7 +144,7 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="short_name" Type="varchar" MaxLength="10" />
+    <Property Name="short_name" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="street" Type="varchar" MaxLength="50" />
     <Property Name="postal_code" Type="varchar" MaxLength="10" />
     <Property Name="post" Type="varchar" MaxLength="50" />
@@ -257,9 +257,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Person_Section">
-    <End Role="Section" Type="ZMTdbModel.Store.Section" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Section" Type="ZMTdbModel.Store.Section" Multiplicity="1" />
     <End Role="Person" Type="ZMTdbModel.Store.Person" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Section">
