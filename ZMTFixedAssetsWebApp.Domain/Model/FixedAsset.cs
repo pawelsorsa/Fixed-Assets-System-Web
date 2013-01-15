@@ -196,37 +196,20 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private Contractor _contractor;
     
-        public virtual ICollection<Device> Devices
+        public virtual Person Person
         {
-            get
-            {
-                if (_devices == null)
-                {
-                    var newCollection = new FixupCollection<Device>();
-                    newCollection.CollectionChanged += FixupDevices;
-                    _devices = newCollection;
-                }
-                return _devices;
-            }
+            get { return _person; }
             set
             {
-                if (!ReferenceEquals(_devices, value))
+                if (!ReferenceEquals(_person, value))
                 {
-                    var previousValue = _devices as FixupCollection<Device>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupDevices;
-                    }
-                    _devices = value;
-                    var newValue = value as FixupCollection<Device>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupDevices;
-                    }
+                    var previousValue = _person;
+                    _person = value;
+                    FixupPerson(previousValue);
                 }
             }
         }
-        private ICollection<Device> _devices;
+        private Person _person;
     
         public virtual Subgroup Subgroup
         {
@@ -274,21 +257,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
         private ICollection<Licence> _licences;
-    
-        public virtual Person Person
-        {
-            get { return _person; }
-            set
-            {
-                if (!ReferenceEquals(_person, value))
-                {
-                    var previousValue = _person;
-                    _person = value;
-                    FixupPerson(previousValue);
-                }
-            }
-        }
-        private Person _person;
 
         #endregion
         #region Association Fixup
@@ -319,30 +287,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
     
-        private void FixupSubgroup(Subgroup previousValue)
-        {
-            if (previousValue != null && previousValue.FixedAssets.Contains(this))
-            {
-                previousValue.FixedAssets.Remove(this);
-            }
-    
-            if (Subgroup != null)
-            {
-                if (!Subgroup.FixedAssets.Contains(this))
-                {
-                    Subgroup.FixedAssets.Add(this);
-                }
-                if (id_subgroup != Subgroup.id)
-                {
-                    id_subgroup = Subgroup.id;
-                }
-            }
-            else if (!_settingFK)
-            {
-                id_subgroup = null;
-            }
-        }
-    
         private void FixupPerson(Person previousValue)
         {
             if (previousValue != null && previousValue.FixedAssets.Contains(this))
@@ -367,25 +311,27 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
     
-        private void FixupDevices(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupSubgroup(Subgroup previousValue)
         {
-            if (e.NewItems != null)
+            if (previousValue != null && previousValue.FixedAssets.Contains(this))
             {
-                foreach (Device item in e.NewItems)
-                {
-                    item.FixedAsset = this;
-                }
+                previousValue.FixedAssets.Remove(this);
             }
     
-            if (e.OldItems != null)
+            if (Subgroup != null)
             {
-                foreach (Device item in e.OldItems)
+                if (!Subgroup.FixedAssets.Contains(this))
                 {
-                    if (ReferenceEquals(item.FixedAsset, this))
-                    {
-                        item.FixedAsset = null;
-                    }
+                    Subgroup.FixedAssets.Add(this);
                 }
+                if (id_subgroup != Subgroup.id)
+                {
+                    id_subgroup = Subgroup.id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                id_subgroup = null;
             }
         }
     

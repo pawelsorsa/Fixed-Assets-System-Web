@@ -12,7 +12,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
 {
     public sealed class MembershipUserListView : ListViewAsCollectionModel<MembershipUserModel>
     {
-
         public MembershipUserListView(IRepository<MembershipUserModel> userRepository)
             : base(userRepository)
         {

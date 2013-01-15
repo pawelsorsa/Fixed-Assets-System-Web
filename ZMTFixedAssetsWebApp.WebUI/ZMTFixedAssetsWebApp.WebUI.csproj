@@ -68,10 +68,12 @@
   <ItemGroup>
     <Compile Include="ActionFilters\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DeviceController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembershipRoleController.cs" />
     <Compile Include="Controllers\MembershipUserController.cs" />
+    <Compile Include="Controllers\PeripheralDeviceController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -82,6 +84,7 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="LinqHelpers\LinqHelpers.cs" />
+    <Compile Include="ListViews\DeviceListView.cs" />
     <Compile Include="ListViews\MembershipRoleListView.cs" />
     <Compile Include="ListViews\MembershipUserListView.cs" />
     <Compile Include="ListViews\PersonListView.cs" />
@@ -90,6 +93,7 @@
     <Compile Include="Models\DeleteObjectByName.cs" />
     <Compile Include="Models\CountRecordsAndCreateListModel.cs" />
     <Compile Include="Models\DeleteObjectById.cs" />
+    <Compile Include="Models\DeviceExtendedModel.cs" />
     <Compile Include="Models\ListViewAsCollectionModel.cs" />
     <Compile Include="Models\ListViewBase.cs" />
     <Compile Include="Models\ListViewModel.cs" />
@@ -104,8 +108,10 @@
     <Compile Include="Models\SectionModel.cs" />
     <Compile Include="Models\SubscribeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DeviceRepository.cs" />
     <Compile Include="Repositories\MembershipRoleRepository.cs" />
     <Compile Include="Repositories\MembershipUserRepository.cs" />
+    <Compile Include="Repositories\PeripheralDeviceRepository.cs" />
     <Compile Include="Repositories\SectionRepository.cs" />
     <Compile Include="Repositories\DbContext.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
@@ -262,6 +268,10 @@
     <Content Include="Views\Section\Edit.cshtml" />
     <Content Include="Views\Section\Details.cshtml" />
     <Content Include="Views\Section\Add.cshtml" />
+    <Content Include="Views\Device\Index.cshtml" />
+    <Content Include="Views\Shared\Device\_DeviceIndex.cshtml" />
+    <Content Include="Views\Device\List.cshtml" />
+    <Content Include="Views\Shared\Device\_DeviceList.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\MembershipUser\_MembershipUserList.cshtml" />

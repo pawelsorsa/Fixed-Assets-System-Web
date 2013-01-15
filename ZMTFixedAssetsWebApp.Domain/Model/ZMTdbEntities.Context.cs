@@ -48,18 +48,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private ObjectSet<Contractor> _contractors;
     
-        public ObjectSet<Device> Devices
-        {
-            get { return _devices  ?? (_devices = CreateObjectSet<Device>("Devices")); }
-        }
-        private ObjectSet<Device> _devices;
-    
-        public ObjectSet<FixedAsset> FixedAssets
-        {
-            get { return _fixedAssets  ?? (_fixedAssets = CreateObjectSet<FixedAsset>("FixedAssets")); }
-        }
-        private ObjectSet<FixedAsset> _fixedAssets;
-    
         public ObjectSet<Kind> Kinds
         {
             get { return _kinds  ?? (_kinds = CreateObjectSet<Kind>("Kinds")); }
@@ -71,12 +59,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             get { return _licences  ?? (_licences = CreateObjectSet<Licence>("Licences")); }
         }
         private ObjectSet<Licence> _licences;
-    
-        public ObjectSet<PeripheralDevice> PeripheralDevices
-        {
-            get { return _peripheralDevices  ?? (_peripheralDevices = CreateObjectSet<PeripheralDevice>("PeripheralDevices")); }
-        }
-        private ObjectSet<PeripheralDevice> _peripheralDevices;
     
         public ObjectSet<Subgroup> Subgroups
         {
@@ -95,6 +77,24 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             get { return _sections  ?? (_sections = CreateObjectSet<Section>("Sections")); }
         }
         private ObjectSet<Section> _sections;
+    
+        public ObjectSet<Device> Devices
+        {
+            get { return _devices  ?? (_devices = CreateObjectSet<Device>("Devices")); }
+        }
+        private ObjectSet<Device> _devices;
+    
+        public ObjectSet<FixedAsset> FixedAssets
+        {
+            get { return _fixedAssets  ?? (_fixedAssets = CreateObjectSet<FixedAsset>("FixedAssets")); }
+        }
+        private ObjectSet<FixedAsset> _fixedAssets;
+    
+        public ObjectSet<PeripheralDevice> PeripheralDevices
+        {
+            get { return _peripheralDevices  ?? (_peripheralDevices = CreateObjectSet<PeripheralDevice>("PeripheralDevices")); }
+        }
+        private ObjectSet<PeripheralDevice> _peripheralDevices;
 
         #endregion
     }

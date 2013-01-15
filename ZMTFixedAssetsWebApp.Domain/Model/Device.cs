@@ -36,10 +36,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
                     {
                         PeripheralDevice = null;
                     }
-                    if (PeripheralDevice1 != null && PeripheralDevice1.id != value)
-                    {
-                        PeripheralDevice1 = null;
-                    }
                     _id_peripheral_device = value;
                 }
             }
@@ -84,20 +80,9 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         public virtual int id_fixed_asset
         {
-            get { return _id_fixed_asset; }
-            set
-            {
-                if (_id_fixed_asset != value)
-                {
-                    if (FixedAsset != null && FixedAsset.id != value)
-                    {
-                        FixedAsset = null;
-                    }
-                    _id_fixed_asset = value;
-                }
-            }
+            get;
+            set;
         }
-        private int _id_fixed_asset;
 
         #endregion
         #region Navigation Properties
@@ -116,36 +101,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
         private PeripheralDevice _peripheralDevice;
-    
-        public virtual PeripheralDevice PeripheralDevice1
-        {
-            get { return _peripheralDevice1; }
-            set
-            {
-                if (!ReferenceEquals(_peripheralDevice1, value))
-                {
-                    var previousValue = _peripheralDevice1;
-                    _peripheralDevice1 = value;
-                    FixupPeripheralDevice1(previousValue);
-                }
-            }
-        }
-        private PeripheralDevice _peripheralDevice1;
-    
-        public virtual FixedAsset FixedAsset
-        {
-            get { return _fixedAsset; }
-            set
-            {
-                if (!ReferenceEquals(_fixedAsset, value))
-                {
-                    var previousValue = _fixedAsset;
-                    _fixedAsset = value;
-                    FixupFixedAsset(previousValue);
-                }
-            }
-        }
-        private FixedAsset _fixedAsset;
 
         #endregion
         #region Association Fixup
@@ -166,46 +121,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
                 if (id_peripheral_device != PeripheralDevice.id)
                 {
                     id_peripheral_device = PeripheralDevice.id;
-                }
-            }
-        }
-    
-        private void FixupPeripheralDevice1(PeripheralDevice previousValue)
-        {
-            if (previousValue != null && previousValue.Devices1.Contains(this))
-            {
-                previousValue.Devices1.Remove(this);
-            }
-    
-            if (PeripheralDevice1 != null)
-            {
-                if (!PeripheralDevice1.Devices1.Contains(this))
-                {
-                    PeripheralDevice1.Devices1.Add(this);
-                }
-                if (id_peripheral_device != PeripheralDevice1.id)
-                {
-                    id_peripheral_device = PeripheralDevice1.id;
-                }
-            }
-        }
-    
-        private void FixupFixedAsset(FixedAsset previousValue)
-        {
-            if (previousValue != null && previousValue.Devices.Contains(this))
-            {
-                previousValue.Devices.Remove(this);
-            }
-    
-            if (FixedAsset != null)
-            {
-                if (!FixedAsset.Devices.Contains(this))
-                {
-                    FixedAsset.Devices.Add(this);
-                }
-                if (id_fixed_asset != FixedAsset.id)
-                {
-                    id_fixed_asset = FixedAsset.id;
                 }
             }
         }

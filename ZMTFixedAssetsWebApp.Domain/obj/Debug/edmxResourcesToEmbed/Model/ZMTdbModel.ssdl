@@ -14,10 +14,6 @@
       <End Role="PeripheralDevice" EntitySet="PeripheralDevice" />
       <End Role="Device" EntitySet="Device" />
     </AssociationSet>
-    <AssociationSet Name="FK__Device__id_perip__1CF15040" Association="ZMTdbModel.Store.FK__Device__id_perip__1CF15040">
-      <End Role="PeripheralDevice" EntitySet="PeripheralDevice" />
-      <End Role="Device" EntitySet="Device" />
-    </AssociationSet>
     <AssociationSet Name="FK__Licence__id_kind__3E52440B" Association="ZMTdbModel.Store.FK__Licence__id_kind__3E52440B">
       <End Role="Kind" EntitySet="Kind" />
       <End Role="Licence" EntitySet="Licence" />
@@ -161,18 +157,6 @@
     <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <Association Name="FK__Device__id_perip__1BFD2C07">
-    <End Role="PeripheralDevice" Type="ZMTdbModel.Store.PeripheralDevice" Multiplicity="1" />
-    <End Role="Device" Type="ZMTdbModel.Store.Device" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PeripheralDevice">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Device">
-        <PropertyRef Name="id_peripheral_device" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Device__id_perip__1CF15040">
     <End Role="PeripheralDevice" Type="ZMTdbModel.Store.PeripheralDevice" Multiplicity="1" />
     <End Role="Device" Type="ZMTdbModel.Store.Device" Multiplicity="*" />
     <ReferentialConstraint>

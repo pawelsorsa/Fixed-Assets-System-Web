@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using MvcApplication3.Models;
+using ZMTFixedAssetsWebApp.WebUI.Models;
 
 namespace MvcApplication3.Controllers
 {

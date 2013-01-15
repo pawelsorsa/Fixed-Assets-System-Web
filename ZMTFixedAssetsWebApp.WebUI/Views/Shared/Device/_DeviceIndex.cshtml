@@ -1,12 +1,12 @@
-﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.Domain.Model.Section>
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.WebUI.Models.DeviceExtendedModel>
 @{
-    ViewBag.Title = "Lista sekcji";
+    ViewBag.Title = "Lista urządzeń";
 }
 
-<p class="title_page">Lista sekcji</p>
+<p class="title_page">Lista urządzeń</p>
 
 <div id="search_div">
-    <img src='@Url.Content("Content/images/search.png")' alt="" />
+    <img src='@Url.Content("Content/images/search.png")' alt=""/>
     <div id="sortby_menu">OTWÓRZ MENU WYSZUKIWANIA</div>
 </div>
 
@@ -21,6 +21,6 @@
 
 
 <div id="ajax_main_content">
-    @Html.Partial("Section/_SectionList", Model) 
+    @Html.Partial("Device/_DeviceList", Model) 
 </div>
 

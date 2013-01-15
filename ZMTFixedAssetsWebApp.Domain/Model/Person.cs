@@ -81,6 +81,21 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         #endregion
         #region Navigation Properties
     
+        public virtual Section Section
+        {
+            get { return _section; }
+            set
+            {
+                if (!ReferenceEquals(_section, value))
+                {
+                    var previousValue = _section;
+                    _section = value;
+                    FixupSection(previousValue);
+                }
+            }
+        }
+        private Section _section;
+    
         public virtual ICollection<FixedAsset> FixedAssets
         {
             get
@@ -112,21 +127,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
         private ICollection<FixedAsset> _fixedAssets;
-    
-        public virtual Section Section
-        {
-            get { return _section; }
-            set
-            {
-                if (!ReferenceEquals(_section, value))
-                {
-                    var previousValue = _section;
-                    _section = value;
-                    FixupSection(previousValue);
-                }
-            }
-        }
-        private Section _section;
 
         #endregion
         #region Association Fixup

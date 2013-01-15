@@ -1,0 +1,70 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.WebUI.Models.DeviceExtendedModel>
+
+<div id="ajax_content">
+<table class="list_table" width="100%">
+            <thead>
+                <tr class='table_head_list'>
+                    <th width="4%">ID</th>
+                    <th width="8%">Środek trwały</th>
+                    <th width="20%">Typ</th>
+                    <th width="20%">Numer seryjny</th>
+                    <th width="10%">Model</th>
+                    <th width="3%">Producent</th>
+                    <th width="4%">Szczegóły</th>
+                    <th width="4%">Edytuj</th>
+                    <th width="4%">Usuń</th>
+                </tr>
+            </thead>
+            <tbody>
+
+@foreach (var x in Model.List)
+{
+     <tr>
+            <td>@x.id</td>
+            <td>@x.id_fixed_asset</td>
+            <td>@x.peripheral_device_name</td>
+            <td>@x.id_peripheral_device</td>
+            <td>@x.model</td>
+            <td>@x.producer</td>
+            <td>@Ajax.ActionLink("Szczegóły", "Details",  new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@Ajax.ActionLink("Edytuj", "Edit",  new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+            <td>@Ajax.ActionLink("Usuń", "Delete", new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    Dictionary<string, object> routeValues = new Dictionary<string, object>();
+    routeValues.Add("ShowAll", Model.ShowAll);
+    routeValues.Add("OrderBy", Model.OrderBy);
+    routeValues.Add("ItemsPerPage", Model.ItemsPerPage);
+    routeValues.Add("ASC", Model.ASC);
+    routeValues.Add("Query", Model.Query);
+}
+@{ if (!Model.ShowAll)
+   {
+    <div id="pager">
+        @Ajax.Pager((int)Model.Page, (int)Model.TotalRecords, "ajax_content", routeValues, "Device", "List", (int)Model.ItemsPerPage)
+    </div>   
+   }
+}
+<hr />
+
+@using (Ajax.BeginForm("List", "Device", null, new AjaxOptions { UpdateTargetId = "ajax_content", HttpMethod = "POST", OnFailure = "OnFailure" }))
+{    
+     @Html.HiddenFor(x => x.Page);                            
+     @Html.HiddenFor(x => x.TotalRecords);
+     @Html.HiddenFor(x => x.Query);
+     
+     
+     <p>@Ajax.ActionLink("Dodaj urządzenie", "Add", "Device", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "add_employee_btn", @rel = "ajax" })Sortuj wg: @Html.DropDownListFor(x => x.OrderBy, @Model.DropDownList)
+     Ilość wierszy: @Html.DropDownListFor(x => x.ItemsPerPage, @Model.ItemsPerPageList)
+     Odwrotne sortowania: @Html.CheckBoxFor(x => x.ASC)
+     Pokaż wszystkie: @Html.CheckBoxFor(x => x.ShowAll)
+    <input type="submit" value="OK" />
+    </p>  
+}
+
+@Ajax.ActionLink("Powrót", "Index", "Device", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })
+<br />
+</div>

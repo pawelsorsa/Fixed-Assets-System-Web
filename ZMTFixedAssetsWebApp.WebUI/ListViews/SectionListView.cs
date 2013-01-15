@@ -10,7 +10,7 @@ using ZMTFixedAssetsWebApp.Domain.Abstract;
 
 namespace ZMTFixedAssetsWebApp.WebUI.ListViews
 {
-    public class SectionListView : ListViewAsCollectionModel<Section>
+    public sealed class SectionListView : ListViewAsCollectionModel<Section>
     {
         public SectionListView(IRepository<Section> sectionRepository)
             : base(sectionRepository)

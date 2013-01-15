@@ -65,38 +65,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
         private ICollection<Device> _devices;
-    
-        public virtual ICollection<Device> Devices1
-        {
-            get
-            {
-                if (_devices1 == null)
-                {
-                    var newCollection = new FixupCollection<Device>();
-                    newCollection.CollectionChanged += FixupDevices1;
-                    _devices1 = newCollection;
-                }
-                return _devices1;
-            }
-            set
-            {
-                if (!ReferenceEquals(_devices1, value))
-                {
-                    var previousValue = _devices1 as FixupCollection<Device>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupDevices1;
-                    }
-                    _devices1 = value;
-                    var newValue = value as FixupCollection<Device>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupDevices1;
-                    }
-                }
-            }
-        }
-        private ICollection<Device> _devices1;
 
         #endregion
         #region Association Fixup
@@ -118,28 +86,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
                     if (ReferenceEquals(item.PeripheralDevice, this))
                     {
                         item.PeripheralDevice = null;
-                    }
-                }
-            }
-        }
-    
-        private void FixupDevices1(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (Device item in e.NewItems)
-                {
-                    item.PeripheralDevice1 = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Device item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.PeripheralDevice1, this))
-                    {
-                        item.PeripheralDevice1 = null;
                     }
                 }
             }

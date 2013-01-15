@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ZMTFixedAssetsWebApp.WebUI.ListViews
 {
-    public class MembershipRoleListView : ListViewAsCollectionModel<MembershipRoleModel>
+    public sealed class MembershipRoleListView : ListViewAsCollectionModel<MembershipRoleModel>
     {
         public MembershipRoleListView(IRepository<MembershipRoleModel> roleRepository)
             : base(roleRepository)

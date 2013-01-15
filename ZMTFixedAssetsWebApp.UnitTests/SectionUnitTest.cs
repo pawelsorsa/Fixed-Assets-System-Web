@@ -44,13 +44,10 @@ namespace ZMTFixedAssetsWebApp.UnitTests
         [TestMethod]
         public void GetAllSections()
         {
-            Mock<IRepository<Person>> mock_person = new Mock<IRepository<Person>>();
             Mock<IRepository<Section>> mock_section = new Mock<IRepository<Section>>();
             mock_section.Setup(m => m.Repository).Returns(CreateSectionTab().AsQueryable());
-            mock_person.Setup(m => m.Repository).Returns(CreatePersonTab().AsQueryable());
 
             SectionController controller = new SectionController(mock_section.Object);
-
             Assert.AreEqual(mock_section.Object.Repository.Count(), 6);
         }
 
@@ -97,7 +94,7 @@ namespace ZMTFixedAssetsWebApp.UnitTests
         }
 
         [TestMethod]
-        public void CanEditPerson()
+        public void CanEditSection()
         {
             Mock<IRepository<Section>> mock_section = new Mock<IRepository<Section>>();
             mock_section.Setup(m => m.Repository).Returns(CreateSectionTab().AsQueryable());

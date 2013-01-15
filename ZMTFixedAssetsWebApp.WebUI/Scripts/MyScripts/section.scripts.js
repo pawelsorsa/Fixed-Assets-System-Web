@@ -36,10 +36,10 @@
                     case "Poczta":
                         query += "Post:" + result2;
                         break;
-                    case "Kod pocztowy.":
+                    case "Kod pocztowy":
                         query += "PostalCode:" + result2;
                         break;
-                    case "Numer telefonu.":
+                    case "Numer telefonu":
                         query += "PhoneNumber:" + result2;
                         break;
                 }
@@ -50,6 +50,7 @@
         });
 
         if (validation == "") {
+            alert(query);
             $("#sortby").hide();
             $('#validation').empty();
             $.ajax(

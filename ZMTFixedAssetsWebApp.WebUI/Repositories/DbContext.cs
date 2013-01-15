@@ -13,18 +13,19 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
     {
         public DbSet<Person> Persons { get; set; }
         public DbSet<Section> Sections { get; set; }
+        public DbSet<Device> Devices { get; set; }
+        public DbSet<PeripheralDevice> PeripheralDevices { get; set; }
 
-       
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
            //Database.SetInitializer<DbContext>(new CreateDatabaseIfNotExists<DbContext>());
- 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<Section>().HasKey(x => x.id);
             modelBuilder.Entity<Licence>().HasKey(x => x.id_number);
             modelBuilder.Entity<Person>().HasKey(x => x.id);
-
-
+            modelBuilder.Entity<Device>().HasKey(x => x.id);
+            modelBuilder.Entity<PeripheralDevice>().HasKey(x => x.id);
             // Identity: None
             modelBuilder.Entity<Person>().Property(e => e.id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.None);
 
@@ -38,6 +39,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             // Section Validation
             // modelBuilder.Entity<Section>().Property(p => p.short_name).IsRequired().HasMaxLength(2);
 
+            modelBuilder.Entity<Device>()
+            .HasRequired(p => p.PeripheralDevice)
+            .WithMany(u => u.Devices)
+            .HasForeignKey(x => x.id_peripheral_device);
 
         }
     }

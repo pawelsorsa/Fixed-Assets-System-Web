@@ -5,9 +5,8 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace MvcApplication3.Models
+namespace ZMTFixedAssetsWebApp.WebUI.Models
 {
-
     public class ChangePasswordModel
     {
         [Required]

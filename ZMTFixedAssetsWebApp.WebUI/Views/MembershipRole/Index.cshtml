@@ -3,10 +3,12 @@
 }
 
 <div id="ajax_main_content">
-        <script type="text/javascript">
+        <script type="text/javascript">        
+        window.location.hash = "/MembershipRole";
+
         $(document).ready(function (e) {    
                global_url_getjson_sortby = "/MembershipRole/SortByList";
-               $.getScript("@Url.Content("~/Scripts/MyScripts/membershiprole.scripts.js")", function (x) {
+               $.getScript('@Url.Content("~/Scripts/MyScripts/membershiprole.scripts.js")', function (x) {
                 });  
         });
         </script>

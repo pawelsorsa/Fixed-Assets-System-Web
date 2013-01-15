@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using ZMTFixedAssetsWebApp.Domain.Model;
 
 
-namespace ZMTFixedAssetsWebApp.Domain.Model
+namespace ZMTFixedAssetsWebApp.WebUI.Models
 {
     public class PersonSectionAddEditModel : PersonSectionModel
     {

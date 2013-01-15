@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Lista urządzeń";
+}
+
+<div id="ajax_main_content">
+    <script type="text/javascript">
+        window.location.hash = "/Device";
+
+        $(document).ready(function (e) {    
+        global_url_getjson_sortby = "/Device/SortByList";
+               $.getScript('@Url.Content("~/Scripts/MyScripts/device.scripts.js")', function (x) {
+                });  
+        });
+        </script>
+    @Html.Partial("Device/_DeviceIndex") 
+</div>

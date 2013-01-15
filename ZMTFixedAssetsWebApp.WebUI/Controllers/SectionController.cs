@@ -100,7 +100,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
                 }
                 catch (DbUpdateException ex)
                 {
-                    throw new DbUpdateException("Wystąpił błąd podczas edytowania sekcji. Pole skrócona nazwa istnieje w bazie danych. Proszę podać inną nazwę.");
+                    throw new DbUpdateException("Wystąpił błąd podczas edytowania sekcji. Pole skrócona nazwa istnieje w bazie danych. Proszę podać inną nazwę.", ex.InnerException);
                 }
                 catch (Exception ex)
                 {

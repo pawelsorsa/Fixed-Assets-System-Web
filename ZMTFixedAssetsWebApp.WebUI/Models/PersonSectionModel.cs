@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using ZMTFixedAssetsWebApp.WebUI.Validation;
 
-namespace ZMTFixedAssetsWebApp.Domain.Model
+namespace ZMTFixedAssetsWebApp.WebUI.Models
 {
     public class PersonSectionModel
     {
