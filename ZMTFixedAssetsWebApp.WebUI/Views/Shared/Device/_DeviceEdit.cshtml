@@ -1,0 +1,57 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.DeviceExtendedModel
+ 
+<p class='header'>Edytowanie urządzenia <b>ID: @Model.id </b></p>
+   
+@using (Ajax.BeginForm("Edit", "Device", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/Device')" }, new { @id = "form_unobtrusive" }))
+{ 
+    <table width="100%">
+                <tr>
+                    <td width='30%'>@Html.Label("Typ urządzenia: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.peripheral_device_name, new { @readonly = true })</td>
+                    <td width='40%'></td>
+                </tr>
+                <tr>
+                    <td width='30%'>@Html.Label("ID środka trwałego: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.id_fixed_asset)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.id_fixed_asset)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Adres IP: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.ip_address)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.ip_address)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Adres MAC: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.mac_address)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.mac_address)</td>  
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Model: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.modell)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.modell)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Producent: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.producer)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.producer)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Numer seryjny: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.serial_number)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.serial_number)</td>
+                </tr>  
+                <tr>
+                    <td width='30%'>@Html.Label("Komentarz: ")</td>
+                    <td width='30%'>@Html.TextAreaFor(x => x.comment)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.comment)</td>
+                </tr>    
+
+    </table>   
+    <hr />
+                                                
+    <p class="centre_object"><input type=submit class='submitButton' value="Zapisz zmiany" />
+    @Ajax.ActionLink("Anuluj", "Index", "Device", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>
+
+}
+

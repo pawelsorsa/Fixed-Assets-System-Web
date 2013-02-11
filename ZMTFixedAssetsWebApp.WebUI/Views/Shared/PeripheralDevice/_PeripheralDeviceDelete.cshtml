@@ -1,0 +1,13 @@
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.DeleteObjectById
+
+<p class='header'>Usuwanie urządzenia peryferyjnego</p>
+<p>@Model.Description</p>
+
+@using (Ajax.BeginForm("Delete", "PeripheralDevice", new { Id = @Model.Id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @id = "form_unobtrusive" }))
+{
+    <hr />
+    <p class="centre_object">
+    <input type=submit class='submitButton' onclick="LoadHistory('/PeripheralDevice/Index')" value="TAK" />
+    @Ajax.ActionLink("NIE", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })</p>
+}
+    

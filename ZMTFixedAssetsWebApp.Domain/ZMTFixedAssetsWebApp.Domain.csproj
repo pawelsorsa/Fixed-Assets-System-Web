@@ -50,6 +50,8 @@
     <Compile Include="Model\Contractor.cs">
       <DependentUpon>ZMTdbEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\LicenceMetaData.cs" />
+    <Compile Include="Model\PeripheralDeviceMetaData.cs" />
     <Compile Include="Model\Device.cs">
       <DependentUpon>ZMTdbEntities.tt</DependentUpon>
     </Compile>
@@ -59,6 +61,7 @@
     <Compile Include="Model\Kind.cs">
       <DependentUpon>ZMTdbEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\KindMetaData.cs" />
     <Compile Include="Model\Licence.cs">
       <DependentUpon>ZMTdbEntities.tt</DependentUpon>
     </Compile>
@@ -74,6 +77,7 @@
     <Compile Include="Model\Subgroup.cs">
       <DependentUpon>ZMTdbEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\SubgroupMetaData.cs" />
     <Compile Include="Model\ZMTdbEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

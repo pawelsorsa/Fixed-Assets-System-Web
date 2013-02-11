@@ -1,4 +1,4 @@
-﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.WebUI.Models.DeviceExtendedModel>
+﻿@model ZMTFixedAssetsWebApp.WebUI.Models.PaginatedListModel<ZMTFixedAssetsWebApp.Domain.Model.Device>
 
 <div id="ajax_content">
 <table class="list_table" width="100%">
@@ -22,8 +22,8 @@
      <tr>
             <td>@x.id</td>
             <td>@x.id_fixed_asset</td>
-            <td>@x.peripheral_device_name</td>
-            <td>@x.id_peripheral_device</td>
+            <td>@x.PeripheralDevice.name</td>
+            <td>@x.serial_number</td>
             <td>@x.model</td>
             <td>@x.producer</td>
             <td>@Ajax.ActionLink("Szczegóły", "Details",  new { id = @x.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @rel = "ajax" })</td>

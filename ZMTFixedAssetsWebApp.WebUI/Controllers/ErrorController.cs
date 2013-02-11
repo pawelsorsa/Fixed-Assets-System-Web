@@ -15,7 +15,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                return View("_ErrorIndex");
+                return View("Error/_ErrorIndex");
             }
 
             return View();

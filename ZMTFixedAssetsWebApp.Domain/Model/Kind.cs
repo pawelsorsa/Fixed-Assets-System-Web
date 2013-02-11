@@ -34,6 +34,38 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         #endregion
         #region Navigation Properties
     
+        public virtual ICollection<FixedAsset> FixedAssets
+        {
+            get
+            {
+                if (_fixedAssets == null)
+                {
+                    var newCollection = new FixupCollection<FixedAsset>();
+                    newCollection.CollectionChanged += FixupFixedAssets;
+                    _fixedAssets = newCollection;
+                }
+                return _fixedAssets;
+            }
+            set
+            {
+                if (!ReferenceEquals(_fixedAssets, value))
+                {
+                    var previousValue = _fixedAssets as FixupCollection<FixedAsset>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupFixedAssets;
+                    }
+                    _fixedAssets = value;
+                    var newValue = value as FixupCollection<FixedAsset>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupFixedAssets;
+                    }
+                }
+            }
+        }
+        private ICollection<FixedAsset> _fixedAssets;
+    
         public virtual ICollection<Licence> Licences
         {
             get
@@ -68,6 +100,28 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
 
         #endregion
         #region Association Fixup
+    
+        private void FixupFixedAssets(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (FixedAsset item in e.NewItems)
+                {
+                    item.Kind = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (FixedAsset item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Kind, this))
+                    {
+                        item.Kind = null;
+                    }
+                }
+            }
+        }
     
         private void FixupLicences(object sender, NotifyCollectionChangedEventArgs e)
         {

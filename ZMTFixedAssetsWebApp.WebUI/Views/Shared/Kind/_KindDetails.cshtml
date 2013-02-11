@@ -1,0 +1,81 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.Kind
+ 
+<p class='header' style="margin-bottom: 1px">Rodzaj: <b>@Model.name</b></p>
+
+<table width="95%" style="margin-left: auto; margin-right: auto; margin-top: 1px; margin-bottom: 1px;">
+<thead>
+    <tr>
+        <th width="30%"></th>
+        <th width="70%"></th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>@Html.Label("ID:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.id)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Nazwa:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.name)</b></td>
+    </tr>
+    </tbody>
+    </table>
+    <hr />
+    <p class="centre_object">
+        @Ajax.ActionLink("Edytuj", "Edit", "Kind", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>
+
+    <p class='header' style="margin-bottom:1px;">Lista urządzeń: <b>@Model.name </b></p>
+    <table style="width: 95%; text-align:center; margin-left: auto; margin-right: auto">
+     <thead>
+                <tr style="background-color: Black; color: white">
+                    <th width="5%">Id</th>
+                    <th width="20%">Nr. inwentarzowy</th>
+                    <th width="20%">Imię</th>
+                    <th width="20%">Nazwisko</th>
+                    <th width="25%">Numer seryjny</th>
+                    <th width="25%">Grupa</th>
+                </tr>
+            </thead>
+    <tbody>
+        @foreach (var item in Model.FixedAssets)
+        {    
+        <tr style="font-weight: bold">
+            <td>@Html.ActionLink(item.id.ToString(), "Index", "FixedAsset", null, null, "/FixedAsset/Details/" + item.id + "", null, null)</td>
+            <td>@item.inventory_number</td>
+            <td>@item.Person.name</td>
+            <td>@item.Person.surname</td>
+            <td>@item.serial_number</td>
+            <td>@item.Subgroup.short_name</td>
+            </tr>
+            
+            if (item.Devices.Count > 0)
+            {
+                <tr style="font-size: 8px">
+                    <th width="5%">Id</th>
+                    <th width="20%">Typ</th>
+                    <th width="20%">Producent</th>
+                    <th width="20%">Model</th>
+                    <th width="25%">Numer seryjny</th>
+                    <th width="5%"> </th>
+                </tr>
+            }
+            
+            foreach (var dev in item.Devices)
+                 {
+                    <tr>
+                        <td>@Html.ActionLink(dev.id.ToString(), "Index", "Device", null, null, "/Device/Details/" + dev.id + "", null, null)</td>
+                        <td colspan="1">@dev.PeripheralDevice.name</td>
+                        <td colspan="1">@dev.producer</td>
+                        <td colspan="1">@dev.model</td>
+                        <td colspan="1">@dev.serial_number</td>
+                    </tr>
+                 }
+                 <tr><td colspan="6"><hr /></td></tr>
+        }
+    </tbody>
+    </table>
+
+    <p class="centre_object">
+    @Ajax.ActionLink("Powrót", "Index", "Kind", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+</p>

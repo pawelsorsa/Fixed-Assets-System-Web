@@ -12,31 +12,13 @@ using ZMTFixedAssetsWebApp.WebUI.Controllers;
 namespace ZMTFixedAssetsWebApp.WebUI.ListViews
 {
 
-    public sealed class DeviceListView : ListViewModel<Device, DeviceExtendedModel>
+    public sealed class DeviceListView : ListViewAsCollectionModel<Device>
     {
-        private IRepository<PeripheralDevice> peripheralDeviceRepository;
-        private PeripheralDeviceController peripheralDeviceController;
 
-        public DeviceListView(IRepository<Device> deviceRepository, PeripheralDeviceController peripheralDeviceController):base(deviceRepository)
+        public DeviceListView(IRepository<Device> deviceRepository):base(deviceRepository)
         {
-            this.peripheralDeviceController = peripheralDeviceController;
         }
 
-        protected override DeviceExtendedModel CreateExtendedObejctModelFromObjectModel(Device obj)
-        {
-            DeviceExtendedModel model = new DeviceExtendedModel();
-            model.comment = obj.comment;
-            model.id = obj.id;
-            model.id_fixed_asset = obj.id_fixed_asset;
-            model.id_peripheral_device = obj.id_peripheral_device;
-            model.ip_address = obj.ip_address;
-            model.mac_address = obj.mac_address;
-            model.model = obj.model;
-            model.producer = obj.producer;
-            model.serial_number = obj.serial_number;
-            model.peripheral_device_name = peripheralDeviceController.GetPeripheralDeviceNameById(obj.id_peripheral_device);
-            return model;
-        }
 
         public override List<System.Web.Mvc.SelectListItem> OrderByList()
         {
@@ -77,16 +59,15 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
                 int.TryParse(ID, out _id);
                 int.TryParse(InwNumber, out _inw_number);
 
-
                 deviceList = deviceList.Where(x =>
-                    (ID != null ? x.id == _id : x.id != 0) &&
-                   // (_inw_number != null ? x.id_fixed_asset == _inw_number : x.id_fixed_asset != 0)
-                    (IPAddress != null ? x.ip_address == IPAddress : x.ip_address != "") &&
-                    (MACAddress != null ? x.mac_address == MACAddress : x.mac_address != "") &&
-                    (Model != null ? x.model == Model : x.model != "") &&
-                    (Producer != null ? x.producer == Producer : x.producer != "") &&
-                    (SerialNumber != null ? x.serial_number == SerialNumber : x.serial_number != "") &&
-                    (PeripheralDevice != null ? x.id_peripheral_device == 1 : x.id_peripheral_device != 0)
+                    (_id != 0 ? x.id == _id : x.id != 0) &&
+                    (_inw_number != 0 ? x.id_fixed_asset == _inw_number : x.id_fixed_asset != 0) &&
+                    (IPAddress != null ? x.ip_address == IPAddress : x.ip_address != "" || x.ip_address != null) &&
+                    (MACAddress != null ? x.mac_address == MACAddress : x.mac_address != "" || x.mac_address != null) &&
+                    (Model != null ? x.model == Model : x.model != "" || x.model != null) &&
+                    (Producer != null ? x.producer == Producer : x.producer != "" || x.producer != null) &&
+                    (SerialNumber != null ? x.serial_number == SerialNumber : x.serial_number != "" || x.serial_number != null) &&
+                    (PeripheralDevice != null ? x.PeripheralDevice.name == PeripheralDevice : x.PeripheralDevice.name != "" || x.PeripheralDevice.name != null)
                     ).ToList();
             }
 

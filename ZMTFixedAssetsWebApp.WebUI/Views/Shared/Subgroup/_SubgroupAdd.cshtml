@@ -1,0 +1,22 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.Subgroup
+
+<p class='header'>Tworzenie grupy</p>
+
+@using (Ajax.BeginForm("Add", "Subgroup", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnSuccess = "OnCompleteEdit('/Subgroup/Index')" }, new { @id = "form_unobtrusive" }))
+{
+    <table width="100%">
+                <tr>
+                    <td width='30%'>@Html.Label("Sktót: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.short_name)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.short_name)</td>
+                </tr>  
+                <tr>
+                    <td width='30%'>@Html.Label("Nazwa: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.name)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.name)</td>
+                </tr>      
+    </table>   
+    <hr />
+    <p class="centre_object"><input type=submit class='submitButton' value="Dodaj grupę" />
+    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })</p>
+}

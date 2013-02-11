@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 {
+    [HandleError]
     public class HomeController : Controller
     {
         //

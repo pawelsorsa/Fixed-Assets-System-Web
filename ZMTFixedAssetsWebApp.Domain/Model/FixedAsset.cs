@@ -100,9 +100,28 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         public virtual Nullable<int> id_kind
         {
-            get;
-            set;
+            get { return _id_kind; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_id_kind != value)
+                    {
+                        if (Kind != null && Kind.id != value)
+                        {
+                            Kind = null;
+                        }
+                        _id_kind = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
         }
+        private Nullable<int> _id_kind;
     
         public virtual Nullable<int> id_subgroup
         {
@@ -196,6 +215,38 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private Contractor _contractor;
     
+        public virtual ICollection<Device> Devices
+        {
+            get
+            {
+                if (_devices == null)
+                {
+                    var newCollection = new FixupCollection<Device>();
+                    newCollection.CollectionChanged += FixupDevices;
+                    _devices = newCollection;
+                }
+                return _devices;
+            }
+            set
+            {
+                if (!ReferenceEquals(_devices, value))
+                {
+                    var previousValue = _devices as FixupCollection<Device>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupDevices;
+                    }
+                    _devices = value;
+                    var newValue = value as FixupCollection<Device>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupDevices;
+                    }
+                }
+            }
+        }
+        private ICollection<Device> _devices;
+    
         public virtual Person Person
         {
             get { return _person; }
@@ -257,6 +308,21 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
         private ICollection<Licence> _licences;
+    
+        public virtual Kind Kind
+        {
+            get { return _kind; }
+            set
+            {
+                if (!ReferenceEquals(_kind, value))
+                {
+                    var previousValue = _kind;
+                    _kind = value;
+                    FixupKind(previousValue);
+                }
+            }
+        }
+        private Kind _kind;
 
         #endregion
         #region Association Fixup
@@ -332,6 +398,52 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             else if (!_settingFK)
             {
                 id_subgroup = null;
+            }
+        }
+    
+        private void FixupKind(Kind previousValue)
+        {
+            if (previousValue != null && previousValue.FixedAssets.Contains(this))
+            {
+                previousValue.FixedAssets.Remove(this);
+            }
+    
+            if (Kind != null)
+            {
+                if (!Kind.FixedAssets.Contains(this))
+                {
+                    Kind.FixedAssets.Add(this);
+                }
+                if (id_kind != Kind.id)
+                {
+                    id_kind = Kind.id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                id_kind = null;
+            }
+        }
+    
+        private void FixupDevices(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Device item in e.NewItems)
+                {
+                    item.FixedAsset = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Device item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.FixedAsset, this))
+                    {
+                        item.FixedAsset = null;
+                    }
+                }
             }
         }
     

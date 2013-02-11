@@ -1,0 +1,60 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.Subgroup
+ 
+<p class='header' style="margin-bottom: 1px">Urządzenie <b>@Model.name ID: @Model.id</b></p>
+
+<table width="95%" style="margin-left: auto; margin-right: auto; margin-top: 1px; margin-bottom: 1px;">
+<thead>
+    <tr>
+        <th width="30%"></th>
+        <th width="70%"></th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>@Html.Label("ID:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.id)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Skrót:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.short_name)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Nazwa:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.name)</b></td>
+    </tr>
+    </tbody>
+    </table>
+    <hr />
+    <p class="centre_object">
+        @Ajax.ActionLink("Edytuj", "Edit", "Subgroup", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>
+
+    <p class='header' style="margin-bottom:1px;">Grupa: <b>@Model.name - @Model.short_name</b></p>
+    <table style="width: 95%; text-align:center; margin-left: auto; margin-right: auto">
+     <thead>
+                <tr style="background-color: Black; color: white">
+                    <th width="5%">ID środka trwałego</th>
+                    <th width="20%">Imię</th>
+                    <th width="20%">Nazwisko</th>
+                    <th width="25%">Numer seryjny</th>
+                    <th width="5%">Usuń</th>
+                </tr>
+            </thead>
+    <tbody>
+        @foreach (var item in Model.FixedAssets)
+        {    
+        <tr>
+            <td>@Html.ActionLink(item.id.ToString(), "Index", "FixedAsset", null, null, "/FixedAsset/Edit/" + item.id + "", null, null)</td>
+            <td>@item.Person.name</td>
+            <td>@item.Person.surname</td>
+            <td>@item.serial_number</td>
+            <td>@Html.ActionLink("Usuń", "Index", "FixedAsset", null, null, "/FixedAsset/Delete/" + item.id + "", null, null)</td>         
+        </tr>
+        <tr><td colspan="5"><hr /></td></tr>
+        }
+    </tbody>
+    </table>
+
+    <p class="centre_object">
+    @Ajax.ActionLink("Powrót", "Index", "Subgroup", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+</p>

@@ -31,6 +31,10 @@
             <End Role="Contractor" EntitySet="Contractor" />
             <End Role="FixedAsset" EntitySet="FixedAsset" />
           </AssociationSet>
+          <AssociationSet Name="FK_FixedAsset_Kind" Association="ZMTdbModel.Store.FK_FixedAsset_Kind">
+            <End Role="Kind" EntitySet="Kind" />
+            <End Role="FixedAsset" EntitySet="FixedAsset" />
+          </AssociationSet>
           <AssociationSet Name="FK_FixedAsset_Person" Association="ZMTdbModel.Store.FK_FixedAsset_Person">
             <End Role="Person" EntitySet="Person" />
             <End Role="FixedAsset" EntitySet="FixedAsset" />
@@ -209,6 +213,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FixedAsset_Kind">
+          <End Role="Kind" Type="ZMTdbModel.Store.Kind" Multiplicity="0..1" />
+          <End Role="FixedAsset" Type="ZMTdbModel.Store.FixedAsset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kind">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FixedAsset">
+              <PropertyRef Name="id_kind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FixedAsset_Person">
           <End Role="Person" Type="ZMTdbModel.Store.Person" Multiplicity="0..1" />
           <End Role="FixedAsset" Type="ZMTdbModel.Store.FixedAsset" Multiplicity="*" />
@@ -263,28 +279,27 @@
       <Schema Namespace="ZMTdbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Contractors" EntityType="ZMTdbModel.Contractor" />
-          <EntitySet Name="Kinds" EntityType="ZMTdbModel.Kind" />
           <EntitySet Name="Licences" EntityType="ZMTdbModel.Licence" />
           <EntitySet Name="Subgroups" EntityType="ZMTdbModel.Subgroup" />
-          <AssociationSet Name="FK__Licence__id_kind__3E52440B" Association="ZMTdbModel.FK__Licence__id_kind__3E52440B">
-            <End Role="Kind" EntitySet="Kinds" />
-            <End Role="Licence" EntitySet="Licences" />
-          </AssociationSet>
           <EntitySet Name="People" EntityType="ZMTdbModel.Person" />
           <EntitySet Name="Sections" EntityType="ZMTdbModel.Section" />
           <AssociationSet Name="FK_Person_Section" Association="ZMTdbModel.FK_Person_Section">
             <End Role="Section" EntitySet="Sections" />
             <End Role="Person" EntitySet="People" />
           </AssociationSet>
+          <EntitySet Name="PeripheralDevices" EntityType="ZMTdbModel.PeripheralDevice" />
           <EntitySet Name="Devices" EntityType="ZMTdbModel.Device" />
           <EntitySet Name="FixedAssets" EntityType="ZMTdbModel.FixedAsset" />
-          <EntitySet Name="PeripheralDevices" EntityType="ZMTdbModel.PeripheralDevice" />
           <AssociationSet Name="FK_FixedAsset_Contractor" Association="ZMTdbModel.FK_FixedAsset_Contractor">
             <End Role="Contractor" EntitySet="Contractors" />
             <End Role="FixedAsset" EntitySet="FixedAssets" />
           </AssociationSet>
           <AssociationSet Name="FK__Device__id_perip__1BFD2C07" Association="ZMTdbModel.FK__Device__id_perip__1BFD2C07">
             <End Role="PeripheralDevice" EntitySet="PeripheralDevices" />
+            <End Role="Device" EntitySet="Devices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_FixedAsset" Association="ZMTdbModel.FK_Device_FixedAsset">
+            <End Role="FixedAsset" EntitySet="FixedAssets" />
             <End Role="Device" EntitySet="Devices" />
           </AssociationSet>
           <AssociationSet Name="FK_FixedAsset_Person" Association="ZMTdbModel.FK_FixedAsset_Person">
@@ -297,6 +312,15 @@
           </AssociationSet>
           <AssociationSet Name="FK_Licence_FixedAsset" Association="ZMTdbModel.FK_Licence_FixedAsset">
             <End Role="FixedAsset" EntitySet="FixedAssets" />
+            <End Role="Licence" EntitySet="Licences" />
+          </AssociationSet>
+          <EntitySet Name="Kinds" EntityType="ZMTdbModel.Kind" />
+          <AssociationSet Name="FK_FixedAsset_Kind" Association="ZMTdbModel.FK_FixedAsset_Kind">
+            <End Role="Kind" EntitySet="Kinds" />
+            <End Role="FixedAsset" EntitySet="FixedAssets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Licence__id_kind__3E52440B" Association="ZMTdbModel.FK__Licence__id_kind__3E52440B">
+            <End Role="Kind" EntitySet="Kinds" />
             <End Role="Licence" EntitySet="Licences" />
           </AssociationSet>
           </EntityContainer>
@@ -314,14 +338,6 @@
           <Property Name="account_number" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="FixedAssets" Relationship="ZMTdbModel.FK_FixedAsset_Contractor" FromRole="Contractor" ToRole="FixedAsset" />
         </EntityType>
-        <EntityType Name="Kind">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Licences" Relationship="ZMTdbModel.FK__Licence__id_kind__3E52440B" FromRole="Kind" ToRole="Licence" />
-        </EntityType>
         <EntityType Name="Licence">
           <Key>
             <PropertyRef Name="id_number" />
@@ -336,8 +352,8 @@
           <Property Name="created_by" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="last_modified_date" Type="DateTime" Nullable="false" />
           <Property Name="last_modified_login" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Kind" Relationship="ZMTdbModel.FK__Licence__id_kind__3E52440B" FromRole="Licence" ToRole="Kind" />
           <NavigationProperty Name="FixedAsset" Relationship="ZMTdbModel.FK_Licence_FixedAsset" FromRole="Licence" ToRole="FixedAsset" />
+          <NavigationProperty Name="Kind" Relationship="ZMTdbModel.FK__Licence__id_kind__3E52440B" FromRole="Licence" ToRole="Kind" />
         </EntityType>
         <EntityType Name="Subgroup">
           <Key>
@@ -348,18 +364,6 @@
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="FixedAssets" Relationship="ZMTdbModel.FK_FixedAsset_Subgroup" FromRole="Subgroup" ToRole="FixedAsset" />
         </EntityType>
-        <Association Name="FK__Licence__id_kind__3E52440B">
-          <End Role="Kind" Type="ZMTdbModel.Kind" Multiplicity="1" />
-          <End Role="Licence" Type="ZMTdbModel.Licence" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kind">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Licence">
-              <PropertyRef Name="id_kind" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="id" />
@@ -402,6 +406,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PeripheralDevice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Devices" Relationship="ZMTdbModel.FK__Device__id_perip__1BFD2C07" FromRole="PeripheralDevice" ToRole="Device" />
+        </EntityType>
         <EntityType Name="Device">
           <Key>
             <PropertyRef Name="id" />
@@ -416,6 +428,7 @@
           <Property Type="String" Name="comment" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="id_fixed_asset" Nullable="false" />
           <NavigationProperty Name="PeripheralDevice" Relationship="ZMTdbModel.FK__Device__id_perip__1BFD2C07" FromRole="Device" ToRole="PeripheralDevice" />
+          <NavigationProperty Name="FixedAsset" Relationship="ZMTdbModel.FK_Device_FixedAsset" FromRole="Device" ToRole="FixedAsset" />
         </EntityType>
         <EntityType Name="FixedAsset">
           <Key>
@@ -439,17 +452,11 @@
           <Property Type="String" Name="created_by" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="id_contractor" />
           <NavigationProperty Name="Contractor" Relationship="ZMTdbModel.FK_FixedAsset_Contractor" FromRole="FixedAsset" ToRole="Contractor" />
+          <NavigationProperty Name="Devices" Relationship="ZMTdbModel.FK_Device_FixedAsset" FromRole="FixedAsset" ToRole="Device" />
           <NavigationProperty Name="Person" Relationship="ZMTdbModel.FK_FixedAsset_Person" FromRole="FixedAsset" ToRole="Person" />
           <NavigationProperty Name="Subgroup" Relationship="ZMTdbModel.FK_FixedAsset_Subgroup" FromRole="FixedAsset" ToRole="Subgroup" />
           <NavigationProperty Name="Licences" Relationship="ZMTdbModel.FK_Licence_FixedAsset" FromRole="FixedAsset" ToRole="Licence" />
-        </EntityType>
-        <EntityType Name="PeripheralDevice">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Devices" Relationship="ZMTdbModel.FK__Device__id_perip__1BFD2C07" FromRole="PeripheralDevice" ToRole="Device" />
+          <NavigationProperty Name="Kind" Relationship="ZMTdbModel.FK_FixedAsset_Kind" FromRole="FixedAsset" ToRole="Kind" />
         </EntityType>
         <Association Name="FK_FixedAsset_Contractor">
           <End Type="ZMTdbModel.Contractor" Role="Contractor" Multiplicity="0..1" />
@@ -472,6 +479,18 @@
             </Principal>
             <Dependent Role="Device">
               <PropertyRef Name="id_peripheral_device" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_FixedAsset">
+          <End Type="ZMTdbModel.FixedAsset" Role="FixedAsset" Multiplicity="1" />
+          <End Type="ZMTdbModel.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FixedAsset">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="id_fixed_asset" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -511,6 +530,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Kind">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FixedAssets" Relationship="ZMTdbModel.FK_FixedAsset_Kind" FromRole="Kind" ToRole="FixedAsset" />
+          <NavigationProperty Name="Licences" Relationship="ZMTdbModel.FK__Licence__id_kind__3E52440B" FromRole="Kind" ToRole="Licence" />
+        </EntityType>
+        <Association Name="FK_FixedAsset_Kind">
+          <End Type="ZMTdbModel.Kind" Role="Kind" Multiplicity="0..1" />
+          <End Type="ZMTdbModel.FixedAsset" Role="FixedAsset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kind">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FixedAsset">
+              <PropertyRef Name="id_kind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Licence__id_kind__3E52440B">
+          <End Type="ZMTdbModel.Kind" Role="Kind" Multiplicity="1" />
+          <End Type="ZMTdbModel.Licence" Role="Licence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kind">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Licence">
+              <PropertyRef Name="id_kind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -526,10 +578,6 @@
             <ScalarProperty Name="country" ColumnName="country" />
             <ScalarProperty Name="name" ColumnName="name" />
             <ScalarProperty Name="account_number" ColumnName="account_number" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Kinds"><EntityTypeMapping TypeName="ZMTdbModel.Kind"><MappingFragment StoreEntitySet="Kind">
-            <ScalarProperty Name="id" ColumnName="id" />
-            <ScalarProperty Name="name" ColumnName="name" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Licences"><EntityTypeMapping TypeName="ZMTdbModel.Licence"><MappingFragment StoreEntitySet="Licence">
             <ScalarProperty Name="id_number" ColumnName="id_number" />
@@ -577,6 +625,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PeripheralDevices">
+            <EntityTypeMapping TypeName="ZMTdbModel.PeripheralDevice">
+              <MappingFragment StoreEntitySet="PeripheralDevice">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Devices">
             <EntityTypeMapping TypeName="ZMTdbModel.Device">
               <MappingFragment StoreEntitySet="Device">
@@ -615,9 +671,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PeripheralDevices">
-            <EntityTypeMapping TypeName="ZMTdbModel.PeripheralDevice">
-              <MappingFragment StoreEntitySet="PeripheralDevice">
+          <EntitySetMapping Name="Kinds">
+            <EntityTypeMapping TypeName="ZMTdbModel.Kind">
+              <MappingFragment StoreEntitySet="Kind">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -645,48 +701,56 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="ZMTdbModel" ZoomLevel="68">
-        <EntityTypeShape EntityType="ZMTdbModel.Contractor" Width="1.5" PointX="3" PointY="1" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZMTdbModel.Kind" Width="1.5" PointX="8.25" PointY="1.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZMTdbModel.Contractor" Width="1.5" PointX="1.875" PointY="1" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="ZMTdbModel.Licence" Width="1.5" PointX="10.5" PointY="4.875" Height="3.5186979166666665" IsExpanded="true" />
         <EntityTypeShape EntityType="ZMTdbModel.Subgroup" Width="1.5" PointX="3" PointY="9.5" Height="1.787985026041671" IsExpanded="true" />
-        <AssociationConnector Association="ZMTdbModel.FK__Licence__id_kind__3E52440B" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.40625" PointY="3.3456835937499996" />
-          <ConnectorPoint PointX="9.40625" PointY="4.90625" />
-          <ConnectorPoint PointX="10.5" PointY="4.90625" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="ZMTdbModel.Person" Width="1.5" PointX="3" PointY="5.125" Height="2.9417936197916683" />
         <EntityTypeShape EntityType="ZMTdbModel.Section" Width="1.5" PointX="0.75" PointY="5.125" Height="2.9417936197916754" />
         <AssociationConnector Association="ZMTdbModel.FK_Person_Section" >
           <ConnectorPoint PointX="2.25" PointY="6.5958968098958328" />
           <ConnectorPoint PointX="3" PointY="6.5958968098958328" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="ZMTdbModel.Device" Width="1.5" PointX="7.5" PointY="5" Height="3.1340950520833353" />
-        <EntityTypeShape EntityType="ZMTdbModel.FixedAsset" Width="1.5" PointX="5.25" PointY="3.875" Height="5.2494108072916674" />
         <EntityTypeShape EntityType="ZMTdbModel.PeripheralDevice" Width="1.5" PointX="5.25" PointY="0.75" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="ZMTdbModel.Device" Width="1.5" PointX="7.5" PointY="4.25" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="ZMTdbModel.FixedAsset" Width="1.5" PointX="5.25" PointY="3.5" Height="5.2494108072916674" />
         <AssociationConnector Association="ZMTdbModel.FK_FixedAsset_Contractor" >
-          <ConnectorPoint PointX="4.5" PointY="3.7494921874999996" />
-          <ConnectorPoint PointX="4.875" PointY="4.1244921875" />
-          <ConnectorPoint PointX="4.875" PointY="3.5" />
-          <ConnectorPoint PointX="5.25" PointY="3.875" />
+          <ConnectorPoint PointX="2.625" PointY="3.7494921874999996" />
+          <ConnectorPoint PointX="2.625" PointY="4.4059965937499994" />
+          <ConnectorPoint PointX="5.25" PointY="4.4059965937499994" />
         </AssociationConnector>
         <AssociationConnector Association="ZMTdbModel.FK__Device__id_perip__1BFD2C07" >
           <ConnectorPoint PointX="6.75" PointY="1.21875" />
-          <ConnectorPoint PointX="7.84375" PointY="1.21875" />
-          <ConnectorPoint PointX="7.84375" PointY="5" />
+          <ConnectorPoint PointX="8.5937495" PointY="1.21875" />
+          <ConnectorPoint PointX="8.5937495" PointY="4.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="ZMTdbModel.FK_Device_FixedAsset" >
+          <ConnectorPoint PointX="6.75" PointY="5.8170475260416694" />
+          <ConnectorPoint PointX="7.5" PointY="5.8170475260416694" />
         </AssociationConnector>
         <AssociationConnector Association="ZMTdbModel.FK_FixedAsset_Person" >
-          <ConnectorPoint PointX="4.5" PointY="6.5958968098958328" />
-          <ConnectorPoint PointX="5.25" PointY="6.5958968098958328" />
+          <ConnectorPoint PointX="4.5" PointY="6.5958968098958337" />
+          <ConnectorPoint PointX="5.25" PointY="6.5958968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="ZMTdbModel.FK_FixedAsset_Subgroup" >
-          <ConnectorPoint PointX="4.5" PointY="10.393992513020834" />
-          <ConnectorPoint PointX="6" PointY="10.393992513020834" />
-          <ConnectorPoint PointX="6" PointY="9.1244108072916674" />
+          <ConnectorPoint PointX="4.5" PointY="10.393992513020836" />
+          <ConnectorPoint PointX="6" PointY="10.393992513020836" />
+          <ConnectorPoint PointX="6" PointY="8.9417122395833335" />
         </AssociationConnector>
         <AssociationConnector Association="ZMTdbModel.FK_Licence_FixedAsset" >
-          <ConnectorPoint PointX="6.75" PointY="8.662904145833334" />
-          <ConnectorPoint PointX="11.25" PointY="8.662904145833334" />
-          <ConnectorPoint PointX="11.25" PointY="8.201396484375" />
+          <ConnectorPoint PointX="6.75" PointY="7.8239957682291692" />
+          <ConnectorPoint PointX="10.5" PointY="7.8239957682291692" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ZMTdbModel.Kind" Width="1.5" PointX="10.875" PointY="10.625" Height="1.7879850260416674" />
+        <AssociationConnector Association="ZMTdbModel.FK_FixedAsset_Kind" >
+          <ConnectorPoint PointX="12.21875" PointY="10.625" />
+          <ConnectorPoint PointX="12.21875" PointY="3.84375" />
+          <ConnectorPoint PointX="8.6770828333333334" PointY="3.8437499999999996" />
+          <ConnectorPoint PointX="8.5104161666666656" PointY="3.84375" />
+          <ConnectorPoint PointX="6.75" PointY="3.84375" />
+        </AssociationConnector>
+        <AssociationConnector Association="ZMTdbModel.FK__Licence__id_kind__3E52440B" >
+          <ConnectorPoint PointX="11.4375" PointY="10.625" />
+          <ConnectorPoint PointX="11.4375" PointY="8.201396484375" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Lista grup";
+}
+
+<div id="ajax_main_content">
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            global_url_getjson_sortby = "/Subgroup/SortByList";
+            $.getScript('@Url.Content("~/Scripts/MyScripts/subgroup.scripts.js")', function (x) {
+            });
+        });
+        </script>
+    @Html.Partial("Subgroup/_SubgroupIndex") 
+</div>

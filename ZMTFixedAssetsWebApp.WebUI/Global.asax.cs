@@ -149,6 +149,60 @@ namespace ZMTFixedAssetsWebApp.WebUI
             new { controller = "Section", action = "Details", ShortName = UrlParameter.Optional }
             );
 
+
+            // **************** DEVICE ************************************
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "Device",                                      // URL with parameters
+            new { controller = "Device", action = "Index", sortby = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "Device/Delete/{id}",                                      // URL with parameters
+            new { controller = "Device", action = "Delete", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "Device/Edit/{id}",                                      // URL with parameters
+            new { controller = "Device", action = "Edit", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "Device/Details/{id}",                                      // URL with parameters
+            new { controller = "Device", action = "Details", id = UrlParameter.Optional }
+            );
+
+            // **************** PERIPHERAL DEVICE ************************************
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "PeripheralDevice",                                      // URL with parameters
+            new { controller = "PeripheralDevice", action = "Index", sortby = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "PeripheralDevice/Delete/{id}",                                      // URL with parameters
+            new { controller = "PeripheralDevice", action = "Delete", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "PeripheralDevice/Edit/{id}",                                      // URL with parameters
+            new { controller = "PeripheralDevice", action = "Edit", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+            null,                                           // Route name
+            "PeripheralDevice/Details/{id}",                                      // URL with parameters
+            new { controller = "PeripheralDevice", action = "Details", id = UrlParameter.Optional }
+            );
+
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

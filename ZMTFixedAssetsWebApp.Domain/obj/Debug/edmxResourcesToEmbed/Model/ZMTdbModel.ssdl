@@ -26,6 +26,10 @@
       <End Role="Contractor" EntitySet="Contractor" />
       <End Role="FixedAsset" EntitySet="FixedAsset" />
     </AssociationSet>
+    <AssociationSet Name="FK_FixedAsset_Kind" Association="ZMTdbModel.Store.FK_FixedAsset_Kind">
+      <End Role="Kind" EntitySet="Kind" />
+      <End Role="FixedAsset" EntitySet="FixedAsset" />
+    </AssociationSet>
     <AssociationSet Name="FK_FixedAsset_Person" Association="ZMTdbModel.Store.FK_FixedAsset_Person">
       <End Role="Person" EntitySet="Person" />
       <End Role="FixedAsset" EntitySet="FixedAsset" />
@@ -201,6 +205,18 @@
       </Principal>
       <Dependent Role="FixedAsset">
         <PropertyRef Name="id_contractor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FixedAsset_Kind">
+    <End Role="Kind" Type="ZMTdbModel.Store.Kind" Multiplicity="0..1" />
+    <End Role="FixedAsset" Type="ZMTdbModel.Store.FixedAsset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kind">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FixedAsset">
+        <PropertyRef Name="id_kind" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

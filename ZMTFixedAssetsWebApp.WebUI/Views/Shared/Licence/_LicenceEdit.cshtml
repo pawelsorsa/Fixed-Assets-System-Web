@@ -1,0 +1,41 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.Licence
+ 
+<p class='header'>Edytowanie licencji: <b>@Model.name </b></p>
+          
+@using (Ajax.BeginForm("Edit", "Licence", new { id = Model.licence_number }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/Licence')" }, new { @id = "form_unobtrusive" }))
+{ 
+    <table width="100%">
+                <tr>
+                    <td width='30%'>@Html.Label("Numer inwentarzowy: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.inventory_number)</td>
+                    <td width='40%'></td>
+                </tr>
+                <tr>
+                    <td width='30%'>@Html.Label("Licencja: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.licence_number)</td>
+                    <td width='40%'></td>
+                </tr>
+                <tr>
+                    <td width='30%'>@Html.Label("Przypisany środek trwały: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.assign_fixed_asset)</td>
+                    <td width='40%'></td>
+                </tr>
+                <tr>
+                    <td width='30%'>@Html.Label("Nazwa: ")</td>
+                    <td width='30%'>@Html.TextAreaFor(x => x.name)</td>
+                    <td width='40%'></td>
+                </tr>
+                <tr>
+                    <td width='30%'>@Html.Label("Komentarz: ")</td>
+                    <td width='30%'>@Html.TextAreaFor(x => x.comment)</td>
+                    <td width='40%'></td>
+                </tr>
+    </table>   
+    <hr />
+                                                
+    <p class="centre_object"><input type=submit class='submitButton' value="Zapisz zmiany" />
+    @Ajax.ActionLink("Anuluj", "Index", "Licence", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>
+
+}
+

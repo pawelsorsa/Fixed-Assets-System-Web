@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Lista urządzeń peryferyjnych";
+}
+
+<div id="ajax_main_content">
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            global_url_getjson_sortby = "/PeripheralDevice/SortByList";
+            $.getScript('@Url.Content("~/Scripts/MyScripts/peripheraldevice.scripts.js")', function (x) {
+            });
+        });
+        </script>
+    @Html.Partial("PeripheralDevice/_PeripheralDeviceIndex") 
+</div>

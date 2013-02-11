@@ -48,12 +48,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private ObjectSet<Contractor> _contractors;
     
-        public ObjectSet<Kind> Kinds
-        {
-            get { return _kinds  ?? (_kinds = CreateObjectSet<Kind>("Kinds")); }
-        }
-        private ObjectSet<Kind> _kinds;
-    
         public ObjectSet<Licence> Licences
         {
             get { return _licences  ?? (_licences = CreateObjectSet<Licence>("Licences")); }
@@ -78,6 +72,12 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private ObjectSet<Section> _sections;
     
+        public ObjectSet<PeripheralDevice> PeripheralDevices
+        {
+            get { return _peripheralDevices  ?? (_peripheralDevices = CreateObjectSet<PeripheralDevice>("PeripheralDevices")); }
+        }
+        private ObjectSet<PeripheralDevice> _peripheralDevices;
+    
         public ObjectSet<Device> Devices
         {
             get { return _devices  ?? (_devices = CreateObjectSet<Device>("Devices")); }
@@ -90,11 +90,11 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         }
         private ObjectSet<FixedAsset> _fixedAssets;
     
-        public ObjectSet<PeripheralDevice> PeripheralDevices
+        public ObjectSet<Kind> Kinds
         {
-            get { return _peripheralDevices  ?? (_peripheralDevices = CreateObjectSet<PeripheralDevice>("PeripheralDevices")); }
+            get { return _kinds  ?? (_kinds = CreateObjectSet<Kind>("Kinds")); }
         }
-        private ObjectSet<PeripheralDevice> _peripheralDevices;
+        private ObjectSet<Kind> _kinds;
 
         #endregion
     }

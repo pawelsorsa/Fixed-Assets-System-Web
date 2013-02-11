@@ -104,21 +104,6 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
         #endregion
         #region Navigation Properties
     
-        public virtual Kind Kind
-        {
-            get { return _kind; }
-            set
-            {
-                if (!ReferenceEquals(_kind, value))
-                {
-                    var previousValue = _kind;
-                    _kind = value;
-                    FixupKind(previousValue);
-                }
-            }
-        }
-        private Kind _kind;
-    
         public virtual FixedAsset FixedAsset
         {
             get { return _fixedAsset; }
@@ -133,29 +118,24 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
         private FixedAsset _fixedAsset;
-
-        #endregion
-        #region Association Fixup
     
-        private void FixupKind(Kind previousValue)
+        public virtual Kind Kind
         {
-            if (previousValue != null && previousValue.Licences.Contains(this))
+            get { return _kind; }
+            set
             {
-                previousValue.Licences.Remove(this);
-            }
-    
-            if (Kind != null)
-            {
-                if (!Kind.Licences.Contains(this))
+                if (!ReferenceEquals(_kind, value))
                 {
-                    Kind.Licences.Add(this);
-                }
-                if (id_kind != Kind.id)
-                {
-                    id_kind = Kind.id;
+                    var previousValue = _kind;
+                    _kind = value;
+                    FixupKind(previousValue);
                 }
             }
         }
+        private Kind _kind;
+
+        #endregion
+        #region Association Fixup
     
         private void FixupFixedAsset(FixedAsset previousValue)
         {
@@ -173,6 +153,26 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
                 if (assign_fixed_asset != FixedAsset.id)
                 {
                     assign_fixed_asset = FixedAsset.id;
+                }
+            }
+        }
+    
+        private void FixupKind(Kind previousValue)
+        {
+            if (previousValue != null && previousValue.Licences.Contains(this))
+            {
+                previousValue.Licences.Remove(this);
+            }
+    
+            if (Kind != null)
+            {
+                if (!Kind.Licences.Contains(this))
+                {
+                    Kind.Licences.Add(this);
+                }
+                if (id_kind != Kind.id)
+                {
+                    id_kind = Kind.id;
                 }
             }
         }

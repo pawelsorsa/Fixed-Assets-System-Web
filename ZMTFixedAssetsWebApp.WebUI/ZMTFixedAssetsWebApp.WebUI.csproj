@@ -71,11 +71,14 @@
     <Compile Include="Controllers\DeviceController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KindController.cs" />
+    <Compile Include="Controllers\LicenceController.cs" />
     <Compile Include="Controllers\MembershipRoleController.cs" />
     <Compile Include="Controllers\MembershipUserController.cs" />
     <Compile Include="Controllers\PeripheralDeviceController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\SubgroupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -84,9 +87,13 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="LinqHelpers\LinqHelpers.cs" />
+    <Compile Include="ListViews\LicenceListView.cs" />
+    <Compile Include="ListViews\SubgroupListView.cs" />
     <Compile Include="ListViews\DeviceListView.cs" />
+    <Compile Include="ListViews\KindListView.cs" />
     <Compile Include="ListViews\MembershipRoleListView.cs" />
     <Compile Include="ListViews\MembershipUserListView.cs" />
+    <Compile Include="ListViews\PeripheralDeviceListView.cs" />
     <Compile Include="ListViews\PersonListView.cs" />
     <Compile Include="ListViews\SectionListView.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -108,13 +115,18 @@
     <Compile Include="Models\SectionModel.cs" />
     <Compile Include="Models\SubscribeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\LicenceRepository.cs" />
+    <Compile Include="Repositories\FixedAssetRepository.cs" />
     <Compile Include="Repositories\DeviceRepository.cs" />
+    <Compile Include="Repositories\KindRepository.cs" />
     <Compile Include="Repositories\MembershipRoleRepository.cs" />
     <Compile Include="Repositories\MembershipUserRepository.cs" />
     <Compile Include="Repositories\PeripheralDeviceRepository.cs" />
     <Compile Include="Repositories\SectionRepository.cs" />
     <Compile Include="Repositories\DbContext.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Repositories\SubgroupRepository.cs" />
+    <Compile Include="Validation\FixedAssetIdValidation.cs" />
     <Compile Include="Validation\PersonIdValidation.cs" />
     <Compile Include="Validation\RoleNameValidation.cs" />
     <Compile Include="Validation\SectionValidation.cs" />
@@ -159,6 +171,11 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\MyScripts\licence.scripts.js" />
+    <Content Include="Scripts\MyScripts\subgroup.scripts.js" />
+    <Content Include="Scripts\MyScripts\kind.scripts.js" />
+    <Content Include="Scripts\MyScripts\peripheraldevice.scripts.js" />
+    <Content Include="Scripts\MyScripts\device.scripts.js" />
     <Content Include="Scripts\MyScripts\section.scripts.js" />
     <Content Include="Scripts\MyScripts\membershiprole.scripts.js" />
     <Content Include="Scripts\MyScripts\global.scripts.js" />
@@ -272,6 +289,33 @@
     <Content Include="Views\Shared\Device\_DeviceIndex.cshtml" />
     <Content Include="Views\Device\List.cshtml" />
     <Content Include="Views\Shared\Device\_DeviceList.cshtml" />
+    <Content Include="Views\Device\Details.cshtml" />
+    <Content Include="Views\Shared\Device\_DeviceDetails.cshtml" />
+    <Content Include="Views\Device\Edit.cshtml" />
+    <Content Include="Views\Shared\Device\_DeviceEdit.cshtml" />
+    <Content Include="Views\Device\Delete.cshtml" />
+    <Content Include="Views\Section\Delete.cshtml" />
+    <Content Include="Views\Shared\Device\_DeviceDelete.cshtml" />
+    <Content Include="Views\Shared\Device\_DeviceAdd.cshtml" />
+    <Content Include="Views\Device\Add.cshtml" />
+    <Content Include="Views\PeripheralDevice\List.cshtml" />
+    <Content Include="Views\PeripheralDevice\Index.cshtml" />
+    <Content Include="Views\PeripheralDevice\Details.cshtml" />
+    <Content Include="Views\PeripheralDevice\Edit.cshtml" />
+    <Content Include="Views\PeripheralDevice\Delete.cshtml" />
+    <Content Include="Views\PeripheralDevice\Add.cshtml" />
+    <Content Include="Views\Kind\Index.cshtml" />
+    <Content Include="Views\Kind\Edit.cshtml" />
+    <Content Include="Views\Kind\Delete.cshtml" />
+    <Content Include="Views\Kind\Details.cshtml" />
+    <Content Include="Views\Kind\Add.cshtml" />
+    <Content Include="Views\Kind\List.cshtml" />
+    <Content Include="Views\Licence\Index.cshtml" />
+    <Content Include="Views\Licence\List.cshtml" />
+    <Content Include="Views\Licence\Delete.cshtml" />
+    <Content Include="Views\Licence\Add.cshtml" />
+    <Content Include="Views\Licence\Details.cshtml" />
+    <Content Include="Views\Licence\Edit.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\MembershipUser\_MembershipUserList.cshtml" />
@@ -290,6 +334,36 @@
     <Content Include="Views\Shared\Section\_SectionDetails.cshtml" />
     <Content Include="Views\Shared\Section\_SectionDelete.cshtml" />
     <Content Include="Views\Shared\Section\_SectionAdd.cshtml" />
+    <Content Include="Views\Shared\PeripheralDevice\_PeripheralDeviceList.cshtml" />
+    <Content Include="Views\Shared\PeripheralDevice\_PeripheralDeviceIndex.cshtml" />
+    <Content Include="Views\Shared\PeripheralDevice\_PeripheralDeviceDetails.cshtml" />
+    <Content Include="Views\Shared\PeripheralDevice\_PeripheralDeviceEdit.cshtml" />
+    <Content Include="Views\Shared\PeripheralDevice\_PeripheralDeviceDelete.cshtml" />
+    <Content Include="Views\Shared\PeripheralDevice\_PeripheralDeviceAdd.cshtml" />
+    <Content Include="Views\Shared\Kind\_KindAdd.cshtml" />
+    <Content Include="Views\Shared\Kind\_KindDelete.cshtml" />
+    <Content Include="Views\Shared\Kind\_KindDetails.cshtml" />
+    <Content Include="Views\Shared\Kind\_KindEdit.cshtml" />
+    <Content Include="Views\Shared\Kind\_KindIndex.cshtml" />
+    <Content Include="Views\Shared\Kind\_KindList.cshtml" />
+    <Content Include="Views\Subgroup\Index.cshtml" />
+    <Content Include="Views\Subgroup\Details.cshtml" />
+    <Content Include="Views\Subgroup\Add.cshtml" />
+    <Content Include="Views\Subgroup\Edit.cshtml" />
+    <Content Include="Views\Subgroup\Delete.cshtml" />
+    <Content Include="Views\Subgroup\List.cshtml" />
+    <Content Include="Views\Shared\Subgroup\_SubgroupAdd.cshtml" />
+    <Content Include="Views\Shared\Subgroup\_SubgroupList.cshtml" />
+    <Content Include="Views\Shared\Subgroup\_SubgroupIndex.cshtml" />
+    <Content Include="Views\Shared\Subgroup\_SubgroupDetails.cshtml" />
+    <Content Include="Views\Shared\Subgroup\_SubgroupEdit.cshtml" />
+    <Content Include="Views\Shared\Subgroup\_SubgroupDelete.cshtml" />
+    <Content Include="Views\Shared\Licence\_LicenceIndex.cshtml" />
+    <Content Include="Views\Shared\Licence\_LicenceList.cshtml" />
+    <Content Include="Views\Shared\Licence\_LicenceDelete.cshtml" />
+    <Content Include="Views\Shared\Licence\_LicenceEdit.cshtml" />
+    <Content Include="Views\Shared\Licence\_LicenceDetails.cshtml" />
+    <Content Include="Views\Shared\Licence\_LicenceAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Error\_ErrorIndex.cshtml" />
@@ -317,7 +391,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5116</DevelopmentServerPort>
+          <DevelopmentServerPort>5117</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

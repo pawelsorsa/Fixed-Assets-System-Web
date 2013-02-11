@@ -31,7 +31,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Validation
             var id = (int)value;
 
             bool result = repository.Repository.Any(x => x.id == id);
-            return !result;
+            return result;
         }
     }
 }

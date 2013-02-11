@@ -58,13 +58,13 @@ namespace ZMTFixedAssetsWebApp.WebUI.ListViews
 
                 usersList = usersList.Where(x =>
                     (ID != null ? x.id == _id : x.id != 0) &&
-                    (Short != null ? x.short_name == Short : x.short_name != "") &&
-                    (Name != null ? x.name == Name : x.name != "") &&
-                    (Locality != null ? x.locality == Locality : x.locality != "") &&
-                    (Street != null ? x.street == Street : x.street != "") &&
-                    (Post != null ? x.post == Post : x.post != "") &&
-                    (PostalCode != null ? x.postal_code == PostalCode : x.postal_code != "") &&
-                    (PhoneNumber != null ? x.phone_number == PhoneNumber : x.phone_number != "")
+                    (Short != null ? x.short_name == Short : x.short_name != "" || x.short_name != null) &&
+                    (Name != null ? x.name == Name : x.name != "" || x.name != null) &&
+                    (Locality != null ? x.locality == Locality : x.locality != "" || x.locality != null) &&
+                    (Street != null ? x.street == Street : x.street != "" || x.street != null) &&
+                    (Post != null ? x.post == Post : x.post != "" || x.post != null) &&
+                    (PostalCode != null ? x.postal_code == PostalCode : x.postal_code != "" ||x.postal_code != null) &&
+                    (PhoneNumber != null ? x.phone_number == PhoneNumber : x.phone_number != "" || x.phone_number != null)
                     ).ToList();
             }
             else

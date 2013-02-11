@@ -36,8 +36,13 @@ namespace ZMTFixedAssetsWebApp.WebUI.Infrastructure
             ninjectKernel.Bind<IRepository<Section>>().To<SectionRepository>();
             ninjectKernel.Bind<IRepository<Person>>().To<PersonRepository>();
             ninjectKernel.Bind<IRepository<MembershipUserModel>>().To<MembershipUserRepository>();
+            ninjectKernel.Bind<IRepository<MembershipRoleModel>>().To<MembershipRoleRepository>();
             ninjectKernel.Bind<IRepository<Device>>().To<DeviceRepository>();
+            ninjectKernel.Bind<IRepository<FixedAsset>>().To<FixedAssetRepository>();
             ninjectKernel.Bind<IRepository<PeripheralDevice>>().To<PeripheralDeviceRepository>();
+            ninjectKernel.Bind<IRepository<Kind>>().To<KindRepository>();
+            ninjectKernel.Bind<IRepository<Subgroup>>().To<SubgroupRepository>();
+            ninjectKernel.Bind<IRepository<Licence>>().To<LicenceRepository>();
         }
 
         public IKernel Kernel

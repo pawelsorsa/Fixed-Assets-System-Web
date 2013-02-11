@@ -1,0 +1,17 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.Kind
+
+<p class='header'>Tworzenie rodzaju</p>
+
+@using (Ajax.BeginForm("Add", "Kind", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnSuccess = "OnCompleteEdit('/Kind/Index')" }, new { @id = "form_unobtrusive" }))
+{
+    <table width="100%">
+                <tr>
+                    <td width='30%'>@Html.Label("Nazwa: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.name)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.name)</td>
+                </tr>      
+    </table>   
+    <hr />
+    <p class="centre_object"><input type=submit class='submitButton' value="Dodaj rodzaj" />
+    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })</p>
+}

@@ -17,22 +17,25 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 
         public void AddObject(PeripheralDevice obj)
         {
-            throw new NotImplementedException();
+            context.PeripheralDevices.Add(obj);
+            context.SaveChanges(); 
         }
 
         public void DeleteObject(PeripheralDevice obj)
         {
-            throw new NotImplementedException();
+            context.PeripheralDevices.Attach(obj);
+            context.PeripheralDevices.Remove(obj);
+            context.SaveChanges();
         }
 
         public void EditObject(PeripheralDevice obj)
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
         public int SaveChanges()
         {
-            throw new NotImplementedException();
+            return context.SaveChanges();
         }
     }
 }

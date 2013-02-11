@@ -1,0 +1,26 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.Subgroup
+ 
+<p class='header'>Edytowanie grupy: <b>@Model.name </b></p>
+          
+@using (Ajax.BeginForm("Edit", "Subgroup", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/Subgroup')" }, new { @id = "form_unobtrusive" }))
+{ 
+    <table width="100%">
+                <tr>
+                    <td width='30%'>@Html.Label("Skrót: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.short_name)</td>
+                    <td width='40%'></td>
+                </tr>
+                <tr>
+                    <td width='30%'>@Html.Label("Nazwa: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.name)</td>
+                    <td width='40%'></td>
+                </tr>
+    </table>   
+    <hr />
+                                                
+    <p class="centre_object"><input type=submit class='submitButton' value="Zapisz zmiany" />
+    @Ajax.ActionLink("Anuluj", "Index", "Subgroup", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>
+
+}
+

@@ -11,6 +11,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 {
+    [HandleError]
     public class SectionController : Controller
     {
         public IRepository<Section> sectionRepository;
@@ -30,7 +31,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             {
                 return PartialView("Section/_SectionIndex", sectionListView.CreateListModel(1, false, "Id", 10, false, false, ""));
             }
-
+            
             return View(sectionListView.CreateListModel(1, false, "Id", 10, false, false, ""));
         }
 
@@ -167,7 +168,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
             catch (Exception ex)
             {
                 throw new Exception("Wystąpił błąd podczas usuwania sekcji. Proszę skontaktować się z administratorem", ex.InnerException);
-           
             }
         }
 

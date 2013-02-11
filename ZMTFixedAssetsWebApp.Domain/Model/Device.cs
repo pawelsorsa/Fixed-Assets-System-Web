@@ -80,9 +80,20 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
     
         public virtual int id_fixed_asset
         {
-            get;
-            set;
+            get { return _id_fixed_asset; }
+            set
+            {
+                if (_id_fixed_asset != value)
+                {
+                    if (FixedAsset != null && FixedAsset.id != value)
+                    {
+                        FixedAsset = null;
+                    }
+                    _id_fixed_asset = value;
+                }
+            }
         }
+        private int _id_fixed_asset;
 
         #endregion
         #region Navigation Properties
@@ -101,6 +112,21 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
             }
         }
         private PeripheralDevice _peripheralDevice;
+    
+        public virtual FixedAsset FixedAsset
+        {
+            get { return _fixedAsset; }
+            set
+            {
+                if (!ReferenceEquals(_fixedAsset, value))
+                {
+                    var previousValue = _fixedAsset;
+                    _fixedAsset = value;
+                    FixupFixedAsset(previousValue);
+                }
+            }
+        }
+        private FixedAsset _fixedAsset;
 
         #endregion
         #region Association Fixup
@@ -121,6 +147,26 @@ namespace ZMTFixedAssetsWebApp.Domain.Model
                 if (id_peripheral_device != PeripheralDevice.id)
                 {
                     id_peripheral_device = PeripheralDevice.id;
+                }
+            }
+        }
+    
+        private void FixupFixedAsset(FixedAsset previousValue)
+        {
+            if (previousValue != null && previousValue.Devices.Contains(this))
+            {
+                previousValue.Devices.Remove(this);
+            }
+    
+            if (FixedAsset != null)
+            {
+                if (!FixedAsset.Devices.Contains(this))
+                {
+                    FixedAsset.Devices.Add(this);
+                }
+                if (id_fixed_asset != FixedAsset.id)
+                {
+                    id_fixed_asset = FixedAsset.id;
                 }
             }
         }

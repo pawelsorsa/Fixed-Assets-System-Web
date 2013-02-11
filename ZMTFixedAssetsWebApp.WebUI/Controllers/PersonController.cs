@@ -147,10 +147,16 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         [HttpPost]
         public ActionResult Delete(DeleteObjectById model)
         {
+            try
+            {
                 Person person = new Person() { id = model.Id };
                 personRepository.DeleteObject(person);
                 return RedirectToAction("Index");    
-
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Wystąpił błąd podczas usuwania pracownika. Proszę skontaktować się z administratorem", ex.InnerException);
+            }
         }
 
 
@@ -169,7 +175,6 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
         [HttpPost]
         public ActionResult Add(PersonSectionAddEditModel model)
         {
-         
             if (ModelState.IsValid)
             {
                 try
@@ -227,7 +232,7 @@ namespace ZMTFixedAssetsWebApp.WebUI.Controllers
  
         private void UpdatePerson(ref Person person, PersonSectionAddEditModel personSection)
         {
-            if (personSection.id != null) person.id = personSection.id; else person.id = 0;
+            if (personSection.id != 0) person.id = personSection.id; else person.id = 0;
             if (personSection.area_code != null) person.area_code = personSection.area_code; else person.area_code = null;
             if (personSection.email != null) person.email = personSection.email; else person.email = null;
             if (personSection.name != null) person.name = personSection.name.ToUpper(); else person.name = null;

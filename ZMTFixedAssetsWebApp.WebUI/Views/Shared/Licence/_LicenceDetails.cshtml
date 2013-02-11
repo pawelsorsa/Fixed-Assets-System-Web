@@ -1,0 +1,55 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.Licence
+ 
+<p class='header' style="margin-bottom: 1px">Licencja: <b>@Model.id_number - @Model.name</b></p>
+
+<table width="95%" style="margin-left: auto; margin-right: auto; margin-top: 1px; margin-bottom: 1px;">
+<thead>
+    <tr>
+        <th width="30%"></th>
+        <th width="70%"></th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>@Html.Label("ID:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.id_number)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Numer inwentarzowy:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.inventory_number)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Przypisany środek trwały:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.assign_fixed_asset)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Nazwa:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.name)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Licencja:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.licence_number)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Utworzony przez:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.created_by)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Data ostatniej modyfikacji:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.last_modified_date)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Ostatnio edytowany przez:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.last_modified_login)</b></td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Komentarz:")</td>
+        <td><b>@Html.DisplayTextFor(x => x.comment)</b></td>
+    </tr>
+    </tbody>
+    </table>
+    <hr />
+    <p class="centre_object">
+         @Ajax.ActionLink("Edytuj", "Edit", "Licence", new { id = Model.id_number }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+         @Ajax.ActionLink("Powrót", "Index", "Licence", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>

@@ -15,14 +15,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Kinds">
-      <EntityTypeMapping TypeName="ZMTdbModel.Kind">
-        <MappingFragment StoreEntitySet="Kind">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Licences">
       <EntityTypeMapping TypeName="ZMTdbModel.Licence">
         <MappingFragment StoreEntitySet="Licence">
@@ -77,6 +69,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="PeripheralDevices">
+      <EntityTypeMapping TypeName="ZMTdbModel.PeripheralDevice">
+        <MappingFragment StoreEntitySet="PeripheralDevice">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Devices">
       <EntityTypeMapping TypeName="ZMTdbModel.Device">
         <MappingFragment StoreEntitySet="Device">
@@ -115,9 +115,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PeripheralDevices">
-      <EntityTypeMapping TypeName="ZMTdbModel.PeripheralDevice">
-        <MappingFragment StoreEntitySet="PeripheralDevice">
+    <EntitySetMapping Name="Kinds">
+      <EntityTypeMapping TypeName="ZMTdbModel.Kind">
+        <MappingFragment StoreEntitySet="Kind">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>

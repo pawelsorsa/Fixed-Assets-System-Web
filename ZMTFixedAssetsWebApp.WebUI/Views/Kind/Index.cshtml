@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Lista rodzajów";
+}
+
+<div id="ajax_main_content">
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            global_url_getjson_sortby = "/Kind/SortByList";
+            $.getScript('@Url.Content("~/Scripts/MyScripts/kind.scripts.js")', function (x) {
+            });
+        });
+        </script>
+    @Html.Partial("Kind/_KindIndex") 
+</div>

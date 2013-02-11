@@ -1,0 +1,21 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.PeripheralDevice
+ 
+<p class='header'>Edytowanie urządzenia peryferyjnego: <b>@Model.name </b></p>
+          
+@using (Ajax.BeginForm("Edit", "PeripheralDevice", new { id = Model.id }, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnComplete = "OnCompleteEdit('/PeripheralDevice')" }, new { @id = "form_unobtrusive" }))
+{ 
+    <table width="100%">
+                <tr>
+                    <td width='30%'>@Html.Label("Nazwa: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.name)</td>
+                    <td width='40%'></td>
+                </tr>
+    </table>   
+    <hr />
+                                                
+    <p class="centre_object"><input type=submit class='submitButton' value="Zapisz zmiany" />
+    @Ajax.ActionLink("Anuluj", "Index", "PeripheralDevice", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })
+    </p>
+
+}
+

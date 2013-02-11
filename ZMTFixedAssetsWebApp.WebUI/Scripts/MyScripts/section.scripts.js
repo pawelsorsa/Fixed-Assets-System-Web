@@ -50,7 +50,6 @@
         });
 
         if (validation == "") {
-            alert(query);
             $("#sortby").hide();
             $('#validation').empty();
             $.ajax(

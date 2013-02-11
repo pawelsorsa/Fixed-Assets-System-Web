@@ -1,0 +1,38 @@
+﻿@model ZMTFixedAssetsWebApp.Domain.Model.Licence
+
+<p class='header'>Tworzenie licencji</p>
+
+@using (Ajax.BeginForm("Add", "Licence", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "POST", OnFailure = "OnFailure", OnSuccess = "OnCompleteEdit('/Licence/Index')" }, new { @id = "form_unobtrusive" }))
+{
+    <table width="100%">
+                <tr>
+                    <td width='30%'>@Html.Label("Nazwa: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.name)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.name)</td>
+                </tr>    
+                <tr>
+                    <td width='30%'>@Html.Label("ID: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.id_number, new { Value = "" })</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.id_number)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Numer inwentarzowy: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.inventory_number, new { Value = "" })</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.inventory_number)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Przypisany środek trwały: ")</td>
+                    <td width='30%'>@Html.TextBoxFor(x => x.assign_fixed_asset, new { Value = "" })</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.assign_fixed_asset)</td>
+                </tr>   
+                <tr>
+                    <td width='30%'>@Html.Label("Licencja: ")</td>
+                    <td width='30%'>@Html.EditorFor(x => x.licence_number)</td>
+                    <td width='40%'>@Html.ValidationMessageFor(x => x.licence_number)</td>
+                </tr>   
+             
+    </table>   
+    <hr />
+    <p class="centre_object"><input type=submit class='submitButton' value="Dodaj rodzaj" />
+    @Ajax.ActionLink("Anuluj", "Index", null, new AjaxOptions { UpdateTargetId = "ajax_main_content", HttpMethod = "GET", OnFailure = "OnFailure" }, new { @class = "submitButton", @rel = "ajax" })</p>
+}

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ZMTFixedAssetsWebApp.Domain.Abstract;
 using ZMTFixedAssetsWebApp.Domain.Model;
+using System.Data.Entity.Infrastructure;
 
 namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 {
@@ -18,17 +19,21 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
 
         public void AddObject(Device obj)
         {
-            throw new NotImplementedException();
+            context.Devices.Add(obj);
+            context.SaveChanges(); 
         }
 
         public void DeleteObject(Device obj)
         {
-            throw new NotImplementedException();
+            Device temp = context.Devices.FirstOrDefault(x => x.id == obj.id);
+            ((IObjectContextAdapter)context).ObjectContext.ObjectStateManager.ChangeObjectState(temp, System.Data.EntityState.Deleted);
+            context.Devices.Remove(temp);
+            context.SaveChanges();
         }
 
         public void EditObject(Device obj)
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
         public int SaveChanges()

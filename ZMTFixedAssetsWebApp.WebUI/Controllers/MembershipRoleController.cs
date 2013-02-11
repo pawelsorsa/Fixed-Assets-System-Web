@@ -10,6 +10,7 @@ using ZMTFixedAssetsWebApp.WebUI.Models;
 namespace ZMTFixedAssetsWebApp.WebUI.Controllers
 {
     [ZMTFixedAssetsWebApp.WebUI.ActionFilters.AccessDeniedAuthorize(Roles = "Admins")]
+    [HandleError]
     public class MembershipRoleController : Controller
     {
         //

@@ -11,35 +11,35 @@
 </thead>
 <tbody>
     <tr>
-        <td>@Html.Label("Nazwa jednostki"):</td>
+        <td>@Html.Label("Nazwa jednostki:")</td>
         <td><b>@Html.DisplayTextFor(x => x.name)</b></td>
     </tr>
     <tr>
-        <td>@Html.Label("Skrót jednostki"):</td>
+        <td>@Html.Label("Skrót jednostki:")</td>
         <td><b>@Html.DisplayTextFor(x => x.short_name)</b></td>
     </tr>
     <tr>
-        <td>@Html.Label("Miejscowość"):</td>
+        <td>@Html.Label("Miejscowość:")</td>
         <td><b>@Html.DisplayTextFor(x => x.locality)</b></td>
     </tr>
     <tr>
-        <td>@Html.Label("Ulica"):</td>
+        <td>@Html.Label("Ulica:")</td>
         <td><b>@Html.DisplayTextFor(x => x.street)</b></td>
     </tr>
     <tr>
-        <td>@Html.Label("Kod pocztowy"):</td>
+        <td>@Html.Label("Kod pocztowy:")</td>
         <td><b>@Html.DisplayTextFor(x => x.postal_code)</b></td>
     </tr>
     <tr>
-        <td>@Html.Label("Poczta"):</td>
+        <td>@Html.Label("Poczta:")</td>
         <td><b>@Html.DisplayTextFor(x => x.post)</b></td>
     </tr>
     <tr>
-        <td>@Html.Label("Email"):</td>
+        <td>@Html.Label("Email:")</td>
         <td><b>@Html.DisplayTextFor(x => x.email)</b></td>
     </tr>
     <tr>
-        <td>@Html.Label("Telefon"):</td>
+        <td>@Html.Label("Telefon:")</td>
         <td><b>@Html.DisplayTextFor(x => x.phone_number)</b></td>
     </tr>
     </tbody>
@@ -51,9 +51,9 @@
     </p>
     <p class='header' style="margin-bottom:1px;">Lista pracowników sekcji <b>@Model.short_name </b></p>
     
-    <table style="width: 95%; text-align:centre; margin-left: auto; margin-right: auto">
+    <table style="width: 95%; text-align:center; margin-left: auto; margin-right: auto">
      <thead>
-                <tr>
+                <tr style="background-color: Black; color: white">
                     <th width="10%">Id</th>
                     <th width="25%">Imię</th>
                     <th width="25%">Nazwisko</th>
@@ -72,9 +72,10 @@
             <td>@item.surname</td>
             <td>@item.email</td>
             <td>@item.phone_number</td>
-            <td>@Html.ActionLink("Edytuj", "Index", "Person", null, null, "Person/Edit/" + item.id + "", null, null)</td>
-            <td>@Html.ActionLink("Usuń", "Index", "Person", null, null, "Person/Delete/" + item.id + "", null, null)</td>
+            <td>@Html.ActionLink("Edytuj", "Index", "Person", null, null, "/Person/Edit/" + item.id + "", null, null)</td>
+            <td>@Html.ActionLink("Usuń", "Index", "Person", null, null, "/Person/Delete/" + item.id + "", null, null)</td>
         </tr>
+        <tr><td colspan="7"><hr /></td></tr>
         }
     </tbody>
     </table>

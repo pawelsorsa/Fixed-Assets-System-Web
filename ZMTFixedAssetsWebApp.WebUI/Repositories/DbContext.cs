@@ -14,7 +14,11 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
         public DbSet<Person> Persons { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<Device> Devices { get; set; }
+        public DbSet<FixedAsset> FixedAssets { get; set; }
         public DbSet<PeripheralDevice> PeripheralDevices { get; set; }
+        public DbSet<Kind> Kinds { get; set; }
+        public DbSet<Subgroup> Subgroups { get; set; }
+        public DbSet<Licence> Licences { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,6 +29,10 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             modelBuilder.Entity<Licence>().HasKey(x => x.id_number);
             modelBuilder.Entity<Person>().HasKey(x => x.id);
             modelBuilder.Entity<Device>().HasKey(x => x.id);
+            modelBuilder.Entity<Kind>().HasKey(x => x.id);
+            modelBuilder.Entity<FixedAsset>().HasKey(x => x.id);
+            modelBuilder.Entity<Contractor>().HasKey(x => x.id);
+            modelBuilder.Entity<Subgroup>().HasKey(x => x.id);
             modelBuilder.Entity<PeripheralDevice>().HasKey(x => x.id);
             // Identity: None
             modelBuilder.Entity<Person>().Property(e => e.id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.None);
@@ -36,6 +44,8 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             .WithMany(u => u.People)
             .HasForeignKey(x => x.id_section);
 
+
+
             // Section Validation
             // modelBuilder.Entity<Section>().Property(p => p.short_name).IsRequired().HasMaxLength(2);
 
@@ -43,6 +53,43 @@ namespace ZMTFixedAssetsWebApp.WebUI.Repositories
             .HasRequired(p => p.PeripheralDevice)
             .WithMany(u => u.Devices)
             .HasForeignKey(x => x.id_peripheral_device);
+
+            modelBuilder.Entity<Device>()
+           .HasRequired(p => p.FixedAsset)
+           .WithMany(u => u.Devices)
+           .HasForeignKey(x => x.id_fixed_asset);
+
+            modelBuilder.Entity<FixedAsset>()
+           .HasRequired(p => p.Contractor)
+           .WithMany(u => u.FixedAssets)
+           .HasForeignKey(x => x.id_contractor);
+
+            modelBuilder.Entity<FixedAsset>()
+           .HasRequired(p => p.Person)
+           .WithMany(u => u.FixedAssets)
+           .HasForeignKey(x => x.id_person);
+
+            modelBuilder.Entity<FixedAsset>()
+          .HasRequired(p => p.Subgroup)
+          .WithMany(u => u.FixedAssets)
+          .HasForeignKey(x => x.id_subgroup);
+
+           modelBuilder.Entity<FixedAsset>()
+          .HasRequired(p => p.Kind)
+          .WithMany(u => u.FixedAssets)
+          .HasForeignKey(x => x.id_kind);
+
+
+           modelBuilder.Entity<Licence>()
+          .HasRequired(p => p.Kind)
+          .WithMany(u => u.Licences)
+          .HasForeignKey(x => x.id_kind);
+
+           modelBuilder.Entity<Licence>()
+          .HasRequired(p => p.FixedAsset)
+          .WithMany(u => u.Licences)
+          .HasForeignKey(x => x.assign_fixed_asset);
+
 
         }
     }

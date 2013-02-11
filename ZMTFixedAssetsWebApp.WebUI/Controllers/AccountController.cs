@@ -9,6 +9,7 @@ using ZMTFixedAssetsWebApp.WebUI.Models;
 
 namespace MvcApplication3.Controllers
 {
+    [HandleError]
     public class AccountController : Controller
     {
         //
